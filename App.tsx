@@ -1,20 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Provider } from 'react-redux';
+
+import AppNavigator from './navigations/AppNavigator';
+import store from './redux';
+
+import { init } from './helpers/db';
+
+init()
+  .then(() => {
+    console.log('Initialized database');
+  })
+  .catch((err) => {
+    console.log('Initializing db failed.');
+    console.log(err);
+  });
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Provider store={store}>
+      <AppNavigator />
+    </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
