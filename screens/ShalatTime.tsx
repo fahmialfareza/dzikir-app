@@ -2,7 +2,7 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { Text, StyleSheet, View, useColorScheme } from 'react-native';
 
-const DzikirTargetHomeScreen = () => {
+const ShalatTime = () => {
   const colorScheme = useColorScheme();
 
   const themeTextStyle =
@@ -19,7 +19,7 @@ const DzikirTargetHomeScreen = () => {
 };
 
 export const screenOptions = {
-  headerTitle: 'Dzikir Home',
+  headerTitle: 'Shalat Time',
 };
 
 const styles = StyleSheet.create({
@@ -42,4 +42,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DzikirTargetHomeScreen;
+export default ShalatTime;

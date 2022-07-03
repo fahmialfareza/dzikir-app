@@ -1,12 +1,12 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
-import DzikirTargetNavigator from './DzikirTargetNavigator';
+import TabNavigator from './TabNavigator';
 
 const AppNavigator = () => {
   return (
     <NavigationContainer>
-      <DzikirTargetNavigator />
+      <TabNavigator />
     </NavigationContainer>
   );
 };
