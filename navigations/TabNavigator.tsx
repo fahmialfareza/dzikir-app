@@ -34,6 +34,7 @@ const TabNavigator = () => {
       inactiveColor="#FFF"
       activeColor="#FFF"
       labeled={true}
+      initialRouteName="Home"
     >
       <Tab.Screen
         name="Al-Qur'an"
@@ -91,8 +92,9 @@ const TabNavigator = () => {
                 resizeMode="contain"
                 fadeDuration={0}
                 style={{
-                  width: 24,
-                  height: 24,
+                  width: 40,
+                  height: 40,
+                  top: 10,
                 }}
               />
             </View>
