@@ -12,15 +12,17 @@ import {
   deleteDzikirTarget as deleteDzikirTargetDB,
   fetchDetailsDzikirTargets,
 } from '../../helpers/db';
+import { Dispatch } from 'redux';
+import DzikirTarget from '../../models/dzikirTarget';
 
 export const addDzikirTarget =
-  (title: string, target: number) => async (dispatch: any) => {
+  (title: string, target: number) => async (dispatch: Dispatch) => {
     try {
-      const dbResult: any = await insertDzikirTarget(title, target);
+      const data: DzikirTarget = await insertDzikirTarget(title, target);
 
       dispatch({
         type: ADD_DZIKIR_TARGET,
-        payload: { id: dbResult.insertId, title, target },
+        payload: data,
       });
     } catch (error) {
       // Add toastify
@@ -28,13 +30,13 @@ export const addDzikirTarget =
     }
   };
 
-export const getDzikirTargets = () => async (dispatch: any) => {
+export const getDzikirTargets = () => async (dispatch: Dispatch) => {
   try {
-    const dbResult: any = await fetchDzikirTargets();
+    const data: DzikirTarget[] = await fetchDzikirTargets();
 
     dispatch({
       type: GET_DZIKIR_TARGETS,
-      payload: dbResult.rows._array,
+      payload: data,
     });
   } catch (error) {
     // Add toastify
@@ -42,22 +44,23 @@ export const getDzikirTargets = () => async (dispatch: any) => {
   }
 };
 
-export const getDetailsDzikirTarget = (id: number) => async (dispatch: any) => {
-  try {
-    const dbResult: any = await fetchDetailsDzikirTargets(id);
+export const getDetailsDzikirTarget =
+  (id: number) => async (dispatch: Dispatch) => {
+    try {
+      const data: DzikirTarget = await fetchDetailsDzikirTargets(id);
 
-    dispatch({
-      type: GET_DZIKIR_TARGETS_DETAILS,
-      payload: dbResult.rows._array,
-    });
-  } catch (error) {
-    // Add toastify
-    throw error;
-  }
-};
+      dispatch({
+        type: GET_DZIKIR_TARGETS_DETAILS,
+        payload: data,
+      });
+    } catch (error) {
+      // Add toastify
+      throw error;
+    }
+  };
 
 export const updateDzikirTarget =
-  (id: number, title: string, target: number) => async (dispatch: any) => {
+  (id: number, title: string, target: number) => async (dispatch: Dispatch) => {
     try {
       await updateDzikirTargetDB(id, title, target);
 
@@ -71,16 +74,17 @@ export const updateDzikirTarget =
     }
   };
 
-export const deleteDzikirTarget = (id: number) => async (dispatch: any) => {
-  try {
-    const dbResult: any = await deleteDzikirTargetDB(id);
+export const deleteDzikirTarget =
+  (id: number) => async (dispatch: Dispatch) => {
+    try {
+      const data: DzikirTarget = await deleteDzikirTargetDB(id);
 
-    dispatch({
-      type: DELETE_DZIKIR_TARGET,
-      payload: dbResult.rowsAffected,
-    });
-  } catch (error) {
-    // Add toastify
-    throw error;
-  }
-};
+      dispatch({
+        type: DELETE_DZIKIR_TARGET,
+        payload: data,
+      });
+    } catch (error) {
+      // Add toastify
+      throw error;
+    }
+  };

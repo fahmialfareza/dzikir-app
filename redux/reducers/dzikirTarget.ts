@@ -36,7 +36,7 @@ const dzikirTargetReducer = (state = initialState, action: Action) => {
     case GET_DZIKIR_TARGETS_DETAILS:
       return {
         ...state,
-        dzikirTargetDetails: action?.payload[0],
+        dzikirTargetDetails: action.payload,
       };
     case UPDATE_DZIKIR_TARGET:
       return {
@@ -53,7 +53,7 @@ const dzikirTargetReducer = (state = initialState, action: Action) => {
       return {
         ...state,
         dzikirTargets: state.dzikirTargets.filter(
-          (dzikirTarget) => dzikirTarget.id !== action.payload
+          (dzikirTarget) => dzikirTarget.id !== action.payload.id
         ),
         dzikirTargetDetails: null,
       };
