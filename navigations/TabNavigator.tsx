@@ -25,7 +25,9 @@ import AlMatsuratScreen, {
 } from '../screens/AlMatsurat';
 import DzikirScreen, {
   screenOptions as dzikirScreenOptions,
-} from '../screens/Dzikir';
+} from '../screens/dzikir/Dzikir';
+
+import DzikirNavigator from './DzikirNavigator';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -138,7 +140,7 @@ const TabNavigator = () => {
       ></Tab.Screen>
       <Tab.Screen
         name="Dzikir"
-        component={DzikirScreen}
+        component={DzikirNavigator}
         options={{
           tabBarIcon: ({ color }) => (
             <View>

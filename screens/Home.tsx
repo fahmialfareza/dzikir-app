@@ -1,6 +1,5 @@
 import React from 'react';
 import { NavigationProp } from '@react-navigation/native';
-import { StatusBar } from 'expo-status-bar';
 import {
   StyleSheet,
   View,
@@ -39,8 +38,6 @@ const Home = ({ navigation }: HomeProps) => {
 
   return (
     <SafeAreaView style={[styles.container, themeContainerStyle]}>
-      <StatusBar />
-
       <View style={styles.row}>
         <View style={styles.topRowContent}></View>
         <View style={styles.topRowContent}>

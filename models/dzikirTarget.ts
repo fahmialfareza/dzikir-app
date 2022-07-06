@@ -1,5 +1,8 @@
 export default interface DzikirTarget {
   id: number;
   title: string;
-  target: number;
+  arabic?: string;
+  background?: string;
+  color?: string;
+  target?: number;
 }
