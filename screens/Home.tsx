@@ -2,17 +2,22 @@ import React from 'react';
 import { NavigationProp } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import {
-  Text,
   StyleSheet,
   View,
   useColorScheme,
   Dimensions,
-  TouchableOpacity,
   Image,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import screenMode from '../constants/screenMode';
+import {
+  AlMatsuratIcon,
+  AlQuranIcon,
+  DzikirIcon,
+  HomeAyahImage,
+  ShalatTimeIcon,
+} from '../constants/assets';
 
 import ButtonMenu from '../components/ButtonMenu';
 
@@ -40,7 +45,7 @@ const Home = ({ navigation }: HomeProps) => {
         <View style={styles.topRowContent}></View>
         <View style={styles.topRowContent}>
           <Image
-            source={require('../assets/images/home-ayah.png')}
+            source={HomeAyahImage}
             style={styles.imageTopRowContent}
           ></Image>
         </View>
@@ -52,14 +57,14 @@ const Home = ({ navigation }: HomeProps) => {
             backgroundColor="#FF4444"
             color="#FFFFFF"
             text="Al-Qur'an"
-            imageSource={require('../assets/icons/alquran.png')}
+            imageSource={AlQuranIcon}
             onPress={() => selectMenuHandler("Al-Qur'an")}
           />
           <ButtonMenu
             backgroundColor="#FFB648"
             color="#FFFFFF"
             text="Jadwal Sholat"
-            imageSource={require('../assets/icons/shalat-time.png')}
+            imageSource={ShalatTimeIcon}
             onPress={() => selectMenuHandler('Schedule')}
           />
         </View>
@@ -68,14 +73,14 @@ const Home = ({ navigation }: HomeProps) => {
             backgroundColor="#3D3FB8"
             color="#FFFFFF"
             text="Al-Matsurat"
-            imageSource={require('../assets/icons/almatsurat.png')}
+            imageSource={AlMatsuratIcon}
             onPress={() => selectMenuHandler('Al-Matsurat')}
           />
           <ButtonMenu
             backgroundColor="#7D2DFF"
             color="#FFFFFF"
             text="Dzikir"
-            imageSource={require('../assets/icons/dzikir.png')}
+            imageSource={DzikirIcon}
             onPress={() => selectMenuHandler('Dzikir')}
           />
         </View>

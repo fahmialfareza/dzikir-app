@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Dimensions,
   View,
+  ImageSourcePropType,
 } from 'react-native';
 
 interface ButtonMenuProps {
@@ -13,7 +14,7 @@ interface ButtonMenuProps {
   backgroundColor: string;
   color: string;
   text: string;
-  imageSource: any;
+  imageSource: ImageSourcePropType;
 }
 
 function ButtonMenu({

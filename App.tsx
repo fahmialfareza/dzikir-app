@@ -1,4 +1,5 @@
 import { Provider } from 'react-redux';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import AppNavigator from './navigations/AppNavigator';
 import store from './redux';
@@ -17,7 +18,9 @@ init()
 export default function App() {
   return (
     <Provider store={store}>
-      <AppNavigator />
+      <SafeAreaProvider>
+        <AppNavigator />
+      </SafeAreaProvider>
     </Provider>
   );
 }

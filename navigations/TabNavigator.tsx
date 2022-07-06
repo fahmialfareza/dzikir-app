@@ -3,6 +3,13 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import { Image, View, useColorScheme } from 'react-native';
 
 import screenMode from '../constants/screenMode';
+import {
+  AlMatsuratIcon,
+  AlQuranIcon,
+  DzikirIcon,
+  HomeIcon,
+  ShalatTimeIcon,
+} from '../constants/assets';
 
 import HomeScreen, {
   screenOptions as homeScreenOptions,
@@ -51,7 +58,7 @@ const TabNavigator = () => {
           tabBarIcon: ({ color }) => (
             <View>
               <Image
-                source={require('../assets/icons/alquran.png')}
+                source={AlQuranIcon}
                 fadeDuration={0}
                 resizeMode="contain"
                 style={{ width: 24, height: 24, tintColor: color }}
@@ -68,7 +75,7 @@ const TabNavigator = () => {
           tabBarIcon: ({ color }) => (
             <View>
               <Image
-                source={require('../assets/icons/shalat-time.png')}
+                source={ShalatTimeIcon}
                 fadeDuration={0}
                 resizeMode="contain"
                 style={{ width: 24, height: 24, tintColor: color }}
@@ -97,7 +104,7 @@ const TabNavigator = () => {
               }}
             >
               <Image
-                source={require('../assets/icons/home.png')}
+                source={HomeIcon}
                 resizeMode="contain"
                 fadeDuration={0}
                 style={{
@@ -119,7 +126,7 @@ const TabNavigator = () => {
           tabBarIcon: ({ color }) => (
             <View>
               <Image
-                source={require('../assets/icons/almatsurat.png')}
+                source={AlMatsuratIcon}
                 fadeDuration={0}
                 resizeMode="contain"
                 style={{ width: 24, height: 24, tintColor: color }}
@@ -136,7 +143,7 @@ const TabNavigator = () => {
           tabBarIcon: ({ color }) => (
             <View>
               <Image
-                source={require('../assets/icons/dzikir.png')}
+                source={DzikirIcon}
                 fadeDuration={0}
                 resizeMode="contain"
                 style={{ width: 24, height: 24, tintColor: color }}
