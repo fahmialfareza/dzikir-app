@@ -1,12 +1,6 @@
 import React from 'react';
 import { NavigationProp } from '@react-navigation/native';
-import {
-  StyleSheet,
-  View,
-  useColorScheme,
-  Dimensions,
-  Image,
-} from 'react-native';
+import { StyleSheet, View, useColorScheme, Dimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import screenMode from '../constants/screenMode';
@@ -32,6 +26,9 @@ const Home = ({ navigation }: HomeProps) => {
       ? screenMode.lightContainer
       : screenMode.darkContainer;
 
+  const imageTopRowContentWidth = Dimensions.get('window').width - 40;
+  const buttonMenuIconWidth = Dimensions.get('window').width / 6;
+
   const selectMenuHandler = (routeName: string) => {
     navigation.navigate(routeName, {});
   };
@@ -41,10 +38,10 @@ const Home = ({ navigation }: HomeProps) => {
       <View style={styles.row}>
         <View style={styles.topRowContent}></View>
         <View style={styles.topRowContent}>
-          <Image
-            source={HomeAyahImage}
+          <HomeAyahImage
             style={styles.imageTopRowContent}
-          ></Image>
+            width={imageTopRowContentWidth}
+          />
         </View>
       </View>
 
@@ -54,32 +51,48 @@ const Home = ({ navigation }: HomeProps) => {
             backgroundColor="#FF4444"
             color="#FFFFFF"
             text="Al-Qur'an"
-            imageSource={AlQuranIcon}
             onPress={() => selectMenuHandler("Al-Qur'an")}
-          />
+          >
+            <AlQuranIcon
+              width={buttonMenuIconWidth}
+              style={styles.buttonMenuImage}
+            />
+          </ButtonMenu>
           <ButtonMenu
             backgroundColor="#FFB648"
             color="#FFFFFF"
             text="Jadwal Sholat"
-            imageSource={ShalatTimeIcon}
             onPress={() => selectMenuHandler('Schedule')}
-          />
+          >
+            <ShalatTimeIcon
+              width={buttonMenuIconWidth}
+              style={styles.buttonMenuImage}
+            />
+          </ButtonMenu>
         </View>
         <View style={styles.buttonMenu}>
           <ButtonMenu
             backgroundColor="#3D3FB8"
             color="#FFFFFF"
             text="Al-Matsurat"
-            imageSource={AlMatsuratIcon}
             onPress={() => selectMenuHandler('Al-Matsurat')}
-          />
+          >
+            <AlMatsuratIcon
+              width={buttonMenuIconWidth}
+              style={styles.buttonMenuImage}
+            />
+          </ButtonMenu>
           <ButtonMenu
             backgroundColor="#7D2DFF"
             color="#FFFFFF"
             text="Dzikir"
-            imageSource={DzikirIcon}
             onPress={() => selectMenuHandler('Dzikir')}
-          />
+          >
+            <DzikirIcon
+              width={buttonMenuIconWidth}
+              style={styles.buttonMenuImage}
+            />
+          </ButtonMenu>
         </View>
       </View>
     </SafeAreaView>
@@ -104,7 +117,6 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   imageTopRowContent: {
-    width: Dimensions.get('window').width - 40,
     borderRadius: 10,
   },
   buttonMenu: {
@@ -113,6 +125,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     padding: 10,
     marginBottom: -20,
+  },
+  buttonMenuImage: {
+    marginBottom: 4,
   },
 });
 

@@ -7,6 +7,7 @@ const data: DzikirTarget[] = [
     arabic: 'سُبْحَانَ ٱللَّٰهِ',
     background: '#FF4444',
     color: '#fff',
+    target: 100,
   },
   {
     id: 2,
@@ -14,6 +15,7 @@ const data: DzikirTarget[] = [
     arabic: 'اَلْحَمْدُ للَّهِ',
     background: '#FFB648',
     color: '#fff',
+    target: 100,
   },
   {
     id: 3,
@@ -21,6 +23,7 @@ const data: DzikirTarget[] = [
     arabic: 'لا إله إلاّ الله',
     background: '#3D3FB8',
     color: '#fff',
+    target: 100,
   },
   {
     id: 4,
@@ -28,6 +31,7 @@ const data: DzikirTarget[] = [
     arabic: 'اللهُ أكْبَرُ',
     background: '#7D2DFF',
     color: '#fff',
+    target: 100,
   },
   {
     id: 5,
@@ -35,6 +39,7 @@ const data: DzikirTarget[] = [
     arabic: 'أَسْتَغْفِرُ اللَّهَ',
     background: '#26A2B2',
     color: '#fff',
+    target: 100,
   },
 ];
 

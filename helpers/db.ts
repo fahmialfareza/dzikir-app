@@ -8,7 +8,7 @@ export const init = async () => {
   return new Promise((resolve) => {
     db.transaction((tx) => {
       tx.executeSql(
-        'CREATE TABLE IF NOT EXISTS dzikir_target (id INTEGER PRIMARY KEY NOT NULL, title VARCHAR NOT NULL, target INTEGER NOT NULL);',
+        'CREATE TABLE IF NOT EXISTS dzikir_target (id INTEGER PRIMARY KEY NOT NULL, title VARCHAR NOT NULL, target INTEGER NOT NULL, arabic VARCHAR NULL, background VARCHAR NULL, color VARCHAR NULL);',
         [],
         (_, result) => {
           resolve(result);
@@ -25,13 +25,16 @@ export const init = async () => {
 
 export const insertDzikirTarget = (
   title: string,
-  target: number
+  target: number,
+  arabic: string,
+  background: string,
+  color: string
 ): Promise<DzikirTarget> => {
   return new Promise<DzikirTarget>((resolve) => {
     db.transaction((tx) => {
       tx.executeSql(
-        `INSERT INTO dzikir_target (title, target) VALUES (?, ?) RETURNING id, title,target;`,
-        [title, target],
+        `INSERT INTO dzikir_target (title, target, arabic, background, color) VALUES (?, ?, ?, ?, ?);`,
+        [title, target, arabic, background, color],
         (_, result) => {
           resolve(Array.from(result.rows._array as any)[0] as DzikirTarget);
         },
@@ -86,13 +89,16 @@ export const fetchDetailsDzikirTargets = (
 export const updateDzikirTarget = (
   id: number,
   title: string,
-  target: number
+  target: number,
+  arabic: string,
+  background: string,
+  color: string
 ): Promise<DzikirTarget> => {
   return new Promise<DzikirTarget>((resolve) => {
     db.transaction((tx) => {
       tx.executeSql(
-        `UPDATE dzikir_target SET id=?, title=?, target=? RETURNING id, title,target;`,
-        [id, title, target],
+        `UPDATE dzikir_target SET id=?, title=?, target=?, arabic=?, background=?, color=? RETURNING id, title, target;`,
+        [id, title, target, arabic, background, color],
         (_, result) => {
           resolve(Array.from(result.rows._array as any)[0] as DzikirTarget);
         },

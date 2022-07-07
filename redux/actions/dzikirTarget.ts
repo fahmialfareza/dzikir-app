@@ -1,3 +1,5 @@
+import { AnyAction, Dispatch } from 'redux';
+
 import {
   GET_DZIKIR_TARGETS,
   GET_DZIKIR_TARGETS_DETAILS,
@@ -12,13 +14,26 @@ import {
   deleteDzikirTarget as deleteDzikirTargetDB,
   fetchDetailsDzikirTargets,
 } from '../../helpers/db';
-import { Dispatch } from 'redux';
+
 import DzikirTarget from '../../models/dzikirTarget';
 
 export const addDzikirTarget =
-  (title: string, target: number) => async (dispatch: Dispatch) => {
+  (
+    title: string,
+    target: number,
+    arabic: string,
+    background: string,
+    color: string
+  ) =>
+  async (dispatch: Dispatch) => {
     try {
-      const data: DzikirTarget = await insertDzikirTarget(title, target);
+      const data: DzikirTarget = await insertDzikirTarget(
+        title,
+        target,
+        arabic,
+        background,
+        color
+      );
 
       dispatch({
         type: ADD_DZIKIR_TARGET,
@@ -30,7 +45,7 @@ export const addDzikirTarget =
     }
   };
 
-export const getDzikirTargets = () => async (dispatch: Dispatch) => {
+export const getDzikirTargets = () => async (dispatch: Dispatch<AnyAction>) => {
   try {
     const data: DzikirTarget[] = await fetchDzikirTargets();
 
@@ -60,9 +75,17 @@ export const getDetailsDzikirTarget =
   };
 
 export const updateDzikirTarget =
-  (id: number, title: string, target: number) => async (dispatch: Dispatch) => {
+  (
+    id: number,
+    title: string,
+    target: number,
+    arabic: string,
+    background: string,
+    color: string
+  ) =>
+  async (dispatch: Dispatch) => {
     try {
-      await updateDzikirTargetDB(id, title, target);
+      await updateDzikirTargetDB(id, title, target, arabic, background, color);
 
       dispatch({
         type: UPDATE_DZIKIR_TARGET,

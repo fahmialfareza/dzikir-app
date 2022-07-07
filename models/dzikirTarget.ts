@@ -4,5 +4,5 @@ export default interface DzikirTarget {
   arabic?: string;
   background?: string;
   color?: string;
-  target?: number;
+  target: number;
 }

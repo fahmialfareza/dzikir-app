@@ -9,7 +9,7 @@ import Dzikir, {
 } from '../screens/dzikir/Dzikir';
 import DzikirCounter, {
   screenOptions as dzikirCounterScreenOptions,
-} from '../screens/dzikir/DzikirConter';
+} from '../screens/dzikir/DzikirCounter';
 
 const defaultDzikirScreenOptions: NativeStackNavigationOptions = {
   headerShown: false,

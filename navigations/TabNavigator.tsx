@@ -23,9 +23,6 @@ import ShalatTimeScreen, {
 import AlMatsuratScreen, {
   screenOptions as alMatsuratScreenOptions,
 } from '../screens/AlMatsurat';
-import DzikirScreen, {
-  screenOptions as dzikirScreenOptions,
-} from '../screens/dzikir/Dzikir';
 
 import DzikirNavigator from './DzikirNavigator';
 
@@ -59,12 +56,7 @@ const TabNavigator = () => {
         options={{
           tabBarIcon: ({ color }) => (
             <View>
-              <Image
-                source={AlQuranIcon}
-                fadeDuration={0}
-                resizeMode="contain"
-                style={{ width: 24, height: 24, tintColor: color }}
-              />
+              <AlQuranIcon width={24} height={24} color={color} />
             </View>
           ),
           ...alQuranScreenOptions,
@@ -76,12 +68,7 @@ const TabNavigator = () => {
         options={{
           tabBarIcon: ({ color }) => (
             <View>
-              <Image
-                source={ShalatTimeIcon}
-                fadeDuration={0}
-                resizeMode="contain"
-                style={{ width: 24, height: 24, tintColor: color }}
-              />
+              <ShalatTimeIcon width={24} height={24} color={color} />
             </View>
           ),
           tabBarLabel: 'Jadwal',
@@ -105,10 +92,9 @@ const TabNavigator = () => {
                 alignItems: 'center',
               }}
             >
-              <Image
-                source={HomeIcon}
-                resizeMode="contain"
-                fadeDuration={0}
+              <HomeIcon
+                width={40}
+                height={40}
                 style={{
                   width: 40,
                   height: 40,
@@ -127,12 +113,7 @@ const TabNavigator = () => {
         options={{
           tabBarIcon: ({ color }) => (
             <View>
-              <Image
-                source={AlMatsuratIcon}
-                fadeDuration={0}
-                resizeMode="contain"
-                style={{ width: 24, height: 24, tintColor: color }}
-              />
+              <AlMatsuratIcon width={24} height={24} />
             </View>
           ),
           ...alMatsuratScreenOptions,
@@ -144,15 +125,9 @@ const TabNavigator = () => {
         options={{
           tabBarIcon: ({ color }) => (
             <View>
-              <Image
-                source={DzikirIcon}
-                fadeDuration={0}
-                resizeMode="contain"
-                style={{ width: 24, height: 24, tintColor: color }}
-              />
+              <DzikirIcon width={24} height={24} />
             </View>
           ),
-          ...dzikirScreenOptions,
         }}
       ></Tab.Screen>
     </Tab.Navigator>

@@ -1,45 +1,52 @@
+import { AnyAction } from 'redux';
+
 import {
   GET_DZIKIR_TARGETS,
   GET_DZIKIR_TARGETS_DETAILS,
   ADD_DZIKIR_TARGET,
   UPDATE_DZIKIR_TARGET,
   DELETE_DZIKIR_TARGET,
-  Action,
 } from '../types';
 
 import DzikirTarget from '../../models/dzikirTarget';
 
-interface InitialState {
+interface DzikirTargetState {
   dzikirTargets: DzikirTarget[];
   dzikirTargetDetails: DzikirTarget | null;
 }
 
-const initialState: InitialState = {
+const initialState: DzikirTargetState = {
   dzikirTargets: [],
   dzikirTargetDetails: null,
 };
 
-const dzikirTargetReducer = (state = initialState, action: Action) => {
+const dzikirTargetReducer = (state = initialState, action: AnyAction) => {
   switch (action.type) {
     case ADD_DZIKIR_TARGET:
-      return {
+      const addDzikirState: DzikirTargetState = {
         ...state,
         dzikirTargets: [...state.dzikirTargets, action.payload],
         dzikirTargetDetails: null,
       };
+
+      return addDzikirState;
     case GET_DZIKIR_TARGETS:
-      return {
+      const getTargetsState: DzikirTargetState = {
         ...state,
         dzikirTargets: action.payload,
         dzikirTargetDetails: null,
       };
+
+      return getTargetsState;
     case GET_DZIKIR_TARGETS_DETAILS:
-      return {
+      const getTargetDetailsState: DzikirTargetState = {
         ...state,
         dzikirTargetDetails: action.payload,
       };
+
+      return getTargetDetailsState;
     case UPDATE_DZIKIR_TARGET:
-      return {
+      const updateTargetState: DzikirTargetState = {
         ...state,
         dzikirTargets: state.dzikirTargets.map((dzikirTarget) => {
           if (dzikirTarget.id === action.payload.id) {
@@ -49,14 +56,18 @@ const dzikirTargetReducer = (state = initialState, action: Action) => {
         }),
         dzikirTargetDetails: null,
       };
+
+      return updateTargetState;
     case DELETE_DZIKIR_TARGET:
-      return {
+      const deleteTargetState: DzikirTargetState = {
         ...state,
         dzikirTargets: state.dzikirTargets.filter(
           (dzikirTarget) => dzikirTarget.id !== action.payload.id
         ),
         dzikirTargetDetails: null,
       };
+
+      return deleteTargetState;
     default:
       return state;
   }

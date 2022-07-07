@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   StyleSheet,
   View,
@@ -8,15 +8,19 @@ import {
   Dimensions,
   TouchableOpacity,
   Platform,
+  ActivityIndicator,
 } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { NavigationProp } from '@react-navigation/native';
 
 import screenMode from '../../constants/screenMode';
-import dzikirData from '../../constants/dzikirData';
 
 import DzikirItem, { DzikirItemProps } from '../../components/DzikirItem';
-import { NavigationProp } from '@react-navigation/native';
 import DzikirTarget from '../../models/dzikirTarget';
+
+import { getDzikirTargets } from '../../redux/actions/dzikirTarget';
+import { RootState } from '../../redux';
 
 interface DzikirProps {
   navigation: NavigationProp<any, any>;
@@ -24,6 +28,15 @@ interface DzikirProps {
 
 const Dzikir = ({ navigation }: DzikirProps) => {
   const colorScheme = useColorScheme();
+  const dispatch = useDispatch();
+  const { dzikirTargets } = useSelector(
+    (state: RootState) => state.dzikirTarget
+  );
+
+  useEffect(() => {
+    // @ts-ignore
+    dispatch(getDzikirTargets());
+  }, [dispatch, dzikirTargets]);
 
   const themeContainerStyle =
     colorScheme === 'light'
@@ -49,6 +62,16 @@ const Dzikir = ({ navigation }: DzikirProps) => {
     );
   };
 
+  if (dzikirTargets.length === 0) {
+    return (
+      <SafeAreaView
+        style={[styles.container, themeContainerStyle, styles.loadingContainer]}
+      >
+        <ActivityIndicator size="large" color={themeTextStyle.color} />
+      </SafeAreaView>
+    );
+  }
+
   return (
     <SafeAreaView style={[styles.container, themeContainerStyle]}>
       <View style={styles.topRow}>
@@ -57,7 +80,7 @@ const Dzikir = ({ navigation }: DzikirProps) => {
 
       <View style={styles.itemRow}>
         <FlatList
-          data={dzikirData}
+          data={dzikirTargets}
           renderItem={renderItem}
           keyExtractor={(item) => String(item.id)}
         />
@@ -83,6 +106,10 @@ export const screenOptions = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  loadingContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   topRow: {
     flex: 2,

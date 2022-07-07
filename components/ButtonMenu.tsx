@@ -1,12 +1,10 @@
 import React from 'react';
 import {
   TouchableOpacity,
-  Image,
   Text,
   StyleSheet,
   Dimensions,
   View,
-  ImageSourcePropType,
 } from 'react-native';
 
 interface ButtonMenuProps {
@@ -14,7 +12,7 @@ interface ButtonMenuProps {
   backgroundColor: string;
   color: string;
   text: string;
-  imageSource: ImageSourcePropType;
+  children?: React.ReactNode;
 }
 
 function ButtonMenu({
@@ -22,7 +20,7 @@ function ButtonMenu({
   backgroundColor,
   color,
   text,
-  imageSource,
+  children,
 }: ButtonMenuProps) {
   return (
     <TouchableOpacity
@@ -30,7 +28,7 @@ function ButtonMenu({
       onPress={onPress}
     >
       <View style={styles.buttonMenuView}>
-        <Image source={imageSource} style={styles.buttonMenuImage}></Image>
+        {children}
         <Text style={{ ...styles.buttonMenuText, color }}>{text}</Text>
       </View>
     </TouchableOpacity>
@@ -43,10 +41,6 @@ const styles = StyleSheet.create({
     margin: 10,
     padding: 10,
     borderRadius: 10,
-  },
-  buttonMenuImage: {
-    width: Dimensions.get('window').width / 6,
-    marginBottom: 4,
   },
   buttonMenuView: {
     alignItems: 'flex-start',
