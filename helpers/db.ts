@@ -97,8 +97,8 @@ export const updateDzikirTarget = (
   return new Promise<DzikirTarget>((resolve) => {
     db.transaction((tx) => {
       tx.executeSql(
-        `UPDATE dzikir_target SET id=?, title=?, target=?, arabic=?, background=?, color=? RETURNING id, title, target;`,
-        [id, title, target, arabic, background, color],
+        `UPDATE dzikir_target SET title=?, target=?, arabic=?, background=?, color=? WHERE id=?;`,
+        [title, target, arabic, background, color, id],
         (_, result) => {
           resolve(Array.from(result.rows._array as any)[0] as DzikirTarget);
         },

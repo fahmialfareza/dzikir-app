@@ -6,6 +6,7 @@ import HistoryIconAsset from '../assets/icons/history.svg';
 import HomeIconAsset from '../assets/icons/home.svg';
 
 import HomeAyahImageAsset from '../assets/images/home-ayah.svg';
+import DzikirCounterBackgroundImageAsset from '../assets/images/dzikir-counter-background.svg';
 
 // Icons
 export const AlMatsuratIcon = AlMatsuratIconAsset;
@@ -17,3 +18,4 @@ export const ShalatTimeIcon = ShalatTimeIconAsset;
 
 // Images
 export const HomeAyahImage = HomeAyahImageAsset;
+export const DzikirCounterBackgrondImage = DzikirCounterBackgroundImageAsset;

@@ -8,12 +8,7 @@ import {
   DELETE_DZIKIR_TARGET,
 } from '../types';
 
-import DzikirTarget from '../../models/dzikirTarget';
-
-interface DzikirTargetState {
-  dzikirTargets: DzikirTarget[];
-  dzikirTargetDetails: DzikirTarget | null;
-}
+import { DzikirTargetState } from '../types';
 
 const initialState: DzikirTargetState = {
   dzikirTargets: [],

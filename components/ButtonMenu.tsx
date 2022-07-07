@@ -49,6 +49,7 @@ const styles = StyleSheet.create({
   },
   buttonMenuText: {
     fontSize: Dimensions.get('window').width / 20,
+    fontFamily: 'dubai-regular',
   },
 });
 

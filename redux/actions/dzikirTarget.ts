@@ -16,6 +16,7 @@ import {
 } from '../../helpers/db';
 
 import DzikirTarget from '../../models/dzikirTarget';
+import { ThunkDispatch } from 'redux-thunk';
 
 export const addDzikirTarget =
   (
@@ -45,19 +46,20 @@ export const addDzikirTarget =
     }
   };
 
-export const getDzikirTargets = () => async (dispatch: Dispatch<AnyAction>) => {
-  try {
-    const data: DzikirTarget[] = await fetchDzikirTargets();
+export const getDzikirTargets =
+  () => async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
+    try {
+      const data: DzikirTarget[] = await fetchDzikirTargets();
 
-    dispatch({
-      type: GET_DZIKIR_TARGETS,
-      payload: data,
-    });
-  } catch (error) {
-    // Add toastify
-    throw error;
-  }
-};
+      dispatch({
+        type: GET_DZIKIR_TARGETS,
+        payload: data,
+      });
+    } catch (error) {
+      // Add toastify
+      throw error;
+    }
+  };
 
 export const getDetailsDzikirTarget =
   (id: number) => async (dispatch: Dispatch) => {
@@ -83,13 +85,13 @@ export const updateDzikirTarget =
     background: string,
     color: string
   ) =>
-  async (dispatch: Dispatch) => {
+  async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
     try {
       await updateDzikirTargetDB(id, title, target, arabic, background, color);
 
       dispatch({
         type: UPDATE_DZIKIR_TARGET,
-        payload: { id, title, target },
+        payload: { id, title, target, arabic, background, color },
       });
     } catch (error) {
       // Add toastify

@@ -10,9 +10,10 @@ import {
   Platform,
   ActivityIndicator,
 } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import Ionicons from '@expo/vector-icons/Ionicons';
+import { connect } from 'react-redux';
+import { ThunkDispatch } from 'redux-thunk';
 import { NavigationProp } from '@react-navigation/native';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 import screenMode from '../../constants/screenMode';
 
@@ -21,22 +22,28 @@ import DzikirTarget from '../../models/dzikirTarget';
 
 import { getDzikirTargets } from '../../redux/actions/dzikirTarget';
 import { RootState } from '../../redux';
+import { DzikirTargetState } from '../../redux/types';
 
 interface DzikirProps {
   navigation: NavigationProp<any, any>;
+  getDzikirTargets: () => void;
+  dzikirTarget: DzikirTargetState;
 }
 
-const Dzikir = ({ navigation }: DzikirProps) => {
+interface DispatchProps {
+  getDzikirTargets: () => void;
+}
+
+const Dzikir = ({
+  navigation,
+  getDzikirTargets,
+  dzikirTarget: { dzikirTargets },
+}: DzikirProps) => {
   const colorScheme = useColorScheme();
-  const dispatch = useDispatch();
-  const { dzikirTargets } = useSelector(
-    (state: RootState) => state.dzikirTarget
-  );
 
   useEffect(() => {
-    // @ts-ignore
-    dispatch(getDzikirTargets());
-  }, [dispatch, dzikirTargets]);
+    getDzikirTargets();
+  }, []);
 
   const themeContainerStyle =
     colorScheme === 'light'
@@ -142,4 +149,18 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Dzikir;
+const mapStateToProps = (state: RootState) => ({
+  dzikirTarget: state.dzikirTarget,
+});
+
+const mapDispatchToProps = (
+  dispatch: ThunkDispatch<{}, {}, any>
+): DispatchProps => {
+  return {
+    getDzikirTargets: async () => {
+      await dispatch(getDzikirTargets());
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dzikir);
