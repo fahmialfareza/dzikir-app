@@ -51,7 +51,7 @@ interface DispatchProps {
 }
 
 function DzikirCounter({
-  route: { params },
+  route: { params, name },
   updateDzikirTarget,
 }: DzikirCounterProps) {
   const colorScheme = useColorScheme();
@@ -193,9 +193,16 @@ function DzikirCounter({
   return (
     <>
       <DzikirCounterBackgrondImage
-        style={{ ...styles.backgroundImage, top: -insets.top }}
+        style={{
+          ...styles.backgroundImage,
+          top: -(1.5 * insets.top + 1.5 * insets.bottom),
+        }}
         width={Dimensions.get('window').width}
-        height={Dimensions.get('window').height + insets.top + insets.bottom}
+        height={
+          Dimensions.get('window').height +
+          1.5 * insets.top +
+          1.5 * insets.bottom
+        }
       />
       <SafeAreaView style={styles.container}>
         <View style={styles.textView}>

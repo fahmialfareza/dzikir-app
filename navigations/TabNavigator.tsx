@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import { View, useColorScheme } from 'react-native';
+import { View, useColorScheme, StyleProp, ViewStyle } from 'react-native';
 
 import screenMode from '../constants/screenMode';
 import {
@@ -24,25 +24,56 @@ import ShalatTimeScreen, {
 import AlMatsuratNavigator from './AlMatsuratNavigator';
 import DzikirNavigator from './DzikirNavigator';
 
+interface TabNavigatorProps {
+  routeName?: string;
+}
+
 const Tab = createMaterialBottomTabNavigator();
 
-const TabNavigator = () => {
+const TabNavigator = ({ routeName }: TabNavigatorProps) => {
   const colorScheme = useColorScheme();
+
+  const hiddenRouteName: object = {
+    DzikirDetails: true,
+  };
+
+  const defaultStyle: StyleProp<ViewStyle> = {
+    position: 'absolute',
+    overflow: 'hidden',
+    backgroundColor: '#3D3FB8',
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+  };
+
+  const [barStyle, setBarStyle] = useState<StyleProp<ViewStyle>>({
+    ...defaultStyle,
+    display: 'flex',
+  });
 
   const themeContainerStyle =
     colorScheme === 'light'
       ? screenMode.lightContainer
       : screenMode.darkContainer;
 
+  useEffect(() => {
+    if (
+      hiddenRouteName.hasOwnProperty(routeName || 'Screen Will Never Found')
+    ) {
+      setBarStyle({
+        ...defaultStyle,
+        display: 'none',
+      });
+    } else {
+      setBarStyle({
+        ...defaultStyle,
+        display: 'flex',
+      });
+    }
+  }, [routeName]);
+
   return (
     <Tab.Navigator
-      barStyle={{
-        position: 'absolute',
-        overflow: 'hidden',
-        backgroundColor: '#3D3FB8',
-        borderTopLeftRadius: 10,
-        borderTopRightRadius: 10,
-      }}
+      barStyle={barStyle}
       inactiveColor="#FFF"
       activeColor="#FFF"
       labeled={true}
@@ -129,14 +160,6 @@ const TabNavigator = () => {
       ></Tab.Screen>
     </Tab.Navigator>
   );
-};
-
-const barStyle = {
-  position: 'absolute',
-  overflow: 'hidden',
-  backgroundColor: '#3D3FB8',
-  borderTopLeftRadius: 10,
-  borderTopRightRadius: 10,
 };
 
 export default TabNavigator;
