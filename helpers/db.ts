@@ -1,4 +1,5 @@
 import * as SQLite from 'expo-sqlite';
+import { SQLResultSet } from 'expo-sqlite';
 
 import DzikirTarget from '../models/dzikirTarget';
 
@@ -29,14 +30,14 @@ export const insertDzikirTarget = (
   arabic: string,
   background: string,
   color: string
-): Promise<DzikirTarget> => {
-  return new Promise<DzikirTarget>((resolve) => {
+): Promise<SQLResultSet> => {
+  return new Promise((resolve) => {
     db.transaction((tx) => {
       tx.executeSql(
         `INSERT INTO dzikir_target (title, target, arabic, background, color) VALUES (?, ?, ?, ?, ?);`,
         [title, target, arabic, background, color],
         (_, result) => {
-          resolve(Array.from(result.rows._array as any)[0] as DzikirTarget);
+          resolve(result);
         },
         (_, error): boolean => {
           console.warn(error);
@@ -66,9 +67,7 @@ export const fetchDzikirTargets = (): Promise<DzikirTarget[]> => {
   });
 };
 
-export const fetchDetailsDzikirTargets = (
-  id: number
-): Promise<DzikirTarget> => {
+export const fetchDetailsDzikirTarget = (id: number): Promise<DzikirTarget> => {
   return new Promise<DzikirTarget>((resolve) => {
     db.transaction((tx) => {
       tx.executeSql(
@@ -112,14 +111,14 @@ export const updateDzikirTarget = (
   });
 };
 
-export const deleteDzikirTarget = (id: number): Promise<DzikirTarget> => {
-  return new Promise<DzikirTarget>((resolve) => {
+export const deleteDzikirTarget = (id: number): Promise<SQLResultSet> => {
+  return new Promise((resolve) => {
     db.transaction((tx) => {
       tx.executeSql(
-        `DELETE dzikir_target WHERE id=?;`,
+        `DELETE FROM dzikir_target WHERE id=?;`,
         [id],
         (_, result) => {
-          resolve(Array.from(result.rows._array as any)[0] as DzikirTarget);
+          resolve(result);
         },
         (_, error): boolean => {
           console.warn(error);

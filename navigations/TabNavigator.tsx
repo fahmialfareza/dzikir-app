@@ -1,6 +1,6 @@
 import React from 'react';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import { Image, View, useColorScheme } from 'react-native';
+import { View, useColorScheme } from 'react-native';
 
 import screenMode from '../constants/screenMode';
 import {
@@ -20,10 +20,8 @@ import AlQuranScreen, {
 import ShalatTimeScreen, {
   screenOptions as shalatTimeScreenOptions,
 } from '../screens/ShalatTime';
-import AlMatsuratScreen, {
-  screenOptions as alMatsuratScreenOptions,
-} from '../screens/AlMatsurat';
 
+import AlMatsuratNavigator from './AlMatsuratNavigator';
 import DzikirNavigator from './DzikirNavigator';
 
 const Tab = createMaterialBottomTabNavigator();
@@ -109,14 +107,13 @@ const TabNavigator = () => {
       ></Tab.Screen>
       <Tab.Screen
         name="Al-Matsurat"
-        component={AlMatsuratScreen}
+        component={AlMatsuratNavigator}
         options={{
           tabBarIcon: ({ color }) => (
             <View>
               <AlMatsuratIcon width={24} height={24} />
             </View>
           ),
-          ...alMatsuratScreenOptions,
         }}
       ></Tab.Screen>
       <Tab.Screen

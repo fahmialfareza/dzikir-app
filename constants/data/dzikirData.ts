@@ -1,4 +1,4 @@
-import DzikirTarget from '../models/dzikirTarget';
+import DzikirTarget from '../../models/dzikirTarget';
 
 const data: DzikirTarget[] = [
   {
@@ -8,6 +8,7 @@ const data: DzikirTarget[] = [
     background: '#FF4444',
     color: '#fff',
     target: 100,
+    counter: 0,
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ const data: DzikirTarget[] = [
     background: '#FFB648',
     color: '#fff',
     target: 100,
+    counter: 0,
   },
   {
     id: 3,
@@ -24,6 +26,7 @@ const data: DzikirTarget[] = [
     background: '#3D3FB8',
     color: '#fff',
     target: 100,
+    counter: 0,
   },
   {
     id: 4,
@@ -32,6 +35,7 @@ const data: DzikirTarget[] = [
     background: '#7D2DFF',
     color: '#fff',
     target: 100,
+    counter: 0,
   },
   {
     id: 5,
@@ -40,6 +44,7 @@ const data: DzikirTarget[] = [
     background: '#26A2B2',
     color: '#fff',
     target: 100,
+    counter: 0,
   },
 ];
 

@@ -1,4 +1,5 @@
-import { AnyAction, Dispatch } from 'redux';
+import { AnyAction } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
 
 import {
   GET_DZIKIR_TARGETS,
@@ -11,10 +12,10 @@ import {
   fetchDzikirTargets,
   updateDzikirTarget as updateDzikirTargetDB,
   deleteDzikirTarget as deleteDzikirTargetDB,
+  fetchDetailsDzikirTarget,
 } from '../../helpers/db';
 
 import DzikirTarget from '../../models/dzikirTarget';
-import { ThunkDispatch } from 'redux-thunk';
 
 export const addDzikirTarget =
   (
@@ -24,15 +25,17 @@ export const addDzikirTarget =
     background: string,
     color: string
   ) =>
-  async (dispatch: Dispatch) => {
+  async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
     try {
-      const data: DzikirTarget = await insertDzikirTarget(
+      const insertedData = await insertDzikirTarget(
         title,
         target,
         arabic,
         background,
         color
       );
+
+      const data = await fetchDetailsDzikirTarget(insertedData.insertId!);
 
       dispatch({
         type: ADD_DZIKIR_TARGET,
@@ -92,13 +95,13 @@ export const updateDzikirTarget =
   };
 
 export const deleteDzikirTarget =
-  (id: number) => async (dispatch: Dispatch) => {
+  (id: number) => async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
     try {
-      const data: DzikirTarget = await deleteDzikirTargetDB(id);
+      await deleteDzikirTargetDB(id);
 
       dispatch({
         type: DELETE_DZIKIR_TARGET,
-        payload: data,
+        payload: id,
       });
     } catch (error) {
       // Add toastify

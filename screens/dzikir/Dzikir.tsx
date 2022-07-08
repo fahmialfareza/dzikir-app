@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   StyleSheet,
   View,
@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   Platform,
   ActivityIndicator,
+  Alert,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
@@ -17,10 +18,19 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 
 import screenMode from '../../constants/screenMode';
 
-import DzikirItem, { DzikirItemProps } from '../../components/DzikirItem';
+import DzikirItem, {
+  DzikirItemProps,
+} from '../../components/dzikir/DzikirItem';
+import AddDzikirItemInput from '../../components/dzikir/AddDzikirItemInput';
+import EditDzikirItemInput from '../../components/dzikir/EditDzikirItemInput';
 import DzikirTarget from '../../models/dzikirTarget';
 
-import { getDzikirTargets } from '../../redux/actions/dzikirTarget';
+import {
+  getDzikirTargets,
+  addDzikirTarget,
+  updateDzikirTarget,
+  deleteDzikirTarget,
+} from '../../redux/actions/dzikirTarget';
 import { RootState } from '../../redux';
 import { DzikirTargetState } from '../../redux/types';
 
@@ -41,6 +51,19 @@ const Dzikir = ({
 }: DzikirProps) => {
   const colorScheme = useColorScheme();
 
+  const [addModalVisible, setAddModalVisible] = useState(false);
+  const [editModalVisible, setEditModalVisible] = useState(false);
+
+  const [editItemData, setEditItemData] = useState<DzikirTarget>({
+    id: 0,
+    title: '',
+    arabic: '',
+    background: '',
+    color: '#FFFFFF',
+    target: 100,
+    counter: 0,
+  });
+
   useEffect(() => {
     getDzikirTargets();
   }, []);
@@ -59,10 +82,32 @@ const Dzikir = ({
   };
 
   const renderItem = ({ item }: DzikirItemProps) => {
+    if (item.id > 5) {
+      return (
+        <DzikirItem
+          item={item}
+          onPress={() => selectDzikirHandler(item)}
+          onLongPress={() => {
+            setEditItemData(item);
+            setEditModalVisible(true);
+          }}
+          backgroundColor={item.background || themeTextStyle.color}
+          textColor={item.color || themeContainerStyle.backgroundColor}
+        />
+      );
+    }
+
     return (
       <DzikirItem
         item={item}
         onPress={() => selectDzikirHandler(item)}
+        onLongPress={() => {
+          Alert.alert(
+            'Tidak bisa mengubah data ini',
+            'Dzikir bawaan aplikasi tidak bisa diubah atau dihapus',
+            [{ text: 'OK' }]
+          );
+        }}
         backgroundColor={item.background || themeTextStyle.color}
         textColor={item.color || themeContainerStyle.backgroundColor}
       />
@@ -94,13 +139,27 @@ const Dzikir = ({
       </View>
 
       <View style={styles.bottomRow}>
-        <TouchableOpacity style={styles.roundButton}>
+        <TouchableOpacity
+          style={styles.roundButton}
+          onPress={() => setAddModalVisible(true)}
+        >
           <Ionicons
             name={Platform.OS === 'android' ? 'md-add' : 'ios-add'}
             size={32}
             color="white"
           />
         </TouchableOpacity>
+
+        <AddDzikirItemInput
+          addModalVisible={addModalVisible}
+          setAddModalVisible={setAddModalVisible}
+        />
+
+        <EditDzikirItemInput
+          editModalVisible={editModalVisible}
+          setEditModalVisible={setEditModalVisible}
+          item={editItemData}
+        />
       </View>
     </SafeAreaView>
   );

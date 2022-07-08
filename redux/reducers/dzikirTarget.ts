@@ -5,9 +5,8 @@ import {
   ADD_DZIKIR_TARGET,
   UPDATE_DZIKIR_TARGET,
   DELETE_DZIKIR_TARGET,
+  DzikirTargetState,
 } from '../types';
-
-import { DzikirTargetState } from '../types';
 
 const initialState: DzikirTargetState = {
   dzikirTargets: [],
@@ -49,7 +48,7 @@ const dzikirTargetReducer = (state = initialState, action: AnyAction) => {
       const deleteTargetState: DzikirTargetState = {
         ...state,
         dzikirTargets: state.dzikirTargets.filter(
-          (dzikirTarget) => dzikirTarget.id !== action.payload.id
+          (dzikirTarget) => dzikirTarget.id !== action.payload
         ),
         dzikirTargetDetails: null,
       };

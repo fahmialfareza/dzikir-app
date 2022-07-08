@@ -1,11 +1,12 @@
 import React from 'react';
 import { TouchableOpacity, StyleSheet, Text, View } from 'react-native';
 
-import DzikirTarget from '../models/dzikirTarget';
+import DzikirTarget from '../../models/dzikirTarget';
 
 export interface DzikirItemProps {
   item: DzikirTarget;
   onPress?: () => void;
+  onLongPress?: () => void;
   backgroundColor?: string;
   textColor?: string;
 }
@@ -13,11 +14,13 @@ export interface DzikirItemProps {
 const DzikirItem = ({
   item,
   onPress,
+  onLongPress,
   backgroundColor,
   textColor,
 }: DzikirItemProps) => (
   <TouchableOpacity
     onPress={onPress}
+    onLongPress={onLongPress}
     style={[styles.item, { backgroundColor }]}
   >
     <View>
