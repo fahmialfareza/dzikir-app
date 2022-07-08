@@ -2,7 +2,6 @@ import { AnyAction } from 'redux';
 
 import {
   GET_DZIKIR_TARGETS,
-  GET_DZIKIR_TARGETS_DETAILS,
   ADD_DZIKIR_TARGET,
   UPDATE_DZIKIR_TARGET,
   DELETE_DZIKIR_TARGET,
@@ -33,13 +32,6 @@ const dzikirTargetReducer = (state = initialState, action: AnyAction) => {
       };
 
       return getTargetsState;
-    case GET_DZIKIR_TARGETS_DETAILS:
-      const getTargetDetailsState: DzikirTargetState = {
-        ...state,
-        dzikirTargetDetails: action.payload,
-      };
-
-      return getTargetDetailsState;
     case UPDATE_DZIKIR_TARGET:
       const updateTargetState: DzikirTargetState = {
         ...state,

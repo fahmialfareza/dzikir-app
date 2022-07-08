@@ -8,7 +8,7 @@ export const init = async () => {
   return new Promise((resolve) => {
     db.transaction((tx) => {
       tx.executeSql(
-        'CREATE TABLE IF NOT EXISTS dzikir_target (id INTEGER PRIMARY KEY NOT NULL, title VARCHAR NOT NULL, target INTEGER NOT NULL, arabic VARCHAR NULL, background VARCHAR NULL, color VARCHAR NULL);',
+        'CREATE TABLE IF NOT EXISTS dzikir_target (id INTEGER PRIMARY KEY NOT NULL, title VARCHAR NOT NULL, target INTEGER NOT NULL, arabic VARCHAR NULL, background VARCHAR NULL, color VARCHAR NULL, counter INTEGER DEFAULT 0);',
         [],
         (_, result) => {
           resolve(result);
@@ -92,13 +92,14 @@ export const updateDzikirTarget = (
   target: number,
   arabic: string,
   background: string,
-  color: string
+  color: string,
+  counter: number
 ): Promise<DzikirTarget> => {
   return new Promise<DzikirTarget>((resolve) => {
     db.transaction((tx) => {
       tx.executeSql(
-        `UPDATE dzikir_target SET title=?, target=?, arabic=?, background=?, color=? WHERE id=?;`,
-        [title, target, arabic, background, color, id],
+        `UPDATE dzikir_target SET title=?, target=?, arabic=?, background=?, color=?, counter=? WHERE id=?;`,
+        [title, target, arabic, background, color, counter, id],
         (_, result) => {
           resolve(Array.from(result.rows._array as any)[0] as DzikirTarget);
         },
@@ -115,7 +116,7 @@ export const deleteDzikirTarget = (id: number): Promise<DzikirTarget> => {
   return new Promise<DzikirTarget>((resolve) => {
     db.transaction((tx) => {
       tx.executeSql(
-        `DELETE dzikir_target WHERE id=? RETURNING id;`,
+        `DELETE dzikir_target WHERE id=?;`,
         [id],
         (_, result) => {
           resolve(Array.from(result.rows._array as any)[0] as DzikirTarget);

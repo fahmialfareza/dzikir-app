@@ -17,7 +17,7 @@ function TasbihCounter({
   resetCounterHandler,
 }: any) {
   return (
-    <View style={styles.tasbihView}>
+    <>
       <Text style={styles.counterNumberText}>{count}</Text>
       <Svg width={300} height={400} viewBox="0 0 300 393" fill="none">
         <G filter="url(#filter0_d_56_271)">
@@ -143,16 +143,11 @@ function TasbihCounter({
           </ClipPath>
         </Defs>
       </Svg>
-    </View>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
-  tasbihView: {
-    flex: 5,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-  },
   counterNumberText: {
     top: Dimensions.get('window').height / 10,
     fontSize: 72,

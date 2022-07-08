@@ -6,9 +6,9 @@ import {
   StyleSheet,
   Alert,
   Dimensions,
+  TextInput,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { TextInput } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { RouteProp } from '@react-navigation/native';
 import { connect } from 'react-redux';
@@ -33,7 +33,8 @@ interface DzikirCounterProps {
     target: number,
     arabic: string,
     background: string,
-    color: string
+    color: string,
+    counter: number
   ) => void;
 }
 
@@ -44,7 +45,8 @@ interface DispatchProps {
     target: number,
     arabic: string,
     background: string,
-    color: string
+    color: string,
+    counter: number
   ) => void;
 }
 
@@ -68,11 +70,19 @@ function DzikirCounter({
       ? screenMode.lightContainer
       : screenMode.darkContainer;
 
-  const addCounterHandler = () => {
-    // Set color
-    setAddColor(themeContainerStyle.backgroundColor);
+  const updateDzikir = async () => {
+    await updateDzikirTarget(
+      params.item.id,
+      params.item.title,
+      parseInt(target),
+      params.item.arabic || '',
+      params.item.background || '',
+      params.item.color || '',
+      parseInt(count)
+    );
+  };
 
-    const countNumber = parseInt(count) + 1;
+  const counterFormatter = (countNumber: number) => {
     let result = countNumber.toString();
 
     if (countNumber < 10) {
@@ -83,6 +93,16 @@ function DzikirCounter({
       result = `0${countNumber}`;
     }
 
+    return result;
+  };
+
+  const addCounterHandler = async () => {
+    // Set color
+    setAddColor(themeContainerStyle.backgroundColor);
+
+    const countNumber = parseInt(count) + 1;
+    let result = counterFormatter(countNumber);
+
     setTimeout(() => {
       setAddColor('#FCDDEC');
     }, 100);
@@ -90,7 +110,7 @@ function DzikirCounter({
     setCount(result);
   };
 
-  const resetCounterHandler = () => {
+  const resetCounterHandler = async () => {
     // Set color
     setResetColor(themeContainerStyle.backgroundColor);
 
@@ -117,39 +137,42 @@ function DzikirCounter({
 
   const submitTargetHandler = async () => {
     try {
-      if (target === oldTarget) {
-        return;
+      if (target !== '0') {
+        if (target === oldTarget) {
+          return;
+        }
+
+        await updateDzikir();
+
+        setOldTarget(target);
+
+        Alert.alert('Berhasil Mengganti Target', `Target menjadi ${target}`, [
+          { text: 'OK', onPress: () => console.log('Target OK') },
+        ]);
       }
-
-      await updateDzikirTarget(
-        params.item.id,
-        params.item.title,
-        parseInt(target),
-        params.item.arabic || '',
-        params.item.background || '',
-        params.item.color || ''
-      );
-
-      setOldTarget(target);
-
-      Alert.alert('Berhasil Mengganti Target', `Target menjadi ${target}`, [
-        { text: 'OK', onPress: () => console.log('Target OK') },
-      ]);
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
+    setCount(counterFormatter(params.item.counter));
+  }, [params.item.counter]);
+
+  useEffect(() => {
     if (target !== '0') {
       if (parseInt(count) === parseInt(target)) {
-        Alert.alert('Alhamdullah!', 'Anda telah mencapai target dzikir', [
+        Alert.alert('Alhamdullah!', 'Kamu telah mencapai target dzikir', [
           { text: 'OK', onPress: async () => console.log('Target OK') },
         ]);
         successAudio();
       }
     }
   }, [count, target]);
+
+  useEffect(() => {
+    updateDzikir();
+  }, [count]);
 
   const successAudio = async () => {
     const sound = new Audio.Sound();
@@ -195,13 +218,15 @@ function DzikirCounter({
           </View>
         </View>
 
-        <TasbihCounter
-          count={count}
-          addColor={addColor}
-          resetColor={resetColor}
-          addCounterHandler={addCounterHandler}
-          resetCounterHandler={resetCounterHandler}
-        />
+        <View style={styles.tasbihView}>
+          <TasbihCounter
+            count={count}
+            addColor={addColor}
+            resetColor={resetColor}
+            addCounterHandler={addCounterHandler}
+            resetCounterHandler={resetCounterHandler}
+          />
+        </View>
       </SafeAreaView>
     </>
   );
@@ -247,12 +272,17 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
   },
   targetInput: {
-    height: 20,
-    padding: 10,
-    fontFamily: 'dubai-regular',
-    justifyContent: 'center',
-    alignContent: 'center',
-    color: '#FFFFFF',
+    borderWidth: 1,
+    borderColor: '#777',
+    padding: 6,
+    margin: 2,
+    width: 60,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 10,
+    textAlign: 'center',
+    fontSize: 24,
+    fontFamily: 'ds-digit',
+    color: '#3D3FB8',
   },
   targetView: {
     flexDirection: 'row',
@@ -264,6 +294,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
     zIndex: -9999,
     resizeMode: 'cover',
+  },
+  tasbihView: {
+    flex: 5,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
   },
 });
 
@@ -281,10 +316,19 @@ const mapDispatchToProps = (
       target: number,
       arabic: string,
       background: string,
-      color: string
+      color: string,
+      counter: number
     ) => {
       await dispatch(
-        updateDzikirTarget(id, title, target, arabic, background, color)
+        updateDzikirTarget(
+          id,
+          title,
+          target,
+          arabic,
+          background,
+          color,
+          counter
+        )
       );
     },
   };

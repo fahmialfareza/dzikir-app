@@ -5,4 +5,5 @@ export default interface DzikirTarget {
   background?: string;
   color?: string;
   target: number;
+  counter: number;
 }
