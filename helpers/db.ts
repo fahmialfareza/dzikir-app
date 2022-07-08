@@ -1,15 +1,15 @@
-import * as SQLite from 'expo-sqlite';
-import { SQLResultSet } from 'expo-sqlite';
+import * as SQLite from "expo-sqlite";
+import { SQLResultSet } from "expo-sqlite";
 
-import DzikirTarget from '../models/dzikirTarget';
+import DzikirTarget from "../models/dzikirTarget";
 
-const db = SQLite.openDatabase('dzikir-app.db');
+const db = SQLite.openDatabase("dzikir-app.db");
 
 export const init = async () => {
   return new Promise((resolve) => {
     db.transaction((tx) => {
       tx.executeSql(
-        'CREATE TABLE IF NOT EXISTS dzikir_target (id INTEGER PRIMARY KEY NOT NULL, title VARCHAR NOT NULL, target INTEGER NOT NULL, arabic VARCHAR NULL, background VARCHAR NULL, color VARCHAR NULL, counter INTEGER DEFAULT 0);',
+        "CREATE TABLE IF NOT EXISTS dzikir_target (id INTEGER PRIMARY KEY NOT NULL, title VARCHAR NOT NULL, target INTEGER NOT NULL, arabic VARCHAR NULL, background VARCHAR NULL, color VARCHAR NULL, counter INTEGER DEFAULT 0);",
         [],
         (_, result) => {
           resolve(result);

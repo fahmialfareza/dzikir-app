@@ -195,7 +195,7 @@ function DzikirCounter({
       <DzikirCounterBackgrondImage
         style={{ ...styles.backgroundImage, top: -insets.top }}
         width={Dimensions.get('window').width}
-        height={Dimensions.get('window').height}
+        height={Dimensions.get('window').height + insets.top + insets.bottom}
       />
       <SafeAreaView style={styles.container}>
         <View style={styles.textView}>
