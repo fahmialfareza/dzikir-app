@@ -10,11 +10,11 @@ import store from './redux';
 
 import {
   init,
-  fetchDetailsDzikirTarget,
-  insertDzikirTarget,
+  fetchDetailsTasbeehTarget,
+  insertTasbeehTarget,
 } from './helpers/db';
 
-import dzikirData from './constants/data/dzikirData';
+import tasbeehData from './constants/data/tasbeehData';
 
 const fetchFonts = () => {
   return Font.loadAsync({
@@ -36,16 +36,16 @@ const fetchFonts = () => {
 
     // Find data where id = 1 to id = 5
     const dataIds = [1, 2, 3, 4, 5];
-    for await (const dzikir of dzikirData) {
-      const data = await fetchDetailsDzikirTarget(dzikir.id);
+    for await (const tasbeeh of tasbeehData) {
+      const data = await fetchDetailsTasbeehTarget(tasbeeh.id);
 
       if (!data) {
-        await insertDzikirTarget(
-          dzikir.title,
-          dzikir.target,
-          dzikir.arabic!,
-          dzikir.background!,
-          dzikir.color!
+        await insertTasbeehTarget(
+          tasbeeh.title,
+          tasbeeh.target,
+          tasbeeh.arabic!,
+          tasbeeh.background!,
+          tasbeeh.color!
         );
       }
     }

@@ -4,30 +4,30 @@ import { connect } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
-import DzikirItemInput from './DzikirItemInput';
+import TasbeehItemInput from './TasbeehItemInput';
 
-import DzikirTarget from '../../models/dzikirTarget';
+import TasbeehTarget from '../../models/tasbeehTarget';
 
 import colorData from '../../constants/data/colorData';
 
-import { addDzikirTarget } from '../../redux/actions/dzikirTarget';
+import { addTasbeehTarget } from '../../redux/actions/tasbeehTarget';
 
-interface AddDzikirItemInputProps {
+interface AddTasbeehItemInputProps {
   addModalVisible: boolean;
   setAddModalVisible: (visible: boolean) => void;
-  addDzikirTarget: (item: DzikirTarget) => void;
+  addTasbeehTarget: (item: TasbeehTarget) => void;
 }
 
 interface DispatchProps {
-  addDzikirTarget: (item: DzikirTarget) => void;
+  addTasbeehTarget: (item: TasbeehTarget) => void;
 }
 
-function AddDzikirItemInput({
+function AddTasbeehItemInput({
   addModalVisible,
   setAddModalVisible,
-  addDzikirTarget,
-}: AddDzikirItemInputProps) {
-  const [state, setState] = useState<DzikirTarget>({
+  addTasbeehTarget,
+}: AddTasbeehItemInputProps) {
+  const [state, setState] = useState<TasbeehTarget>({
     id: 0,
     title: '',
     arabic: '',
@@ -38,7 +38,7 @@ function AddDzikirItemInput({
   });
 
   return (
-    <DzikirItemInput
+    <TasbeehItemInput
       modalVisible={addModalVisible}
       setModalVisible={setAddModalVisible}
       actionText={
@@ -52,7 +52,7 @@ function AddDzikirItemInput({
       }
       enableRemoveButton={false}
       onSubmitHandler={async () => {
-        await addDzikirTarget(state);
+        await addTasbeehTarget(state);
 
         setAddModalVisible(false);
         setState({
@@ -65,7 +65,7 @@ function AddDzikirItemInput({
           counter: 0,
         });
 
-        Alert.alert('Sukses', 'Dzikir berhasil ditambahkan');
+        Alert.alert('Sukses', 'Tasbih berhasil ditambahkan');
         Keyboard.dismiss();
       }}
       state={state}
@@ -78,9 +78,9 @@ const mapDispatchToProps = (
   dispatch: ThunkDispatch<{}, {}, any>
 ): DispatchProps => {
   return {
-    addDzikirTarget: async (item: DzikirTarget) => {
+    addTasbeehTarget: async (item: TasbeehTarget) => {
       await dispatch(
-        addDzikirTarget(
+        addTasbeehTarget(
           item.title,
           item.target,
           item.arabic || '',
@@ -92,4 +92,4 @@ const mapDispatchToProps = (
   };
 };
 
-export default connect(null, mapDispatchToProps)(AddDzikirItemInput);
+export default connect(null, mapDispatchToProps)(AddTasbeehItemInput);

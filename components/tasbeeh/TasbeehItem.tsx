@@ -1,23 +1,23 @@
 import React from 'react';
 import { TouchableOpacity, StyleSheet, Text, View } from 'react-native';
 
-import DzikirTarget from '../../models/dzikirTarget';
+import TasbeehTarget from '../../models/tasbeehTarget';
 
-export interface DzikirItemProps {
-  item: DzikirTarget;
+export interface TasbeehItemProps {
+  item: TasbeehTarget;
   onPress?: () => void;
   onLongPress?: () => void;
   backgroundColor?: string;
   textColor?: string;
 }
 
-const DzikirItem = ({
+const TasbeehItem = ({
   item,
   onPress,
   onLongPress,
   backgroundColor,
   textColor,
-}: DzikirItemProps) => (
+}: TasbeehItemProps) => (
   <TouchableOpacity
     onPress={onPress}
     onLongPress={onLongPress}
@@ -47,4 +47,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DzikirItem;
+export default TasbeehItem;

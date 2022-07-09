@@ -4,9 +4,9 @@ import { View, useColorScheme, StyleProp, ViewStyle } from 'react-native';
 
 import screenMode from '../constants/screenMode';
 import {
-  AlMatsuratIcon,
+  DzikirDuaIcon,
   AlQuranIcon,
-  DzikirIcon,
+  TasbeehIcon,
   HomeIcon,
   ShalatTimeIcon,
 } from '../constants/assets';
@@ -21,8 +21,8 @@ import ShalatTimeScreen, {
   screenOptions as shalatTimeScreenOptions,
 } from '../screens/ShalatTime';
 
-import AlMatsuratNavigator from './AlMatsuratNavigator';
-import DzikirNavigator from './DzikirNavigator';
+import DzikirDuaNavigator from './DzikirDuaNavigator';
+import TasbeehNavigator from './TasbeehNavigator';
 
 interface TabNavigatorProps {
   routeName?: string;
@@ -33,9 +33,7 @@ const Tab = createMaterialBottomTabNavigator();
 const TabNavigator = ({ routeName }: TabNavigatorProps) => {
   const colorScheme = useColorScheme();
 
-  const hiddenRouteName: object = {
-    DzikirDetails: true,
-  };
+  const hiddenRouteName: object = {};
 
   const defaultStyle: StyleProp<ViewStyle> = {
     position: 'absolute',
@@ -137,25 +135,27 @@ const TabNavigator = ({ routeName }: TabNavigatorProps) => {
         }}
       ></Tab.Screen>
       <Tab.Screen
-        name="Al-Matsurat"
-        component={AlMatsuratNavigator}
+        name="DzikirDua"
+        component={DzikirDuaNavigator}
         options={{
           tabBarIcon: ({ color }) => (
             <View>
-              <AlMatsuratIcon width={24} height={24} />
+              <DzikirDuaIcon width={24} height={24} />
             </View>
           ),
+          tabBarLabel: 'Dzikir & Doa',
         }}
       ></Tab.Screen>
       <Tab.Screen
-        name="Dzikir"
-        component={DzikirNavigator}
+        name="Tasbeeh"
+        component={TasbeehNavigator}
         options={{
           tabBarIcon: ({ color }) => (
             <View>
-              <DzikirIcon width={24} height={24} />
+              <TasbeehIcon width={24} height={24} />
             </View>
           ),
+          tabBarLabel: 'Tasbih',
         }}
       ></Tab.Screen>
     </Tab.Navigator>

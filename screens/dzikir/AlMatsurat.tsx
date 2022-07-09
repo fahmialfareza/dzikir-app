@@ -88,7 +88,7 @@ const AlMatsurat = ({
 };
 
 export const screenOptions = {
-  headerTitle: 'Al-Matsurat',
+  headerTitle: 'Dzikir & Doa',
 };
 
 const styles = StyleSheet.create({

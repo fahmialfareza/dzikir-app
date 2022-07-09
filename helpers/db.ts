@@ -1,15 +1,15 @@
-import * as SQLite from "expo-sqlite";
-import { SQLResultSet } from "expo-sqlite";
+import * as SQLite from 'expo-sqlite';
+import { SQLResultSet } from 'expo-sqlite';
 
-import DzikirTarget from "../models/dzikirTarget";
+import TasbeehTarget from '../models/tasbeehTarget';
 
-const db = SQLite.openDatabase("dzikir-app.db");
+const db = SQLite.openDatabase('dzikir-app.db');
 
 export const init = async () => {
   return new Promise((resolve) => {
     db.transaction((tx) => {
       tx.executeSql(
-        "CREATE TABLE IF NOT EXISTS dzikir_target (id INTEGER PRIMARY KEY NOT NULL, title VARCHAR NOT NULL, target INTEGER NOT NULL, arabic VARCHAR NULL, background VARCHAR NULL, color VARCHAR NULL, counter INTEGER DEFAULT 0);",
+        'CREATE TABLE IF NOT EXISTS tasbeeh_target (id INTEGER PRIMARY KEY NOT NULL, title VARCHAR NOT NULL, target INTEGER NOT NULL, arabic VARCHAR NULL, background VARCHAR NULL, color VARCHAR NULL, counter INTEGER DEFAULT 0);',
         [],
         (_, result) => {
           resolve(result);
@@ -24,7 +24,7 @@ export const init = async () => {
   });
 };
 
-export const insertDzikirTarget = (
+export const insertTasbeehTarget = (
   title: string,
   target: number,
   arabic: string,
@@ -34,7 +34,7 @@ export const insertDzikirTarget = (
   return new Promise((resolve) => {
     db.transaction((tx) => {
       tx.executeSql(
-        `INSERT INTO dzikir_target (title, target, arabic, background, color) VALUES (?, ?, ?, ?, ?);`,
+        `INSERT INTO tasbeeh_target (title, target, arabic, background, color) VALUES (?, ?, ?, ?, ?);`,
         [title, target, arabic, background, color],
         (_, result) => {
           resolve(result);
@@ -48,14 +48,14 @@ export const insertDzikirTarget = (
   });
 };
 
-export const fetchDzikirTargets = (): Promise<DzikirTarget[]> => {
-  return new Promise<DzikirTarget[]>((resolve) => {
+export const fetchTasbeehTargets = (): Promise<TasbeehTarget[]> => {
+  return new Promise<TasbeehTarget[]>((resolve) => {
     db.transaction((tx) => {
       tx.executeSql(
-        `SELECT * FROM dzikir_target;`,
+        `SELECT * FROM tasbeeh_target;`,
         [],
         (_, result) => {
-          resolve(Array.from(result.rows._array as any) as DzikirTarget[]);
+          resolve(Array.from(result.rows._array as any) as TasbeehTarget[]);
         },
         (_, error): boolean => {
           console.warn(error);
@@ -67,14 +67,16 @@ export const fetchDzikirTargets = (): Promise<DzikirTarget[]> => {
   });
 };
 
-export const fetchDetailsDzikirTarget = (id: number): Promise<DzikirTarget> => {
-  return new Promise<DzikirTarget>((resolve) => {
+export const fetchDetailsTasbeehTarget = (
+  id: number
+): Promise<TasbeehTarget> => {
+  return new Promise<TasbeehTarget>((resolve) => {
     db.transaction((tx) => {
       tx.executeSql(
-        `SELECT * FROM dzikir_target WHERE id=?;`,
+        `SELECT * FROM tasbeeh_target WHERE id=?;`,
         [id],
         (_, result) => {
-          resolve(Array.from(result.rows._array as any)[0] as DzikirTarget);
+          resolve(Array.from(result.rows._array as any)[0] as TasbeehTarget);
         },
         (_, error): boolean => {
           console.warn(error);
@@ -85,7 +87,7 @@ export const fetchDetailsDzikirTarget = (id: number): Promise<DzikirTarget> => {
   });
 };
 
-export const updateDzikirTarget = (
+export const updateTasbeehTarget = (
   id: number,
   title: string,
   target: number,
@@ -93,14 +95,14 @@ export const updateDzikirTarget = (
   background: string,
   color: string,
   counter: number
-): Promise<DzikirTarget> => {
-  return new Promise<DzikirTarget>((resolve) => {
+): Promise<TasbeehTarget> => {
+  return new Promise<TasbeehTarget>((resolve) => {
     db.transaction((tx) => {
       tx.executeSql(
-        `UPDATE dzikir_target SET title=?, target=?, arabic=?, background=?, color=?, counter=? WHERE id=?;`,
+        `UPDATE tasbeeh_target SET title=?, target=?, arabic=?, background=?, color=?, counter=? WHERE id=?;`,
         [title, target, arabic, background, color, counter, id],
         (_, result) => {
-          resolve(Array.from(result.rows._array as any)[0] as DzikirTarget);
+          resolve(Array.from(result.rows._array as any)[0] as TasbeehTarget);
         },
         (_, error): boolean => {
           console.warn(error);
@@ -111,11 +113,11 @@ export const updateDzikirTarget = (
   });
 };
 
-export const deleteDzikirTarget = (id: number): Promise<SQLResultSet> => {
+export const deleteTasbeehTarget = (id: number): Promise<SQLResultSet> => {
   return new Promise((resolve) => {
     db.transaction((tx) => {
       tx.executeSql(
-        `DELETE FROM dzikir_target WHERE id=?;`,
+        `DELETE FROM tasbeeh_target WHERE id=?;`,
         [id],
         (_, result) => {
           resolve(result);

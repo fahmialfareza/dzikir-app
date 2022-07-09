@@ -1,7 +1,7 @@
-import { FontAwesome } from "@expo/vector-icons";
-import { RouteProp } from "@react-navigation/native";
-import { Audio } from "expo-av";
-import React, { useEffect, useState } from "react";
+import { FontAwesome } from '@expo/vector-icons';
+import { RouteProp } from '@react-navigation/native';
+import { Audio } from 'expo-av';
+import React, { useEffect, useState } from 'react';
 import {
   Alert,
   Dimensions,
@@ -9,28 +9,28 @@ import {
   Text,
   useColorScheme,
   View,
-} from "react-native";
-import Dialog from "react-native-dialog";
+} from 'react-native';
+import Dialog from 'react-native-dialog';
 import {
   SafeAreaView,
   useSafeAreaInsets,
-} from "react-native-safe-area-context";
-import { connect } from "react-redux";
-import { ThunkDispatch } from "redux-thunk";
+} from 'react-native-safe-area-context';
+import { connect } from 'react-redux';
+import { ThunkDispatch } from 'redux-thunk';
 
-import DzikirTarget from "../../models/dzikirTarget";
+import TasbeehTarget from '../../models/tasbeehTarget';
 
-import { DzikirCounterBackgrondImage } from "../../constants/assets";
-import screenMode from "../../constants/screenMode";
+import { TasbeehCounterBackgrondImage } from '../../constants/assets';
+import screenMode from '../../constants/screenMode';
 
-import TasbihCounter from "../../components/TasbihCounter";
+import TasbihCounter from '../../components/tasbeeh/TasbeehCounter';
 
-import { RootState } from "../../redux";
-import { updateDzikirTarget } from "../../redux/actions/dzikirTarget";
+import { RootState } from '../../redux';
+import { updateTasbeehTarget } from '../../redux/actions/tasbeehTarget';
 
-interface DzikirCounterProps {
-  route: RouteProp<{ params: { item: DzikirTarget } }, "params">;
-  updateDzikirTarget: (
+interface TasbeehCounterProps {
+  route: RouteProp<{ params: { item: TasbeehTarget } }, 'params'>;
+  updateTasbeehTarget: (
     id: number,
     title: string,
     target: number,
@@ -42,7 +42,7 @@ interface DzikirCounterProps {
 }
 
 interface DispatchProps {
-  updateDzikirTarget: (
+  updateTasbeehTarget: (
     id: number,
     title: string,
     target: number,
@@ -53,35 +53,33 @@ interface DispatchProps {
   ) => void;
 }
 
-function DzikirCounter({
+function TasbeehCounter({
   route: { params, name },
-  updateDzikirTarget,
-}: DzikirCounterProps) {
+  updateTasbeehTarget,
+}: TasbeehCounterProps) {
   const colorScheme = useColorScheme();
-  const insets = useSafeAreaInsets();
-  const [count, setCount] = useState("0000");
-  const [addColor, setAddColor] = useState("#FCDDEC");
-  const [resetColor, setResetColor] = useState("#FCDDEC");
+  const [count, setCount] = useState('0000');
+  const [addColor, setAddColor] = useState('#FCDDEC');
+  const [resetColor, setResetColor] = useState('#FCDDEC');
   const [visible, setVisible] = useState(false);
-  const [visibleResetDialog, setvisibleResetDialog] = useState(false);
 
-  // State value of dzikir
+  // State value of tasbeeh
   const [oldTarget, setOldTarget] = useState(String(params.item.target));
   const [target, setTarget] = useState(String(params.item.target));
 
   const themeContainerStyle =
-    colorScheme === "light"
+    colorScheme === 'light'
       ? screenMode.lightContainer
       : screenMode.darkContainer;
 
-  const updateDzikir = async () => {
-    await updateDzikirTarget(
+  const updateTasbeeh = async () => {
+    await updateTasbeehTarget(
       params.item.id,
       params.item.title,
       parseInt(target),
-      params.item.arabic || "",
-      params.item.background || "",
-      params.item.color || "",
+      params.item.arabic || '',
+      params.item.background || '',
+      params.item.color || '',
       parseInt(count)
     );
   };
@@ -98,18 +96,6 @@ function DzikirCounter({
     setTarget(target);
     submitTargetHandler();
     setVisible(false);
-  };
-
-  const resetDialog = () => {
-    if (count === "0000") {
-      setvisibleResetDialog(false);
-    } else {
-      setvisibleResetDialog(true);
-    }
-  };
-
-  const handleCancelResetDialog = () => {
-    setvisibleResetDialog(false);
   };
 
   const counterFormatter = (countNumber: number) => {
@@ -134,7 +120,7 @@ function DzikirCounter({
     let result = counterFormatter(countNumber);
 
     setTimeout(() => {
-      setAddColor("#FCDDEC");
+      setAddColor('#FCDDEC');
     }, 100);
 
     setCount(result);
@@ -144,22 +130,30 @@ function DzikirCounter({
     // Set color
     setResetColor(themeContainerStyle.backgroundColor);
 
-    setTimeout(() => {
-      setResetColor("#FCDDEC");
-    }, 100);
+    Alert.alert('Reset hitungan', 'Apakah kamu yakin mau reset hitungan?', [
+      {
+        text: 'Ya',
+        onPress: async () => {
+          setTimeout(() => {
+            setResetColor('#FCDDEC');
+          }, 100);
 
-    setCount("0000");
-    setvisibleResetDialog(false);
+          setCount('0000');
+        },
+        style: 'destructive',
+      },
+      { text: 'Tidak', onPress: () => {} },
+    ]);
   };
 
   const targetChangeTextHandler = (text: string) => {
-    if (text === "") {
-      setTarget("0");
+    if (text === '') {
+      setTarget('0');
       return;
     }
 
-    if (target === "0") {
-      setTarget(text.split("0").join(""));
+    if (target === '0') {
+      setTarget(text.split('0').join(''));
       return;
     }
 
@@ -168,17 +162,17 @@ function DzikirCounter({
 
   const submitTargetHandler = async () => {
     try {
-      if (target !== "0") {
+      if (target !== '0') {
         if (target === oldTarget) {
           return;
         }
 
-        await updateDzikir();
+        await updateTasbeeh();
 
         setOldTarget(target);
 
-        Alert.alert("Berhasil Mengganti Target", `Target menjadi ${target}`, [
-          { text: "OK", onPress: () => console.log("Target OK") },
+        Alert.alert('Berhasil Mengganti Target', `Target menjadi ${target}`, [
+          { text: 'OK', onPress: () => console.log('Target OK') },
         ]);
       }
     } catch (error) {
@@ -191,10 +185,10 @@ function DzikirCounter({
   }, [params.item.counter]);
 
   useEffect(() => {
-    if (target !== "0") {
+    if (target !== '0') {
       if (parseInt(count) === parseInt(target)) {
-        Alert.alert("Alhamdullah!", "Kamu telah mencapai target dzikir", [
-          { text: "OK", onPress: async () => console.log("Target OK") },
+        Alert.alert('Alhamdullah!', 'Kamu telah mencapai target', [
+          { text: 'OK', onPress: async () => console.log('Target OK') },
         ]);
         successAudio();
       }
@@ -202,13 +196,13 @@ function DzikirCounter({
   }, [count, target]);
 
   useEffect(() => {
-    updateDzikir();
+    updateTasbeeh();
   }, [count]);
 
   const successAudio = async () => {
     const sound = new Audio.Sound();
     try {
-      await sound.loadAsync(require("../../assets/sounds/success.wav"));
+      await sound.loadAsync(require('../../assets/sounds/success.wav'));
       await sound.playAsync();
       // Your sound is playing!
 
@@ -223,22 +217,15 @@ function DzikirCounter({
 
   return (
     <>
-      <DzikirCounterBackgrondImage
-        style={{
-          ...styles.backgroundImage,
-          top: -(1.5 * insets.top + 1.5 * insets.bottom),
-        }}
-        width={Dimensions.get("window").width}
-        height={
-          Dimensions.get("window").height +
-          1.5 * insets.top +
-          1.5 * insets.bottom
-        }
+      <TasbeehCounterBackgrondImage
+        style={styles.backgroundImage}
+        width={Dimensions.get('window').width}
+        height={Dimensions.get('window').height}
       />
       <SafeAreaView style={styles.container}>
         <View style={styles.textView}>
           <Text style={styles.arabicText}>{params.item.arabic}</Text>
-          <Text style={styles.dzikirText}>{params.item.title}</Text>
+          <Text style={styles.tasbeehText}>{params.item.title}</Text>
           <View style={styles.targetView}>
             <View>
               <Text style={styles.inputText}>Target :</Text>
@@ -247,18 +234,18 @@ function DzikirCounter({
               <Dialog.Container visible={visible}>
                 <Dialog.Title>Masukan Target</Dialog.Title>
                 <Dialog.Input
+                  autoFocus={true}
+                  placeholder="Masukkan Target"
                   onChangeText={targetChangeTextHandler}
                   keyboardType="number-pad"
-                  returnKeyType={"done"}
-                  style={styles.dialogInput}
+                  returnKeyType={'done'}
+                  style={{
+                    fontFamily: 'dubai-regular',
+                  }}
                 >
                   {target}
                 </Dialog.Input>
-                <Dialog.Button
-                  style={styles.saveTarget}
-                  label="Simpan"
-                  onPress={handleSaveTarget}
-                />
+                <Dialog.Button label="Simpan" onPress={handleSaveTarget} />
                 <Dialog.Button label="Batal" onPress={handleCancel} />
               </Dialog.Container>
             </View>
@@ -280,24 +267,10 @@ function DzikirCounter({
           <TasbihCounter
             count={count}
             addColor={addColor}
-            resetColor={parseInt(count) > 0 ? "#FABF39" : resetColor}
+            resetColor={parseInt(count) > 0 ? '#FABF39' : resetColor}
             addCounterHandler={addCounterHandler}
-            resetCounterHandler={resetDialog}
+            resetCounterHandler={resetCounterHandler}
           />
-        </View>
-        <View>
-          <Dialog.Container visible={visibleResetDialog}>
-            <Dialog.Title>Reset Hitungan</Dialog.Title>
-            <Dialog.Description>
-              Apakah anda ingin mereset hitungan yang sudah berjalan?
-            </Dialog.Description>
-            <Dialog.Button
-              label="Reset"
-              style={styles.resetCounter}
-              onPress={resetCounterHandler}
-            />
-            <Dialog.Button label="Batal" onPress={handleCancelResetDialog} />
-          </Dialog.Container>
         </View>
       </SafeAreaView>
     </>
@@ -305,14 +278,14 @@ function DzikirCounter({
 }
 
 export const screenOptions = {
-  headerTitle: "Dzikir Counter",
+  headerTitle: 'Tasbeeh Counter',
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   editButton: {
     marginTop: 3,
@@ -320,108 +293,108 @@ const styles = StyleSheet.create({
   },
   textView: {
     flex: 2,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     padding: 10,
     marginTop: 40,
   },
   arabicText: {
-    fontFamily: "dubai-regular",
-    justifyContent: "center",
-    alignContent: "center",
+    fontFamily: 'dubai-regular',
+    justifyContent: 'center',
+    alignContent: 'center',
     fontSize: 64,
-    color: "#FFFFFF",
+    color: '#FFFFFF',
   },
-  dzikirText: {
-    fontFamily: "dubai-regular",
-    justifyContent: "center",
-    alignContent: "center",
+  tasbeehText: {
+    fontFamily: 'dubai-regular',
+    justifyContent: 'center',
+    alignContent: 'center',
     fontSize: 32,
-    color: "#FFFFFF",
+    color: '#FFFFFF',
   },
   targetText: {
     marginTop: 2,
     fontSize: 24,
-    fontFamily: "dubai-regular",
-    fontWeight: "bold",
-    justifyContent: "center",
-    alignContent: "center",
+    fontFamily: 'dubai-regular',
+    fontWeight: 'bold',
+    justifyContent: 'center',
+    alignContent: 'center',
     marginRight: 10,
-    color: "#FFFFFF",
+    color: '#FFFFFF',
   },
   saveTarget: {
     fontSize: 20,
-    color: "#FFFFFF",
-    backgroundColor: "#00BFFF",
-    width: "100%",
+    color: '#FFFFFF',
+    backgroundColor: '#00BFFF',
+    width: '100%',
     borderRadius: 10,
   },
   resetCounter: {
     marginTop: 20,
     marginBottom: 10,
     fontSize: 16,
-    color: "#FFFFFF",
-    backgroundColor: "#FF4444",
-    width: "100%",
+    color: '#FFFFFF',
+    backgroundColor: '#FF4444',
+    width: '100%',
     borderRadius: 10,
   },
   dialogInput: {
     marginTop: 20,
     fontSize: 20,
-    fontFamily: "dubai-regular",
-    fontWeight: "bold",
-    justifyContent: "center",
-    alignContent: "center",
+    fontFamily: 'dubai-regular',
+    fontWeight: 'bold',
+    justifyContent: 'center',
+    alignContent: 'center',
     marginRight: 10,
   },
   inputText: {
     fontSize: 24,
-    fontFamily: "dubai-regular",
-    justifyContent: "center",
-    alignContent: "center",
+    fontFamily: 'dubai-regular',
+    justifyContent: 'center',
+    alignContent: 'center',
     marginRight: 10,
-    color: "#FFFFFF",
+    color: '#FFFFFF',
   },
   targetInput: {
     borderWidth: 1,
-    borderColor: "#777",
+    borderColor: '#777',
     padding: 6,
     margin: 2,
     width: 60,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: '#FFFFFF',
     borderRadius: 10,
-    textAlign: "center",
+    textAlign: 'center',
     fontSize: 24,
-    fontFamily: "ds-digit",
-    color: "#3D3FB8",
+    fontFamily: 'ds-digit',
+    color: '#3D3FB8',
   },
   targetView: {
-    flexDirection: "row",
+    flexDirection: 'row',
     flex: 1,
-    justifyContent: "center",
-    alignItems: "flex-start",
+    justifyContent: 'center',
+    alignItems: 'flex-start',
   },
   backgroundImage: {
-    position: "absolute",
+    position: 'absolute',
     zIndex: -9999,
-    resizeMode: "cover",
+    resizeMode: 'cover',
   },
   tasbihView: {
     flex: 5,
-    justifyContent: "flex-start",
-    alignItems: "center",
+    justifyContent: 'flex-start',
+    alignItems: 'center',
   },
 });
 
 const mapStateToProps = (state: RootState) => ({
-  dzikirTarget: state.dzikirTarget,
+  tasbeehTarget: state.tasbeehTarget,
 });
 
 const mapDispatchToProps = (
   dispatch: ThunkDispatch<{}, {}, any>
 ): DispatchProps => {
   return {
-    updateDzikirTarget: async (
+    updateTasbeehTarget: async (
       id: number,
       title: string,
       target: number,
@@ -431,7 +404,7 @@ const mapDispatchToProps = (
       counter: number
     ) => {
       await dispatch(
-        updateDzikirTarget(
+        updateTasbeehTarget(
           id,
           title,
           target,
@@ -445,4 +418,4 @@ const mapDispatchToProps = (
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DzikirCounter);
+export default connect(mapStateToProps, mapDispatchToProps)(TasbeehCounter);

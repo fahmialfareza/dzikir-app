@@ -1,18 +1,18 @@
-import DzikirTarget from '../models/dzikirTarget';
+import TasbeehTarget from '../models/tasbeehTarget';
 import AlMatsurat from '../models/alMatsurat';
 
-// Dzikir Target
-export interface DzikirTargetState {
-  dzikirTargets: DzikirTarget[];
-  dzikirTargetDetails: DzikirTarget | null;
+// Tasbeeh Target
+export interface TasbeehTargetState {
+  tasbeehTargets: TasbeehTarget[];
+  tasbeehTargetDetails: TasbeehTarget | null;
 }
 
-export const GET_DZIKIR_TARGETS = 'GET_DZIKIR_TARGETS';
-export const ADD_DZIKIR_TARGET = 'ADD_DZIKIR_TARGET';
-export const UPDATE_DZIKIR_TARGET = 'UPDATE_DZIKIR_TARGET';
-export const DELETE_DZIKIR_TARGET = 'DELETE_DZIKIR_TARGET';
+export const GET_TASBEEH_TARGETS = 'GET_TASBEEH_TARGETS';
+export const ADD_TASBEEH_TARGET = 'ADD_TASBEEH_TARGET';
+export const UPDATE_TASBEEH_TARGET = 'UPDATE_TASBEEH_TARGET';
+export const DELETE_TASBEEH_TARGET = 'DELETE_TASBEEH_TARGET';
 
-// Al-Matsurat
+// Dzikir & Dua
 export interface AlMatsuratState {
   morningDzikir: AlMatsurat[];
   eveningDzikir: AlMatsurat[];

@@ -1,4 +1,4 @@
-export default interface DzikirTarget {
+export default interface TasbeehTarget {
   id: number;
   title: string;
   arabic?: string;
