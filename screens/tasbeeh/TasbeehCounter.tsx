@@ -60,6 +60,9 @@ function TasbeehCounter({
   const [resetColor, setResetColor] = useState('#FCDDEC');
   const [visible, setVisible] = useState(false);
 
+  // Interval time
+  const [intervalTime, setIntervalTime] = useState(0);
+
   // State value of tasbeeh
   const [oldTarget, setOldTarget] = useState(String(params.item.target));
   const [target, setTarget] = useState(String(params.item.target));
@@ -196,9 +199,27 @@ function TasbeehCounter({
     }
   }, [count, target]);
 
+  var refreshIntervalId: NodeJS.Timeout;
+
   useEffect(() => {
-    updateTasbeeh();
+    refreshIntervalId = setInterval(() => {
+      setIntervalTime((oldIntervalTime) => oldIntervalTime + 1);
+    }, 1000);
+
+    setTimeout(() => clearInterval(refreshIntervalId), 1100);
+
+    return () => {
+      clearInterval(refreshIntervalId);
+    };
   }, [count]);
+
+  useEffect(() => {
+    if (intervalTime === 1) {
+      updateTasbeeh();
+      clearInterval(refreshIntervalId);
+      setIntervalTime(0);
+    }
+  }, [intervalTime]);
 
   const successAudio = async () => {
     const sound = new Audio.Sound();
