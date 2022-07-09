@@ -11,10 +11,7 @@ import {
   View,
 } from 'react-native';
 import Dialog from 'react-native-dialog';
-import {
-  SafeAreaView,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { connect } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 
@@ -72,8 +69,8 @@ function TasbeehCounter({
       ? screenMode.lightContainer
       : screenMode.darkContainer;
 
-  const updateTasbeeh = async () => {
-    await updateTasbeehTarget(
+  const updateTasbeeh = () => {
+    updateTasbeehTarget(
       params.item.id,
       params.item.title,
       parseInt(target),
@@ -121,12 +118,16 @@ function TasbeehCounter({
 
     setTimeout(() => {
       setAddColor('#FCDDEC');
-    }, 100);
+    }, 1);
 
     setCount(result);
   };
 
   const resetCounterHandler = async () => {
+    if (count === '0000') {
+      return;
+    }
+
     // Set color
     setResetColor(themeContainerStyle.backgroundColor);
 
@@ -136,7 +137,7 @@ function TasbeehCounter({
         onPress: async () => {
           setTimeout(() => {
             setResetColor('#FCDDEC');
-          }, 100);
+          }, 1);
 
           setCount('0000');
         },
