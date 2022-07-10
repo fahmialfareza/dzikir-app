@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { NavigationProp } from '@react-navigation/native';
-import { StyleSheet, View, useColorScheme, Dimensions } from 'react-native';
+import { StyleSheet, View, useColorScheme } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import screenMode from '../../constants/screenMode';
@@ -23,11 +23,7 @@ interface DispatchProps {
   getAlMatsurat: () => void;
 }
 
-const AlMatsurat = ({
-  navigation,
-  getAlMatsurat,
-  alMatsurat,
-}: AlMatsuratProps) => {
+const AlMatsurat = ({ navigation, getAlMatsurat }: AlMatsuratProps) => {
   const colorScheme = useColorScheme();
 
   useEffect(() => {
@@ -38,8 +34,6 @@ const AlMatsurat = ({
     colorScheme === 'light'
       ? screenMode.lightContainer
       : screenMode.darkContainer;
-
-  const buttonMenuIconWidth = Dimensions.get('window').width / 6;
 
   const selectMenuHandler = (routeName: string) => {
     navigation.navigate(routeName, {});

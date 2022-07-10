@@ -18,4 +18,4 @@ export const ShalatTimeIcon = ShalatTimeIconAsset;
 // Images
 export const HomeAyahTopImage = HomeAyahTopImageAsset;
 export const HomeAyahBottomImage = HomeAyahBottomImageAsset;
-export const TasbeehCounterBackgrondImage = TasbeehCounterBackgroundImageAsset;
+export const TasbeehCounterBackgroundImage = TasbeehCounterBackgroundImageAsset;

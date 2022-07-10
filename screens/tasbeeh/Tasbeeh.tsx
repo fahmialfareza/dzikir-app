@@ -26,12 +26,7 @@ import AddTasbeehItemInput from '../../components/tasbeeh/AddTasbeehItemInput';
 import EditTasbeehItemInput from '../../components/tasbeeh/EditTasbeehItemInput';
 import TasbeehTarget from '../../models/tasbeehTarget';
 
-import {
-  getTasbeehTargets,
-  addTasbeehTarget,
-  updateTasbeehTarget,
-  deleteTasbeehTarget,
-} from '../../redux/actions/tasbeehTarget';
+import { getTasbeehTargets } from '../../redux/actions/tasbeehTarget';
 import { RootState } from '../../redux';
 import { TasbeehTargetState } from '../../redux/types';
 

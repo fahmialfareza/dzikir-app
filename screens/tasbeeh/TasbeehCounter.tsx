@@ -9,18 +9,20 @@ import {
   Text,
   useColorScheme,
   View,
+  Platform,
 } from 'react-native';
-import Dialog from 'react-native-dialog';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { connect } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 import TasbeehTarget from '../../models/tasbeehTarget';
 
-import { TasbeehCounterBackgrondImage } from '../../constants/assets';
+import { TasbeehCounterBackgroundImage } from '../../constants/assets';
 import screenMode from '../../constants/screenMode';
 
 import TasbihCounter from '../../components/tasbeeh/TasbeehCounter';
+import EditTasbeehTargetItemInput from '../../components/tasbeeh/EditTasbeehTargetItemInput';
 
 import { RootState } from '../../redux';
 import { updateTasbeehTarget } from '../../redux/actions/tasbeehTarget';
@@ -72,11 +74,11 @@ function TasbeehCounter({
       ? screenMode.lightContainer
       : screenMode.darkContainer;
 
-  const updateTasbeeh = () => {
+  const updateTasbeeh = (targetInput?: string) => {
     updateTasbeehTarget(
       params.item.id,
       params.item.title,
-      parseInt(target),
+      targetInput ? parseInt(targetInput) : parseInt(target),
       params.item.arabic || '',
       params.item.background || '',
       params.item.color || '',
@@ -86,16 +88,6 @@ function TasbeehCounter({
 
   const showDialog = () => {
     setVisible(true);
-  };
-
-  const handleCancel = () => {
-    setVisible(false);
-  };
-
-  const handleSaveTarget = () => {
-    setTarget(target);
-    submitTargetHandler();
-    setVisible(false);
   };
 
   const counterFormatter = (countNumber: number) => {
@@ -150,34 +142,22 @@ function TasbeehCounter({
     ]);
   };
 
-  const targetChangeTextHandler = (text: string) => {
-    if (text === '') {
-      setTarget('0');
-      return;
-    }
-
-    if (target === '0') {
-      setTarget(text.split('0').join(''));
-      return;
-    }
-
-    setTarget(text);
-  };
-
-  const submitTargetHandler = async () => {
+  const submitTargetHandler = async (targetInput: string) => {
     try {
-      if (target !== '0') {
-        if (target === oldTarget) {
+      if (targetInput !== '0') {
+        if (targetInput === oldTarget) {
           return;
         }
 
-        await updateTasbeeh();
+        await updateTasbeeh(targetInput);
 
-        setOldTarget(target);
+        setOldTarget(targetInput);
 
-        Alert.alert('Berhasil Mengganti Target', `Target menjadi ${target}`, [
-          { text: 'OK', onPress: () => console.log('Target OK') },
-        ]);
+        Alert.alert(
+          'Berhasil Mengganti Target',
+          `Target menjadi ${targetInput}`,
+          [{ text: 'OK', onPress: () => console.log('Target OK') }]
+        );
       }
     } catch (error) {
       console.log(error);
@@ -239,7 +219,7 @@ function TasbeehCounter({
 
   return (
     <>
-      <TasbeehCounterBackgrondImage
+      <TasbeehCounterBackgroundImage
         style={styles.backgroundImage}
         width={Dimensions.get('window').width}
         height={Dimensions.get('window').height}
@@ -253,25 +233,6 @@ function TasbeehCounter({
               <Text style={styles.inputText}>Target :</Text>
             </View>
             <View>
-              <Dialog.Container visible={visible}>
-                <Dialog.Title>Masukan Target</Dialog.Title>
-                <Dialog.Input
-                  autoFocus={true}
-                  placeholder="Masukkan Target"
-                  onChangeText={targetChangeTextHandler}
-                  keyboardType="number-pad"
-                  returnKeyType={'done'}
-                  style={{
-                    fontFamily: 'dubai-regular',
-                  }}
-                >
-                  {target}
-                </Dialog.Input>
-                <Dialog.Button label="Simpan" onPress={handleSaveTarget} />
-                <Dialog.Button label="Batal" onPress={handleCancel} />
-              </Dialog.Container>
-            </View>
-            <View>
               <Text style={styles.targetText}>{String(target)}</Text>
             </View>
             <View style={styles.editButton}>
@@ -280,6 +241,25 @@ function TasbeehCounter({
                 size={32}
                 color="white"
                 onPress={showDialog}
+              />
+              <EditTasbeehTargetItemInput
+                modalVisible={visible}
+                setModalVisible={setVisible}
+                actionText={
+                  <>
+                    <Ionicons
+                      name={
+                        Platform.OS === 'android' ? 'md-pencil' : 'ios-pencil'
+                      }
+                      color="white"
+                    />{' '}
+                    Ubah Target
+                  </>
+                }
+                updateTarget={submitTargetHandler}
+                setTarget={setTarget}
+                setOldTarget={setOldTarget}
+                target={target}
               />
             </View>
           </View>
