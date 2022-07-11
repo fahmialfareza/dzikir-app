@@ -11,7 +11,7 @@ import {
 
 import screenMode from '../../constants/screenMode';
 
-interface DzikirTextInputProps {
+interface TasbeehTextInputProps {
   label: string;
   placeholder: string;
   returnKeyType: ReturnKeyTypeOptions;
@@ -24,7 +24,7 @@ interface DzikirTextInputProps {
   onChangeText: (text: string) => void;
 }
 
-function DzikirTextInput({
+function TasbeehTextInput({
   label,
   placeholder,
   returnKeyLabel,
@@ -35,7 +35,7 @@ function DzikirTextInput({
   autoFocus,
   value,
   onChangeText,
-}: DzikirTextInputProps) {
+}: TasbeehTextInputProps) {
   const colorScheme = useColorScheme();
 
   const themeTextStyle =
@@ -88,4 +88,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DzikirTextInput;
+export default TasbeehTextInput;

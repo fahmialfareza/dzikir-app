@@ -1,6 +1,6 @@
-import DzikirTarget from '../../models/dzikirTarget';
+import TasbeehTarget from '../../models/tasbeehTarget';
 
-const data: DzikirTarget[] = [
+const data: TasbeehTarget[] = [
   {
     id: 1,
     title: 'Subhanallah',

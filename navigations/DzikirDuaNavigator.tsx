@@ -6,7 +6,7 @@ import {
 
 import AlMatsurat, {
   screenOptions as alMatsuratScreenOptions,
-} from '../screens/alMatsurat/AlMatsurat';
+} from '../screens/dzikir/AlMatsurat';
 
 const defaultAlMatsuratScreenOptions: NativeStackNavigationOptions = {
   headerShown: false,
@@ -14,7 +14,7 @@ const defaultAlMatsuratScreenOptions: NativeStackNavigationOptions = {
 
 const Stack = createNativeStackNavigator();
 
-const AlMatsuratNavigator = () => {
+const DzikirDuaNavigator = () => {
   return (
     <Stack.Navigator screenOptions={defaultAlMatsuratScreenOptions}>
       <Stack.Screen
@@ -26,4 +26,4 @@ const AlMatsuratNavigator = () => {
   );
 };
 
-export default AlMatsuratNavigator;
+export default DzikirDuaNavigator;

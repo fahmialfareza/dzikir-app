@@ -4,36 +4,36 @@ import SelectDropdown from 'react-native-select-dropdown';
 
 import screenMode from '../../constants/screenMode';
 
-interface DzikirSelectDropdownData {
+interface TasbeehSelectDropdownData {
   name: string;
   color: string;
 }
 
-interface DzikirSelectDropdownProps {
-  data: DzikirSelectDropdownData[];
-  onSelect: (selectedItem: DzikirSelectDropdownData, index: number) => void;
+interface TasbeehSeelectDropdownProps {
+  data: TasbeehSelectDropdownData[];
+  onSelect: (selectedItem: TasbeehSelectDropdownData, index: number) => void;
   reference: React.LegacyRef<SelectDropdown>;
   buttonTextAfterSelection: (
-    selectedItem: DzikirSelectDropdownData,
+    selectedItem: TasbeehSelectDropdownData,
     index: number
   ) => string;
   rowTextForSelection: (
-    item: DzikirSelectDropdownData,
+    item: TasbeehSelectDropdownData,
     index: number
   ) => string;
   renderCustomizedRowChild?: (
-    selectedItem: DzikirSelectDropdownData,
+    selectedItem: TasbeehSelectDropdownData,
     index: number
   ) => React.ReactNode;
   renderCustomizedButtonChild?: (
-    item: DzikirSelectDropdownData,
+    item: TasbeehSelectDropdownData,
     index: number
   ) => React.ReactNode;
   label: string;
-  defaultValue: DzikirSelectDropdownData;
+  defaultValue: TasbeehSelectDropdownData;
 }
 
-function DzikirSelectDropdownColors({
+function TasbeehSelectDropdownColors({
   data,
   onSelect,
   reference,
@@ -43,7 +43,7 @@ function DzikirSelectDropdownColors({
   renderCustomizedButtonChild,
   label,
   defaultValue,
-}: DzikirSelectDropdownProps) {
+}: TasbeehSeelectDropdownProps) {
   const colorScheme = useColorScheme();
 
   const themeTextStyle =
@@ -97,4 +97,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DzikirSelectDropdownColors;
+export default TasbeehSelectDropdownColors;

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import {
   Modal,
   StyleSheet,
@@ -17,28 +17,28 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import screenMode from '../../constants/screenMode';
 import colorData from '../../constants/data/colorData';
 
-import DzikirTarget from '../../models/dzikirTarget';
+import TasbeehTarget from '../../models/tasbeehTarget';
 
-import DzikirTextInput from './DzikirTextInput';
-import DzikirSelectDropdownColors from './DzikirSelectDropdownColors';
+import TasbeehTextInput from './TasbeehTextInput';
+import TasbeehSelectDropdownColors from './TasbeehSelectDropdownColors';
 import useKeyboard from '../useKeyboard';
 
-interface DzikirItemInputProps {
+interface TasbeehItemInputProps {
   modalVisible: boolean;
   setModalVisible: (visible: boolean) => void;
   actionText: React.ReactElement;
   enableRemoveButton: boolean;
   onSubmitHandler: () => void;
   onDeleteHandler?: () => void;
-  state: DzikirTarget;
-  setState: (state: DzikirTarget) => void;
+  state: TasbeehTarget;
+  setState: (state: TasbeehTarget) => void;
   colorDefaultValue?: {
     name: string;
     color: string;
   };
 }
 
-const DzikirItemInput = ({
+const TasbeehItemInput = ({
   modalVisible,
   setModalVisible,
   actionText,
@@ -48,7 +48,7 @@ const DzikirItemInput = ({
   state,
   setState,
   colorDefaultValue,
-}: DzikirItemInputProps) => {
+}: TasbeehItemInputProps) => {
   const colorScheme = useColorScheme();
   const isKeyboardOpen = useKeyboard();
 
@@ -75,9 +75,9 @@ const DzikirItemInput = ({
         <View style={{ ...styles.centeredView, justifyContent }}>
           <View style={[styles.modalView, themeContainerStyle]}>
             <View style={styles.row}>
-              <DzikirTextInput
+              <TasbeehTextInput
                 label="Judul"
-                placeholder="Judul Dzikir"
+                placeholder="Judul Tasbih"
                 returnKeyType="next"
                 returnKeyLabel="next"
                 reference={titleInput}
@@ -93,7 +93,7 @@ const DzikirItemInput = ({
             </View>
 
             <View style={styles.row}>
-              <DzikirTextInput
+              <TasbeehTextInput
                 label="Teks Arab"
                 placeholder="Teks Arab di kanan judul"
                 returnKeyType="next"
@@ -110,7 +110,7 @@ const DzikirItemInput = ({
             </View>
 
             <View style={styles.row}>
-              <DzikirSelectDropdownColors
+              <TasbeehSelectDropdownColors
                 buttonTextAfterSelection={(selectedItem, index) => {
                   // text represented after item is selected
                   // if data array is an array of objects then return selectedItem.property to render after item is selected
@@ -160,7 +160,7 @@ const DzikirItemInput = ({
             </View>
 
             <View style={styles.row}>
-              <DzikirTextInput
+              <TasbeehTextInput
                 label="Target"
                 keyboardType="number-pad"
                 placeholder="Target"
@@ -293,4 +293,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DzikirItemInput;
+export default TasbeehItemInput;

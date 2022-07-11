@@ -1,21 +1,21 @@
 import AlQuranIconAsset from '../assets/icons/alquran.svg';
 import ShalatTimeIconAsset from '../assets/icons/shalat-time.svg';
-import AlMatsuratIconAsset from '../assets/icons/almatsurat.svg';
-import DzikirIconAsset from '../assets/icons/dzikir.svg';
-import HistoryIconAsset from '../assets/icons/history.svg';
+import DzikirDuaIconAsset from '../assets/icons/dzikir-dua.svg';
+import TasbeehIconAsset from '../assets/icons/tasbeeh.svg';
 import HomeIconAsset from '../assets/icons/home.svg';
 
-import HomeAyahImageAsset from '../assets/images/home-ayah.svg';
-import DzikirCounterBackgroundImageAsset from '../assets/images/dzikir-counter-background.svg';
+import HomeAyahTopImageAsset from '../assets/images/home-ayah-top.svg';
+import HomeAyahBottomImageAsset from '../assets/images/home-ayah-bottom.svg';
+import TasbeehCounterBackgroundImageAsset from '../assets/images/tasbeeh-counter-background.svg';
 
 // Icons
-export const AlMatsuratIcon = AlMatsuratIconAsset;
+export const DzikirDuaIcon = DzikirDuaIconAsset;
 export const AlQuranIcon = AlQuranIconAsset;
-export const DzikirIcon = DzikirIconAsset;
-export const HistoryIcon = HistoryIconAsset;
+export const TasbeehIcon = TasbeehIconAsset;
 export const HomeIcon = HomeIconAsset;
 export const ShalatTimeIcon = ShalatTimeIconAsset;
 
 // Images
-export const HomeAyahImage = HomeAyahImageAsset;
-export const DzikirCounterBackgrondImage = DzikirCounterBackgroundImageAsset;
+export const HomeAyahTopImage = HomeAyahTopImageAsset;
+export const HomeAyahBottomImage = HomeAyahBottomImageAsset;
+export const TasbeehCounterBackgroundImage = TasbeehCounterBackgroundImageAsset;

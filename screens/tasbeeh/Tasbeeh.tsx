@@ -17,44 +17,40 @@ import { NavigationProp } from '@react-navigation/native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import screenMode from '../../constants/screenMode';
+import { HomeAyahBottomImage } from '../../constants/assets';
 
-import DzikirItem, {
-  DzikirItemProps,
-} from '../../components/dzikir/DzikirItem';
-import AddDzikirItemInput from '../../components/dzikir/AddDzikirItemInput';
-import EditDzikirItemInput from '../../components/dzikir/EditDzikirItemInput';
-import DzikirTarget from '../../models/dzikirTarget';
+import TasbeehItem, {
+  TasbeehItemProps,
+} from '../../components/tasbeeh/TasbeehItem';
+import AddTasbeehItemInput from '../../components/tasbeeh/AddTasbeehItemInput';
+import EditTasbeehItemInput from '../../components/tasbeeh/EditTasbeehItemInput';
+import TasbeehTarget from '../../models/tasbeehTarget';
 
-import {
-  getDzikirTargets,
-  addDzikirTarget,
-  updateDzikirTarget,
-  deleteDzikirTarget,
-} from '../../redux/actions/dzikirTarget';
+import { getTasbeehTargets } from '../../redux/actions/tasbeehTarget';
 import { RootState } from '../../redux';
-import { DzikirTargetState } from '../../redux/types';
+import { TasbeehTargetState } from '../../redux/types';
 
-interface DzikirProps {
+interface TasbeehProps {
   navigation: NavigationProp<any, any>;
-  getDzikirTargets: () => void;
-  dzikirTarget: DzikirTargetState;
+  getTasbeehTargets: () => void;
+  tasbeehTarget: TasbeehTargetState;
 }
 
 interface DispatchProps {
-  getDzikirTargets: () => void;
+  getTasbeehTargets: () => void;
 }
 
-const Dzikir = ({
+const Tasbeeh = ({
   navigation,
-  getDzikirTargets,
-  dzikirTarget: { dzikirTargets },
-}: DzikirProps) => {
+  getTasbeehTargets,
+  tasbeehTarget: { tasbeehTargets },
+}: TasbeehProps) => {
   const colorScheme = useColorScheme();
 
   const [addModalVisible, setAddModalVisible] = useState(false);
   const [editModalVisible, setEditModalVisible] = useState(false);
 
-  const [editItemData, setEditItemData] = useState<DzikirTarget>({
+  const [editItemData, setEditItemData] = useState<TasbeehTarget>({
     id: 0,
     title: '',
     arabic: '',
@@ -65,7 +61,7 @@ const Dzikir = ({
   });
 
   useEffect(() => {
-    getDzikirTargets();
+    getTasbeehTargets();
   }, []);
 
   const themeContainerStyle =
@@ -77,16 +73,16 @@ const Dzikir = ({
       ? screenMode.lightThemeText
       : screenMode.darkThemeText;
 
-  const selectDzikirHandler = (item: DzikirTarget) => {
-    navigation.navigate('DzikirDetails', { item });
+  const selectTasbeehHandler = (item: TasbeehTarget) => {
+    navigation.navigate('TasbeehDetails', { item });
   };
 
-  const renderItem = ({ item }: DzikirItemProps) => {
+  const renderItem = ({ item }: TasbeehItemProps) => {
     if (item.id > 5) {
       return (
-        <DzikirItem
+        <TasbeehItem
           item={item}
-          onPress={() => selectDzikirHandler(item)}
+          onPress={() => selectTasbeehHandler(item)}
           onLongPress={() => {
             setEditItemData(item);
             setEditModalVisible(true);
@@ -98,13 +94,13 @@ const Dzikir = ({
     }
 
     return (
-      <DzikirItem
+      <TasbeehItem
         item={item}
-        onPress={() => selectDzikirHandler(item)}
+        onPress={() => selectTasbeehHandler(item)}
         onLongPress={() => {
           Alert.alert(
             'Tidak bisa mengubah data ini',
-            'Dzikir bawaan aplikasi tidak bisa diubah atau dihapus',
+            'Tasbeeh bawaan aplikasi tidak bisa diubah atau dihapus',
             [{ text: 'OK' }]
           );
         }}
@@ -114,7 +110,7 @@ const Dzikir = ({
     );
   };
 
-  if (dzikirTargets.length === 0) {
+  if (tasbeehTargets.length === 0) {
     return (
       <SafeAreaView
         style={[styles.container, themeContainerStyle, styles.loadingContainer]}
@@ -124,15 +120,19 @@ const Dzikir = ({
     );
   }
 
+  const imageTopRowContentWidth = Dimensions.get('window').width - 40;
+
   return (
     <SafeAreaView style={[styles.container, themeContainerStyle]}>
       <View style={styles.topRow}>
-        <View style={styles.topRowContent}></View>
+        <View style={styles.topRowContent}>
+          <HomeAyahBottomImage width={imageTopRowContentWidth} />
+        </View>
       </View>
 
       <View style={styles.itemRow}>
         <FlatList
-          data={dzikirTargets}
+          data={tasbeehTargets}
           renderItem={renderItem}
           keyExtractor={(item) => String(item.id)}
         />
@@ -150,12 +150,12 @@ const Dzikir = ({
           />
         </TouchableOpacity>
 
-        <AddDzikirItemInput
+        <AddTasbeehItemInput
           addModalVisible={addModalVisible}
           setAddModalVisible={setAddModalVisible}
         />
 
-        <EditDzikirItemInput
+        <EditTasbeehItemInput
           editModalVisible={editModalVisible}
           setEditModalVisible={setEditModalVisible}
           item={editItemData}
@@ -166,7 +166,7 @@ const Dzikir = ({
 };
 
 export const screenOptions = {
-  headerTitle: 'Dzikir',
+  headerTitle: 'Tasbeeh',
 };
 
 const styles = StyleSheet.create({
@@ -209,17 +209,17 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state: RootState) => ({
-  dzikirTarget: state.dzikirTarget,
+  tasbeehTarget: state.tasbeehTarget,
 });
 
 const mapDispatchToProps = (
   dispatch: ThunkDispatch<{}, {}, any>
 ): DispatchProps => {
   return {
-    getDzikirTargets: async () => {
-      await dispatch(getDzikirTargets());
+    getTasbeehTargets: async () => {
+      await dispatch(getTasbeehTargets());
     },
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Dzikir);
+export default connect(mapStateToProps, mapDispatchToProps)(Tasbeeh);

@@ -4,45 +4,45 @@ import { ThunkDispatch } from 'redux-thunk';
 import { Platform, Alert, Keyboard } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
-import DzikirItemInput from './DzikirItemInput';
+import TasbeehItemInput from './TasbeehItemInput';
 
-import DzikirTarget from '../../models/dzikirTarget';
+import TasbeehTarget from '../../models/tasbeehTarget';
 
 import colorData from '../../constants/data/colorData';
 
 import {
-  updateDzikirTarget,
-  deleteDzikirTarget,
-} from '../../redux/actions/dzikirTarget';
+  updateTasbeehTarget,
+  deleteTasbeehTarget,
+} from '../../redux/actions/tasbeehTarget';
 
-interface EditDzikirItemInputProps {
+interface EditTasbeehItemInputProps {
   editModalVisible: boolean;
-  item: DzikirTarget;
+  item: TasbeehTarget;
   setEditModalVisible: (visible: boolean) => void;
-  updateDzikirTarget: (item: DzikirTarget) => void;
-  deleteDzikirTarget: (id: number) => void;
+  updateTasbeehTarget: (item: TasbeehTarget) => void;
+  deleteTasbeehTarget: (id: number) => void;
 }
 
 interface DispatchProps {
-  updateDzikirTarget: (item: DzikirTarget) => void;
-  deleteDzikirTarget: (id: number) => void;
+  updateTasbeehTarget: (item: TasbeehTarget) => void;
+  deleteTasbeehTarget: (id: number) => void;
 }
 
-function EditDzikirItemInput({
+function EditTasbeehItemInput({
   editModalVisible,
   setEditModalVisible,
   item,
-  deleteDzikirTarget,
-  updateDzikirTarget,
-}: EditDzikirItemInputProps) {
-  const [state, setState] = useState<DzikirTarget>(item);
+  deleteTasbeehTarget,
+  updateTasbeehTarget,
+}: EditTasbeehItemInputProps) {
+  const [state, setState] = useState<TasbeehTarget>(item);
 
   useEffect(() => {
     setState(item);
   }, [item]);
 
   return (
-    <DzikirItemInput
+    <TasbeehItemInput
       modalVisible={editModalVisible}
       setModalVisible={setEditModalVisible}
       actionText={
@@ -56,7 +56,7 @@ function EditDzikirItemInput({
       }
       enableRemoveButton={true}
       onSubmitHandler={async () => {
-        await updateDzikirTarget(state);
+        await updateTasbeehTarget(state);
 
         setEditModalVisible(false);
         setState({
@@ -69,7 +69,7 @@ function EditDzikirItemInput({
           counter: 0,
         });
 
-        Alert.alert('Sukses', 'Dzikir berhasil diubah');
+        Alert.alert('Sukses', 'Tasbih berhasil diubah');
         Keyboard.dismiss();
       }}
       onDeleteHandler={async () => {
@@ -82,7 +82,7 @@ function EditDzikirItemInput({
             text: 'Ya',
             style: 'destructive',
             onPress: async () => {
-              await deleteDzikirTarget(state.id);
+              await deleteTasbeehTarget(state.id);
 
               setEditModalVisible(false);
               setState({
@@ -95,7 +95,7 @@ function EditDzikirItemInput({
                 counter: 0,
               });
 
-              Alert.alert('Sukses', 'Dzikir berhasil dihapus');
+              Alert.alert('Sukses', 'Tasbih berhasil dihapus');
 
               Keyboard.dismiss();
             },
@@ -115,9 +115,9 @@ const mapDispatchToProps = (
   dispatch: ThunkDispatch<{}, {}, any>
 ): DispatchProps => {
   return {
-    updateDzikirTarget: async (item: DzikirTarget) => {
+    updateTasbeehTarget: async (item: TasbeehTarget) => {
       await dispatch(
-        updateDzikirTarget(
+        updateTasbeehTarget(
           item.id,
           item.title,
           item.target,
@@ -128,10 +128,10 @@ const mapDispatchToProps = (
         )
       );
     },
-    deleteDzikirTarget: async (id: number) => {
-      await dispatch(deleteDzikirTarget(id));
+    deleteTasbeehTarget: async (id: number) => {
+      await dispatch(deleteTasbeehTarget(id));
     },
   };
 };
 
-export default connect(null, mapDispatchToProps)(EditDzikirItemInput);
+export default connect(null, mapDispatchToProps)(EditTasbeehItemInput);

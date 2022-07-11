@@ -5,10 +5,11 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import screenMode from '../constants/screenMode';
 import {
-  AlMatsuratIcon,
+  DzikirDuaIcon,
   AlQuranIcon,
-  DzikirIcon,
-  HomeAyahImage,
+  TasbeehIcon,
+  HomeAyahTopImage,
+  HomeAyahBottomImage,
   ShalatTimeIcon,
 } from '../constants/assets';
 
@@ -36,9 +37,14 @@ const Home = ({ navigation }: HomeProps) => {
   return (
     <SafeAreaView style={[styles.container, themeContainerStyle]}>
       <View style={styles.row}>
-        <View style={styles.topRowContent}></View>
         <View style={styles.topRowContent}>
-          <HomeAyahImage
+          <HomeAyahTopImage
+            style={styles.imageTopRowContent}
+            width={imageTopRowContentWidth}
+          />
+        </View>
+        <View style={styles.topRowContent}>
+          <HomeAyahBottomImage
             style={styles.imageTopRowContent}
             width={imageTopRowContentWidth}
           />
@@ -74,10 +80,10 @@ const Home = ({ navigation }: HomeProps) => {
           <ButtonMenu
             backgroundColor="#3D3FB8"
             color="#FFFFFF"
-            text="Al-Matsurat"
-            onPress={() => selectMenuHandler('Al-Matsurat')}
+            text="Dzikir & Doa"
+            onPress={() => selectMenuHandler('DzikirDua')}
           >
-            <AlMatsuratIcon
+            <DzikirDuaIcon
               width={buttonMenuIconWidth}
               style={styles.buttonMenuImage}
             />
@@ -85,10 +91,10 @@ const Home = ({ navigation }: HomeProps) => {
           <ButtonMenu
             backgroundColor="#7D2DFF"
             color="#FFFFFF"
-            text="Dzikir"
-            onPress={() => selectMenuHandler('Dzikir')}
+            text="Tasbih"
+            onPress={() => selectMenuHandler('Tasbeeh')}
           >
-            <DzikirIcon
+            <TasbeehIcon
               width={buttonMenuIconWidth}
               style={styles.buttonMenuImage}
             />

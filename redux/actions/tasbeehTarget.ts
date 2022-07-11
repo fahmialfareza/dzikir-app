@@ -2,22 +2,22 @@ import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 
 import {
-  GET_DZIKIR_TARGETS,
-  ADD_DZIKIR_TARGET,
-  UPDATE_DZIKIR_TARGET,
-  DELETE_DZIKIR_TARGET,
+  GET_TASBEEH_TARGETS,
+  ADD_TASBEEH_TARGET,
+  UPDATE_TASBEEH_TARGET,
+  DELETE_TASBEEH_TARGET,
 } from '../types';
 import {
-  insertDzikirTarget,
-  fetchDzikirTargets,
-  updateDzikirTarget as updateDzikirTargetDB,
-  deleteDzikirTarget as deleteDzikirTargetDB,
-  fetchDetailsDzikirTarget,
+  insertTasbeehTarget,
+  fetchTasbeehTargets,
+  updateTasbeehTarget as updateTasbeehTargetDB,
+  deleteTasbeehTarget as deleteTasbeehTargetDB,
+  fetchDetailsTasbeehTarget,
 } from '../../helpers/db';
 
-import DzikirTarget from '../../models/dzikirTarget';
+import TasbeehTarget from '../../models/tasbeehTarget';
 
-export const addDzikirTarget =
+export const addTasbeehTarget =
   (
     title: string,
     target: number,
@@ -27,7 +27,7 @@ export const addDzikirTarget =
   ) =>
   async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
     try {
-      const insertedData = await insertDzikirTarget(
+      const insertedData = await insertTasbeehTarget(
         title,
         target,
         arabic,
@@ -35,10 +35,10 @@ export const addDzikirTarget =
         color
       );
 
-      const data = await fetchDetailsDzikirTarget(insertedData.insertId!);
+      const data = await fetchDetailsTasbeehTarget(insertedData.insertId!);
 
       dispatch({
-        type: ADD_DZIKIR_TARGET,
+        type: ADD_TASBEEH_TARGET,
         payload: data,
       });
     } catch (error) {
@@ -47,13 +47,13 @@ export const addDzikirTarget =
     }
   };
 
-export const getDzikirTargets =
+export const getTasbeehTargets =
   () => async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
     try {
-      const data: DzikirTarget[] = await fetchDzikirTargets();
+      const data: TasbeehTarget[] = await fetchTasbeehTargets();
 
       dispatch({
-        type: GET_DZIKIR_TARGETS,
+        type: GET_TASBEEH_TARGETS,
         payload: data,
       });
     } catch (error) {
@@ -62,7 +62,7 @@ export const getDzikirTargets =
     }
   };
 
-export const updateDzikirTarget =
+export const updateTasbeehTarget =
   (
     id: number,
     title: string,
@@ -74,7 +74,7 @@ export const updateDzikirTarget =
   ) =>
   async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
     try {
-      await updateDzikirTargetDB(
+      await updateTasbeehTargetDB(
         id,
         title,
         target,
@@ -85,7 +85,7 @@ export const updateDzikirTarget =
       );
 
       dispatch({
-        type: UPDATE_DZIKIR_TARGET,
+        type: UPDATE_TASBEEH_TARGET,
         payload: { id, title, target, arabic, background, color, counter },
       });
     } catch (error) {
@@ -94,13 +94,13 @@ export const updateDzikirTarget =
     }
   };
 
-export const deleteDzikirTarget =
+export const deleteTasbeehTarget =
   (id: number) => async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
     try {
-      await deleteDzikirTargetDB(id);
+      await deleteTasbeehTargetDB(id);
 
       dispatch({
-        type: DELETE_DZIKIR_TARGET,
+        type: DELETE_TASBEEH_TARGET,
         payload: id,
       });
     } catch (error) {
