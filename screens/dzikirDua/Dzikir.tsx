@@ -9,25 +9,29 @@ import screenMode from '../../constants/screenMode';
 
 import ButtonMenu from '../../components/ButtonMenu';
 
-import { getAlMatsurat } from '../../redux/actions/alMatsurat';
+import { getMorningAfternoonDzikir } from '../../redux/actions/morningAfternoonDzikir';
 import { RootState } from '../../redux';
-import { AlMatsuratState } from '../../redux/types';
+import { MorningAfternoonDzikirState } from '../../redux/types';
 
-interface AlMatsuratProps {
+interface DzikirProps {
   navigation: NavigationProp<any, any>;
-  getAlMatsurat: () => void;
-  alMatsurat: AlMatsuratState;
+  getMorningAfternoonDzikir: () => void;
+  morningAfternoonDzikir: MorningAfternoonDzikirState;
 }
 
 interface DispatchProps {
-  getAlMatsurat: () => void;
+  getMorningAfternoonDzikir: () => void;
 }
 
-const AlMatsurat = ({ navigation, getAlMatsurat }: AlMatsuratProps) => {
+const Dzikir = ({
+  navigation,
+  getMorningAfternoonDzikir,
+  morningAfternoonDzikir,
+}: DzikirProps) => {
   const colorScheme = useColorScheme();
 
   useEffect(() => {
-    getAlMatsurat();
+    getMorningAfternoonDzikir();
   }, []);
 
   const themeContainerStyle =
@@ -35,8 +39,8 @@ const AlMatsurat = ({ navigation, getAlMatsurat }: AlMatsuratProps) => {
       ? screenMode.lightContainer
       : screenMode.darkContainer;
 
-  const selectMenuHandler = (routeName: string) => {
-    navigation.navigate(routeName, {});
+  const selectMenuHandler = (routeName: string, params: any) => {
+    navigation.navigate(routeName, params);
   };
 
   return (
@@ -57,7 +61,12 @@ const AlMatsurat = ({ navigation, getAlMatsurat }: AlMatsuratProps) => {
             backgroundColor="#FF4444"
             color="#FFFFFF"
             text="Dzikir Pagi"
-            onPress={() => selectMenuHandler('MorningDzikir')}
+            onPress={() =>
+              selectMenuHandler('MorningAfternoonDzikir', {
+                title: 'Dzikir Pagi',
+                data: morningAfternoonDzikir.morningDzikir,
+              })
+            }
           >
             {/* <AlQuranIcon
               width={buttonMenuIconWidth}
@@ -68,7 +77,12 @@ const AlMatsurat = ({ navigation, getAlMatsurat }: AlMatsuratProps) => {
             backgroundColor="#FFB648"
             color="#FFFFFF"
             text="Dzikir Petang"
-            onPress={() => selectMenuHandler('AfternoonDzikir')}
+            onPress={() =>
+              selectMenuHandler('MorningAfternoonDzikir', {
+                title: 'Dzikir Petang',
+                data: morningAfternoonDzikir.eveningDzikir,
+              })
+            }
           >
             {/* <ShalatTimeIcon
               width={buttonMenuIconWidth}
@@ -105,15 +119,15 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state: RootState) => ({
-  alMatsurat: state.alMatsurat,
+  morningAfternoonDzikir: state.morningAfternoonDzikir,
 });
 
 const mapDispatchToProps = (
   dispatch: ThunkDispatch<{}, {}, any>
 ): DispatchProps => {
   return {
-    getAlMatsurat: () => dispatch(getAlMatsurat()),
+    getMorningAfternoonDzikir: () => dispatch(getMorningAfternoonDzikir()),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AlMatsurat);
+export default connect(mapStateToProps, mapDispatchToProps)(Dzikir);

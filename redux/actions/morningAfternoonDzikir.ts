@@ -3,14 +3,14 @@ import { AnyAction } from 'redux';
 
 import { GET_AL_MATSURAT } from '../types';
 
-import AlMatsurat from '../../models/alMatsurat';
+import MorningAfternoonDzikir from '../../models/morningAfternoonDzikir';
 
-import AlMatsuratData from '../../constants/data/alMatsuratData';
+import MorningAfternoonDzikirData from '../../constants/data/morningAfternoonDzikirData';
 
-export const getAlMatsurat =
+export const getMorningAfternoonDzikir =
   () => async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
     try {
-      const data: AlMatsurat[] = AlMatsuratData;
+      const data: MorningAfternoonDzikir[] = MorningAfternoonDzikirData;
 
       dispatch({
         type: GET_AL_MATSURAT,

@@ -218,64 +218,62 @@ function TasbeehCounter({
   };
 
   return (
-    <>
+    <SafeAreaView style={[styles.container, themeContainerStyle]}>
       <TasbeehCounterBackgroundImage
         style={styles.backgroundImage}
         width={Dimensions.get('window').width}
         height={Dimensions.get('window').height}
       />
-      <SafeAreaView style={styles.container}>
-        <View style={styles.textView}>
-          <Text style={styles.arabicText}>{params.item.arabic}</Text>
-          <Text style={styles.tasbeehText}>{params.item.title}</Text>
-          <View style={styles.targetView}>
-            <View>
-              <Text style={styles.inputText}>Target :</Text>
-            </View>
-            <View>
-              <Text style={styles.targetText}>{String(target)}</Text>
-            </View>
-            <View style={styles.editButton}>
-              <FontAwesome
-                name="pencil-square"
-                size={32}
-                color="white"
-                onPress={showDialog}
-              />
-              <EditTasbeehTargetItemInput
-                modalVisible={visible}
-                setModalVisible={setVisible}
-                actionText={
-                  <>
-                    <Ionicons
-                      name={
-                        Platform.OS === 'android' ? 'md-pencil' : 'ios-pencil'
-                      }
-                      color="white"
-                    />{' '}
-                    Ubah Target
-                  </>
-                }
-                updateTarget={submitTargetHandler}
-                setTarget={setTarget}
-                setOldTarget={setOldTarget}
-                target={target}
-              />
-            </View>
+      <View style={styles.textView}>
+        <Text style={styles.arabicText}>{params.item.arabic}</Text>
+        <Text style={styles.tasbeehText}>{params.item.title}</Text>
+        <View style={styles.targetView}>
+          <View>
+            <Text style={styles.inputText}>Target :</Text>
+          </View>
+          <View>
+            <Text style={styles.targetText}>{String(target)}</Text>
+          </View>
+          <View style={styles.editButton}>
+            <FontAwesome
+              name="pencil-square"
+              size={32}
+              color="white"
+              onPress={showDialog}
+            />
+            <EditTasbeehTargetItemInput
+              modalVisible={visible}
+              setModalVisible={setVisible}
+              actionText={
+                <>
+                  <Ionicons
+                    name={
+                      Platform.OS === 'android' ? 'md-pencil' : 'ios-pencil'
+                    }
+                    color="white"
+                  />{' '}
+                  Ubah Target
+                </>
+              }
+              updateTarget={submitTargetHandler}
+              setTarget={setTarget}
+              setOldTarget={setOldTarget}
+              target={target}
+            />
           </View>
         </View>
+      </View>
 
-        <View style={styles.tasbihView}>
-          <TasbihCounter
-            count={count}
-            addColor={addColor}
-            resetColor={parseInt(count) > 0 ? '#FABF39' : resetColor}
-            addCounterHandler={addCounterHandler}
-            resetCounterHandler={resetCounterHandler}
-          />
-        </View>
-      </SafeAreaView>
-    </>
+      <View style={styles.tasbihView}>
+        <TasbihCounter
+          count={count}
+          addColor={addColor}
+          resetColor={parseInt(count) > 0 ? '#FABF39' : resetColor}
+          addCounterHandler={addCounterHandler}
+          resetCounterHandler={resetCounterHandler}
+        />
+      </View>
+    </SafeAreaView>
   );
 }
 
@@ -378,7 +376,6 @@ const styles = StyleSheet.create({
   },
   backgroundImage: {
     position: 'absolute',
-    zIndex: -9999,
     resizeMode: 'cover',
   },
   tasbihView: {
