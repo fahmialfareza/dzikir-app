@@ -1,7 +1,7 @@
 import { ThunkDispatch } from 'redux-thunk';
 import { AnyAction } from 'redux';
 
-import { GET_AL_MATSURAT } from '../types';
+import { GET_MORNING_AFTERNOON_DZIKIR } from '../types';
 
 import MorningAfternoonDzikir from '../../models/morningAfternoonDzikir';
 
@@ -13,7 +13,7 @@ export const getMorningAfternoonDzikir =
       const data: MorningAfternoonDzikir[] = MorningAfternoonDzikirData;
 
       dispatch({
-        type: GET_AL_MATSURAT,
+        type: GET_MORNING_AFTERNOON_DZIKIR,
         payload: data,
       });
     } catch (error) {

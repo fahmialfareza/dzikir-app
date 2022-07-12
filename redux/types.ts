@@ -18,4 +18,4 @@ export interface MorningAfternoonDzikirState {
   eveningDzikir: MorningAfternoonDzikir[];
 }
 
-export const GET_AL_MATSURAT = 'GET_AL_MATSURAT';
+export const GET_MORNING_AFTERNOON_DZIKIR = 'GET_MORNING_AFTERNOON_DZIKIR';

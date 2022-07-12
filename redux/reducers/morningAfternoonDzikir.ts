@@ -1,7 +1,10 @@
 import { AnyAction } from 'redux';
 import MorningAfternoonDzikir from '../../models/morningAfternoonDzikir';
 
-import { GET_AL_MATSURAT, MorningAfternoonDzikirState } from '../types';
+import {
+  GET_MORNING_AFTERNOON_DZIKIR,
+  MorningAfternoonDzikirState,
+} from '../types';
 
 const initialState: MorningAfternoonDzikirState = {
   morningDzikir: [],
@@ -13,7 +16,7 @@ const morningAfternoonDzikirReducer = (
   action: AnyAction
 ) => {
   switch (action.type) {
-    case GET_AL_MATSURAT:
+    case GET_MORNING_AFTERNOON_DZIKIR:
       const morningAfternoonDzikir: MorningAfternoonDzikir[] = action.payload;
 
       const getTargetsState: MorningAfternoonDzikirState = {
