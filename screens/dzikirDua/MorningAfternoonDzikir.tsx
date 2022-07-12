@@ -102,8 +102,8 @@ function MorningAfternoonDzikir({ route }: MorningAfternoonDzikirProps) {
         {route?.params?.data?.map((data) => (
           <DzikirDuaItem
             arabic={data.arabic}
-            arabic_latin={data.arabic_latin}
-            meaning_id={data.translated_id}
+            arabicLatin={data.arabicLatin}
+            meaningId={data.translatedId}
             note={data.note}
             state={optionsState}
             key={data.id}

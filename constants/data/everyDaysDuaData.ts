@@ -6,7 +6,7 @@ const data: EveryDaysDua[] = [
     dua: 'Doa sebelum tidur',
     id: 1,
     latin: 'Bismikallaahumma ahyaa wa ammuut',
-    meaning_id: 'Dengan menyebut nama Allah, aku hidup dan aku mati',
+    meaningId: 'Dengan menyebut nama Allah, aku hidup dan aku mati',
   },
   {
     ayah: 'اَلْحَمْدُ ِللهِ الَّذِىْ اَحْيَانَا بَعْدَمَآ اَمَاتَنَا وَاِلَيْهِ النُّشُوْرُ',
@@ -14,7 +14,7 @@ const data: EveryDaysDua[] = [
     id: 2,
     latin:
       'Alhamdu lillahil ladzii ahyaanaa ba’da maa amaa tanaa wa ilahin nusyuuru',
-    meaning_id:
+    meaningId:
       'Segala puji bagi Allah yang telah menghidupkan kami sesudah kami mati (membangunkan dari tidur) dan hanya kepada-Nya kami dikembalikan',
   },
   {
@@ -22,7 +22,7 @@ const data: EveryDaysDua[] = [
     dua: 'Doa masuk kamar mandi',
     id: 3,
     latin: "Allahumma Innii a'uudzubika minal khubutsi wal khoaaitsi",
-    meaning_id:
+    meaningId:
       'Ya Allah, aku berlindung pada-Mu dari godaan setan laki-laki dan setan perempuan',
   },
   {
@@ -30,7 +30,7 @@ const data: EveryDaysDua[] = [
     dua: 'Doa ketika bercermin',
     id: 4,
     latin: 'Alhamdulillaahi kamaa hassanta kholqii fahassin khuluqii',
-    meaning_id:
+    meaningId:
       'Segala puji bagi Allah, baguskanlah budi pekertiku sebagaimana Engkau telah membaguskan rupa wajahku',
   },
   {
@@ -39,7 +39,7 @@ const data: EveryDaysDua[] = [
     id: 5,
     latin:
       "Bismillaahi tawakkaltu 'alalloohi laa hawlaa walaa quwwata illaa bilaahi",
-    meaning_id:
+    meaningId:
       'Dengan menyebut nama Allah aku bertawakal kepada Allah, tiada daya kekuatan melainkan dengan pertolongan Allah.',
   },
   {
@@ -48,7 +48,7 @@ const data: EveryDaysDua[] = [
     id: 6,
     latin:
       "Allahumma innii as-aluka khoirol mauliji wa khoirol makhroji bismillaahi wa lajnaa wa bismillaahi khorojnaa wa'alallohi robbina tawakkalnaa",
-    meaning_id:
+    meaningId:
       'Ya Allah, sesungguhnya aku mohon kepada-Mu baiknya tempat masuk dan baiknya tempat keluar dengan menyebut nama Allah kami masuk, dan dengan menyebut nama Allah kami keluar dan kepada Allah Tuhan kami, kami bertawakkal',
   },
   {
@@ -57,7 +57,7 @@ const data: EveryDaysDua[] = [
     id: 7,
     latin:
       "Allahumma innii as-aluka 'ilmaan naafi'aan wa rizqoon thoyyibaan wa 'amalaan mutaqobbalaan",
-    meaning_id:
+    meaningId:
       'Ya Allah, sesungguhnya aku mohon kepada-Mu ilmu yang berguna, rezki yang baik dan amal yang baik Diterima. (H.R. Ibnu Majah)',
   },
   {
@@ -65,7 +65,7 @@ const data: EveryDaysDua[] = [
     dua: 'Doa sebelum belajar',
     id: 8,
     latin: "Yaa robbi zidnii 'ilman warzuqnii fahmaa",
-    meaning_id:
+    meaningId:
       'Ya Allah, tambahkanlah aku ilmu dan berikanlah aku rizqi akan kepahaman',
   },
   {
@@ -74,7 +74,7 @@ const data: EveryDaysDua[] = [
     id: 9,
     latin:
       "Allaahumma innii astaudi'uka maa 'allamtaniihi fardud-hu ilayya 'inda haajatii wa laa tansaniihi yaa robbal 'alamiin",
-    meaning_id:
+    meaningId:
       'Ya Allah, sesungguhnya aku menitipkan kepada Engkau ilmu-ilmu yang telah Engkau ajarkan kepadaku, dan kembalikanlah kepadaku sewaktu aku butuh kembali dan janganlah Engkau lupakan aku kepada ilmu itu wahai Tuhan seru sekalian alam.',
   },
   {
@@ -83,7 +83,7 @@ const data: EveryDaysDua[] = [
     id: 10,
     latin:
       "Nawaitul whudu-a lirof'il hadatsii ashghori fardhon lillaahi ta'aalaa",
-    meaning_id:
+    meaningId:
       "Saya niat berwudhu untuk menghilangkan hadast kecil fardu (wajib) karena Allah ta'ala",
   },
   {
@@ -92,7 +92,7 @@ const data: EveryDaysDua[] = [
     id: 11,
     latin:
       "Asyhadu allaa ilaaha illalloohu wahdahuu laa syariika lahu wa asyhadu anna muhammadan ‘abduhuuwa rosuuluhuu, alloohummaj’alnii minat tawwaabiina waj’alnii minal mutathohhiriina, waj'alnii min 'ibadikash shaalihiina.",
-    meaning_id:
+    meaningId:
       'Aku bersaksi, tidak ada Tuhan selain Allah Yang Maha Esa, tidak ada sekutu bagi-Nya, dan aku mengaku bahwa Nabi Muhammad itu adalah hamba dan Utusan Allah. Ya Allah, jadikanlah aku dari golongan orang-orang yang bertaubat dan jadikanlah aku dari golongan orang-orang yang suci dan jadikanlah aku dari golongan hamba-hamba Mu yang shaleh',
   },
   {
@@ -101,7 +101,7 @@ const data: EveryDaysDua[] = [
     id: 12,
     latin:
       "Allahummaftah 'alayya hikmataka wansyur 'alayya rohmataka wa dzakkirnii maanasiitu yaa dzal jalaali wal ikhroomi",
-    meaning_id:
+    meaningId:
       'Ya Allah bukakanlah hikmahMu padaku, bentangkanlah rahmatMu padaku dan ingatkanlah aku terhadap apa yang aku lupa, wahai Dzat yang memiliki keagungan dan kemuliaan',
   },
   {
@@ -110,7 +110,7 @@ const data: EveryDaysDua[] = [
     id: 13,
     latin:
       "Allahummarhamnii bil qur'aani. waj'alhu lii imaaman wa nuuran wa hudan wa rohman. Allahumma dzakkirnii minhu maa nasiitu wa'allimnii minhu maa jahiltu. wazuqnii tilaa watahu aanaa-al laili wa athroofan nahaari. waj'alhu lii hujjatan yaa robbal 'aalamiina.",
-    meaning_id:
+    meaningId:
       'Ya Allah, rahmatilah aku dengan Al-Quran yang agung, jadikanlah ia bagiku ikutan cahaya petunjuk rahmat. Ya Allah, ingatkanlah apa yang telah aku lupa dan ajarkan kepadaku apa yang tidak aku ketahui darinya, anugerahkanlah padaku kesempatan membacanya pada sebagian malam dan siang, jadikanlah ia hujjah yang kuat bagiku, wahai Tuhan seru sekalian alam.',
   },
   {
@@ -119,7 +119,7 @@ const data: EveryDaysDua[] = [
     id: 14,
     latin:
       "Allahummaghfirlii dzambii wa wassi'lii fii daarii wa baarik lii fii rizqii",
-    meaning_id:
+    meaningId:
       'Ya Allah ampunilah dosa kesalahanku dan berilah keluasaan di rumahku serta berkahilah pada rezekiku',
   },
   {
@@ -128,7 +128,7 @@ const data: EveryDaysDua[] = [
     id: 15,
     latin:
       "Allahumma hawwin 'alainaa safaranaa hadzaa waatwi 'annaa bu'dahu. Alloohumma antashookhibu fiissafari walkholiifatu fiil ahli",
-    meaning_id:
+    meaningId:
       'Ya Allah, mudahkanlah kami berpergian ini, dan dekatkanlah kejauhannya. Ya Allah yang menemani dalam berpergian, dan Engkau pula yang melindungi keluarga.',
   },
   {
@@ -137,7 +137,7 @@ const data: EveryDaysDua[] = [
     id: 16,
     latin:
       'Alhamdulillahil ladzi sallamani wal ladzi awani wal ladzi jama’asy syamla bi',
-    meaning_id:
+    meaningId:
       'Segala puji bagi Allah, yang telah menyelamatkan akau dan yang telah melindungiku dan yang mengumpulkanku dengan keluargaku.',
   },
   {
@@ -146,7 +146,7 @@ const data: EveryDaysDua[] = [
     id: 17,
     latin:
       "Bismillaahi, Alloohumma innii as-aluka min khoirihi wa khoiri maa huwa lahuu wa'a'uu dzubika min syarrihi wa syarri maa huwa lahuu",
-    meaning_id:
+    meaningId:
       'Dengan nama-Mu yaa Allah akku minta kepada Engkau kebaikan pakaian ini dan kebaikan apa yang ada padanya, dan aku berlindung kepada Engkau dari kejahatan pakaian ini dan kejahatan yang ada padanya',
   },
   {
@@ -155,7 +155,7 @@ const data: EveryDaysDua[] = [
     id: 18,
     latin:
       'Alhamdu lillaahil ladzii kasaanii haadzaa wa rozaqoniihi min ghoiri hawlim minni wa laa quwwatin',
-    meaning_id:
+    meaningId:
       'Segala puji bagi Allah yang memberi aku pakaian ini dan memberi rizeki dengan tiada upaya dan kekuatan dariku',
   },
   {
@@ -163,7 +163,7 @@ const data: EveryDaysDua[] = [
     dua: 'Doa melepas pakaian',
     id: 19,
     latin: 'Bismillaahil ladzii laa ilaaha illaa huwa',
-    meaning_id: 'Dengan nama Allah yang tiada Tuhan selain-Nya',
+    meaningId: 'Dengan nama Allah yang tiada Tuhan selain-Nya',
   },
   {
     ayah: 'اَللّٰهُمَّ اِنِّى اَعُوْذُ بِكَ مِنْ ضِيْقِ الدُّنْيَا وَضِيْقِ يَوْمِ الْقِيَامَةِ',
@@ -171,7 +171,7 @@ const data: EveryDaysDua[] = [
     id: 20,
     latin:
       "Allaahumma inni a'udzubika min dzhiiqid-dunyaa wa dzhiiqi yaumal-qiyaamati",
-    meaning_id:
+    meaningId:
       'Ya Allah! Sesungguhnya aku berlindung kepada-Mu dari kesempitan dunia dan kesempitan hari kiamat. (HR. Abu Daud)',
   },
   {
@@ -180,7 +180,7 @@ const data: EveryDaysDua[] = [
     id: 21,
     latin:
       'Alloohumma bika ashbahnaa wa bika amsainaa wa bika nahyaa wa bika namuutu wa ilaikan nusyuuru',
-    meaning_id:
+    meaningId:
       'Ya Allah, karena Engkau kami mengalami waktu pagi dan waktu petang, dan karena Engkau kami hidup dan mati dan kepada-Mu juga kami akan kembali.',
   },
   {
@@ -189,7 +189,7 @@ const data: EveryDaysDua[] = [
     id: 22,
     latin:
       'Allahumma bika amsainaa wa bika ashbahnaa wa bika nahyaa wa bika namuutu wa ilaikal mashiir',
-    meaning_id:
+    meaningId:
       'Ya Allah, karena Engkau kami mengalami waktu petang dan waktu pagi, karena Engkau kami hidup dan mati dan kepada-Mu juga kami akan kembali.',
   },
   {
@@ -197,7 +197,7 @@ const data: EveryDaysDua[] = [
     dua: 'Doa bercermin',
     id: 23,
     latin: 'Alloohumma kamaa hassanta kholqii fahassin khuluqi',
-    meaning_id:
+    meaningId:
       'Ya Allah, sebagaimana Engkau baguskan tubuhku, maka baguskanlah akhlaqku',
   },
   {
@@ -206,7 +206,7 @@ const data: EveryDaysDua[] = [
     id: 24,
     latin:
       'Alloohummaj’al fii qolbi nuuron. Wa fii bashori nuuron. Wa fii sam’i nuuron. Wa ‘an yamiinii nuuron. Wa ‘ay yasaarii nuuron. Wa fauqi nuuron. Wa tahti nuuron. Wa amaamii nuuron. Wakholqi nuuron. Waj’al lii nuuron',
-    meaning_id:
+    meaningId:
       'Ya Allah, jadikanlah di dalam hatiku cahaya. Dalam penglihatanku cahaya. Pada pendengaranku cahaya. Sebelah kananku cahaya. Sebelah kiriku cahaya. Atasku cahaya. Bawahku cahaya. Depanku cahaya. Belakangku cahaya. Dan berikanlah cahaya kepadaku.',
   },
   {
@@ -214,14 +214,14 @@ const data: EveryDaysDua[] = [
     dua: 'Doa masuk masjid',
     id: 25,
     latin: 'Alloohummaf tahlii abwaaba rohmatik',
-    meaning_id: 'Ya Allah, bukakanlah pintu-pintu rahmatMu untukku',
+    meaningId: 'Ya Allah, bukakanlah pintu-pintu rahmatMu untukku',
   },
   {
     ayah: 'اللَّهُمَّ إِنِّى أَسْأَلُكَ مِنْ فَضْلِكَ',
     dua: 'Doa keluar masjid',
     id: 26,
     latin: 'Alloohumma innii as-aluka min fadllik',
-    meaning_id: 'Ya Allah, sesungguhnya aku memohon keutamaan kepadaMu',
+    meaningId: 'Ya Allah, sesungguhnya aku memohon keutamaan kepadaMu',
   },
   {
     ayah: 'اللَّهُمَّ رَبَّ هَذِهِ الدَّعْوَةِ التَّامَّةِ وَالصَّلاَةِ الْقَائِمَةِ آتِ مُحَمَّدًا الْوَسِيلَةَ وَالْفَضِيلَةَ وَابْعَثْهُ مَقَامًا مَحْمُودًا الَّذِى وَعَدْتَهُ',
@@ -229,7 +229,7 @@ const data: EveryDaysDua[] = [
     id: 27,
     latin:
       'Alloohumma robba haadzihid da’watit taammah washsholaatil qoo-imah. Aati Muhammadanil wasiilata wal fadliilah. Wab’atshu maqooman mahmuudanil ladzii wa ‘adtah',
-    meaning_id:
+    meaningId:
       'Ya Allah, Tuhan panggilan yang sempurna dan shalat yang akan didirikan ini. Berikanlah wasilah dan keutamaan kepada Muhammad. Bangkitkanlah dia pada kedudukan yang terpuji seperti yang Engkau janjikan kepadanya.',
   },
   {
@@ -238,7 +238,7 @@ const data: EveryDaysDua[] = [
     id: 28,
     latin:
       'Subhaanal ladzii sakhkhoro lanaa haadzaa wamaa kunnaa lahuu muqriniin. Wa innaa ilaa robbinaa lamunqolibuun',
-    meaning_id:
+    meaningId:
       'Mahasuci Dia yang telah menundukkan semua ini bagi kami padahal sebelumnya kami tidak mampu menguasainya. Dan sesungguhnya kami akan kembali kepada Tuhan kami.',
   },
   {
@@ -247,7 +247,7 @@ const data: EveryDaysDua[] = [
     id: 29,
     latin:
       'Laa ilaaha illalloohu wahdahu laa syariikalah. Lahul mulku walahul hamdu. Yuhyii wa yumiitu wahuwa hayyun laa yamuut. Biyadihil khoir wahuwa ‘alaa kulli syai-in qodiir',
-    meaning_id:
+    meaningId:
       'Tiada tuhan selain Allah Yang Maha Esa, tiada sekutu bagiNya. Dia yang mempunyai kerajaan dan segala pujian. Dialah yang menghidupkan dan mematikan, dan Dia Mahahidup yang tidak mati. Di tangan-Nya segala kebaikan dan Dia Mahakuasa atas segala sesuatu.',
   },
   {
@@ -255,7 +255,7 @@ const data: EveryDaysDua[] = [
     dua: 'Doa sebelum makan',
     id: 30,
     latin: "Allahumma baarik lanaa fiimaa rozaqtanaa wa qinaa 'adzaa bannaar.",
-    meaning_id:
+    meaningId:
       'Ya Allah, berkahilah kami dalam rezeki yang telah Engkau berikan kepada kami dan peliharalah kami dari siksa api neraka',
   },
   {
@@ -264,7 +264,7 @@ const data: EveryDaysDua[] = [
     id: 31,
     latin:
       "Alhamdulillahilladzi ath-amanaa wa saqoonaa wa ja'alanaa minal muslimiin.",
-    meaning_id:
+    meaningId:
       'Segala puji bagi Allah yang telah memberi kami makan dan minum serta menjadikan kami termasuk dari kaum muslimin.',
   },
   {
@@ -272,7 +272,7 @@ const data: EveryDaysDua[] = [
     dua: 'Doa ketika turun hujan',
     id: 32,
     latin: 'Allahumma shayyiban nafi’an.',
-    meaning_id:
+    meaningId:
       'Ya Allah, curahkanlah air hujan yang bermanfaat. (HR Bukhar dari Aisyah RA)',
   },
   {
@@ -281,7 +281,7 @@ const data: EveryDaysDua[] = [
     id: 33,
     latin:
       'Allahumma hawalaina wala ‘alaina. Allahumma ‘alal akami wa adhirabi, wa buthunil auwdiyati, wamanabitisyajari.',
-    meaning_id:
+    meaningId:
       'Ya Allah turunkan hujan ini di sekitar kami jangan di atas kami. Ya Allah curahkanlah hujan ini di atas bukit-bukit, di hutan-hutan lebat, di gunung-gunung kecil, di lembah-lembah, dan tempat-tempat tumbuhnya pepohonan. (HR Bukhari Muslim)',
   },
   {
@@ -289,7 +289,7 @@ const data: EveryDaysDua[] = [
     dua: 'Doa setelah turun hujan',
     id: 34,
     latin: 'Muthirnaa bifadhlillahi wa rahmatihi.',
-    meaning_id:
+    meaningId:
       'Diturunkan kepada kami hujan berkat anugerah Allah dan rahmat-Nya. (HR Bukhari)',
   },
   {
@@ -297,7 +297,7 @@ const data: EveryDaysDua[] = [
     dua: 'Doa bertemu binatang buas',
     id: 35,
     latin: 'Innahụ min sulaimāna wa innahụ bismillāhir-raḥmānir-raḥīm',
-    meaning_id:
+    meaningId:
       'Sesungguhnya surat itu, dari SuIaiman dan sesungguhnya (isi)nya: Dengan menyebut nama Allah Yang Maha Pemurah lagi Maha Penyayang. (Qs. An Naml: 30 )',
   },
   {
@@ -306,7 +306,7 @@ const data: EveryDaysDua[] = [
     id: 36,
     latin:
       'Allahummakfini bihalalika ‘an haramik wa aghnini bifadhlika amman siwak',
-    meaning_id:
+    meaningId:
       'Ya Allah, berilah aku kecukupan dengan rezeki yang halal, sehingga aku tidak memerlukan yang haram, dan berilah aku kekayaan dengan karuniamu, sehingga aku tidak memerlukan bantuan orang lain, selain diri-mu. (HR. Ahmad)',
   },
   {
@@ -314,7 +314,7 @@ const data: EveryDaysDua[] = [
     dua: 'Doa ketika menyisir rambut',
     id: 37,
     latin: "ALLAHUMMA HARRIM SYA'RII WA BASYARII 'ALAN NAAR",
-    meaning_id: 'Ya Allah, halangilah rambut dan kulitku dari api neraka',
+    meaningId: 'Ya Allah, halangilah rambut dan kulitku dari api neraka',
   },
 ];
 

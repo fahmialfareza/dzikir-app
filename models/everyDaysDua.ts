@@ -3,5 +3,5 @@ export default interface EveryDaysDua {
   dua: string;
   ayah: string;
   latin: string;
-  meaning_id: string;
+  meaningId: string;
 }

@@ -14,16 +14,16 @@ import { HeaderDzikirDuaState } from './HeaderDzikirDuaOptions';
 interface DzikirDuaItemProps {
   note: string;
   arabic: string;
-  arabic_latin: string;
-  meaning_id: string;
+  arabicLatin: string;
+  meaningId: string;
   state: HeaderDzikirDuaState;
 }
 
 const DzikirDuaItem = ({
   note,
   arabic,
-  arabic_latin,
-  meaning_id,
+  arabicLatin,
+  meaningId,
   state,
 }: DzikirDuaItemProps) => {
   const colorScheme = useColorScheme();
@@ -57,7 +57,7 @@ const DzikirDuaItem = ({
       {state.latin && (
         <View style={{ marginVertical: 10 }}>
           <Text style={{ ...styles.arabicLatin, color: colorArabicLatin }}>
-            {arabic_latin}
+            {arabicLatin}
           </Text>
         </View>
       )}
@@ -65,7 +65,7 @@ const DzikirDuaItem = ({
       {state.meaning && (
         <View style={{ marginVertical: 10 }}>
           <Text style={{ ...styles.meaning, color: colorMeaning }}>
-            {meaning_id}
+            {meaningId}
           </Text>
         </View>
       )}
