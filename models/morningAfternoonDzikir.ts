@@ -1,11 +1,11 @@
-export default interface AlMatsurat {
+export default interface MorningAfternoonDzikir {
   id: number;
   arabic: string;
-  arabic_latin: string;
+  arabicLatin: string;
   faedah: string;
   narrator: string;
   note: string;
   title: string;
-  translated_id: string;
+  translatedId: string;
   time: string;
 }
