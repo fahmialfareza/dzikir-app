@@ -1,32 +1,23 @@
 import React, { useState } from 'react';
 import { Platform, Alert, Keyboard } from 'react-native';
-import { connect } from 'react-redux';
-import { ThunkDispatch } from 'redux-thunk';
 import Ionicons from '@expo/vector-icons/Ionicons';
-
 import TasbeehItemInput from './TasbeehItemInput';
-
 import TasbeehTarget from '../../models/tasbeehTarget';
-
 import colorData from '../../constants/data/colorData';
-
-import { addTasbeehTarget } from '../../redux/actions/tasbeehTarget';
+import { useAppDispatch } from '../../redux';
+import TasbeehTargetActions from '../../redux/actions/TasbeehTargetActions';
 
 interface AddTasbeehItemInputProps {
   addModalVisible: boolean;
   setAddModalVisible: (visible: boolean) => void;
-  addTasbeehTarget: (item: TasbeehTarget) => void;
-}
-
-interface DispatchProps {
-  addTasbeehTarget: (item: TasbeehTarget) => void;
 }
 
 function AddTasbeehItemInput({
   addModalVisible,
   setAddModalVisible,
-  addTasbeehTarget,
 }: AddTasbeehItemInputProps) {
+  const dispatch = useAppDispatch();
+
   const [state, setState] = useState<TasbeehTarget>({
     id: 0,
     title: '',
@@ -45,14 +36,14 @@ function AddTasbeehItemInput({
         <>
           <Ionicons
             name={Platform.OS === 'android' ? 'md-add' : 'ios-add'}
-            color="white"
+            color='white'
           />{' '}
           Tambahkan
         </>
       }
       enableRemoveButton={false}
       onSubmitHandler={async () => {
-        await addTasbeehTarget(state);
+        dispatch(TasbeehTargetActions.addTasbeehTarget(state));
 
         setAddModalVisible(false);
         setState({
@@ -74,22 +65,4 @@ function AddTasbeehItemInput({
   );
 }
 
-const mapDispatchToProps = (
-  dispatch: ThunkDispatch<{}, {}, any>
-): DispatchProps => {
-  return {
-    addTasbeehTarget: async (item: TasbeehTarget) => {
-      await dispatch(
-        addTasbeehTarget(
-          item.title,
-          item.target,
-          item.arabic || '',
-          item.background || '',
-          item.color || ''
-        )
-      );
-    },
-  };
-};
-
-export default connect(null, mapDispatchToProps)(AddTasbeehItemInput);
+export default AddTasbeehItemInput;
