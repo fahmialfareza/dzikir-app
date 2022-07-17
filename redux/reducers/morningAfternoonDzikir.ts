@@ -1,8 +1,7 @@
-import { AnyAction } from 'redux';
-import MorningAfternoonDzikir from '../../models/morningAfternoonDzikir';
+import { createSlice } from '@reduxjs/toolkit';
+import { RootState } from '..';
 
 import {
-  GET_MORNING_AFTERNOON_DZIKIR,
   MorningAfternoonDzikirState,
 } from '../types';
 
@@ -11,28 +10,21 @@ const initialState: MorningAfternoonDzikirState = {
   eveningDzikir: [],
 };
 
-const morningAfternoonDzikirReducer = (
-  state = initialState,
-  action: AnyAction
-) => {
-  switch (action.type) {
-    case GET_MORNING_AFTERNOON_DZIKIR:
-      const morningAfternoonDzikir: MorningAfternoonDzikir[] = action.payload;
-
-      const getTargetsState: MorningAfternoonDzikirState = {
-        ...state,
-        morningDzikir: morningAfternoonDzikir.filter((dzikir) => {
-          return dzikir.time === 'pagi' || dzikir.time === '';
-        }),
-        eveningDzikir: morningAfternoonDzikir.filter((dzikir) => {
-          return dzikir.time === 'petang' || dzikir.time === '';
-        }),
-      };
-
-      return getTargetsState;
-    default:
-      return state;
+const morningAfternoonDzikirSlicer = createSlice({
+  name: 'morningAfternoonDzikir',
+  initialState,
+  reducers: {
+    setMorningAfternoonDzikir: (state, action) => {
+      state.morningDzikir = action.payload;
+    },
+    setEveningAfternoonDzikir: (state, action) => {
+      state.eveningDzikir = action.payload;
+    }
   }
-};
+});
 
-export default morningAfternoonDzikirReducer;
+export const { setMorningAfternoonDzikir, setEveningAfternoonDzikir } = morningAfternoonDzikirSlicer.actions;
+
+export const selectMorningAfternoonDzikir = (state: RootState) => state.morningAfternoonDzikir;
+
+export default morningAfternoonDzikirSlicer.reducer;

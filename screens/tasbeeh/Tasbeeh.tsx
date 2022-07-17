@@ -11,41 +11,30 @@ import {
   ActivityIndicator,
   Alert,
 } from 'react-native';
-import { connect } from 'react-redux';
-import { ThunkDispatch } from 'redux-thunk';
 import { NavigationProp } from '@react-navigation/native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import screenMode from '../../constants/screenMode';
 import { HomeAyahBottomImage } from '../../constants/assets';
-
 import TasbeehItem, {
   TasbeehItemProps,
 } from '../../components/tasbeeh/TasbeehItem';
 import AddTasbeehItemInput from '../../components/tasbeeh/AddTasbeehItemInput';
 import EditTasbeehItemInput from '../../components/tasbeeh/EditTasbeehItemInput';
 import TasbeehTarget from '../../models/tasbeehTarget';
-
-import { getTasbeehTargets } from '../../redux/actions/tasbeehTarget';
-import { RootState } from '../../redux';
-import { TasbeehTargetState } from '../../redux/types';
+import { useAppDispatch } from '../../redux';
+import TasbeehTargetActions from '../../redux/actions/TasbeehTargetActions';
+import { useSelector } from 'react-redux';
+import { selectTasbeehTargets } from '../../redux/reducers/tasbeehTarget';
 
 interface TasbeehProps {
   navigation: NavigationProp<any, any>;
-  getTasbeehTargets: () => void;
-  tasbeehTarget: TasbeehTargetState;
 }
 
-interface DispatchProps {
-  getTasbeehTargets: () => void;
-}
-
-const Tasbeeh = ({
-  navigation,
-  getTasbeehTargets,
-  tasbeehTarget: { tasbeehTargets },
-}: TasbeehProps) => {
+const Tasbeeh = ({ navigation }: TasbeehProps) => {
+  const dispatch = useAppDispatch();
   const colorScheme = useColorScheme();
+  const { tasbeehTargets } = useSelector(selectTasbeehTargets);
 
   const [addModalVisible, setAddModalVisible] = useState(false);
   const [editModalVisible, setEditModalVisible] = useState(false);
@@ -61,7 +50,7 @@ const Tasbeeh = ({
   });
 
   useEffect(() => {
-    getTasbeehTargets();
+    dispatch(TasbeehTargetActions.getTasbeehTargets());
   }, []);
 
   const themeContainerStyle =
@@ -115,7 +104,7 @@ const Tasbeeh = ({
       <SafeAreaView
         style={[styles.container, themeContainerStyle, styles.loadingContainer]}
       >
-        <ActivityIndicator size="large" color={themeTextStyle.color} />
+        <ActivityIndicator size='large' color={themeTextStyle.color} />
       </SafeAreaView>
     );
   }
@@ -146,7 +135,7 @@ const Tasbeeh = ({
           <Ionicons
             name={Platform.OS === 'android' ? 'md-add' : 'ios-add'}
             size={32}
-            color="white"
+            color='white'
           />
         </TouchableOpacity>
 
@@ -208,18 +197,4 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = (state: RootState) => ({
-  tasbeehTarget: state.tasbeehTarget,
-});
-
-const mapDispatchToProps = (
-  dispatch: ThunkDispatch<{}, {}, any>
-): DispatchProps => {
-  return {
-    getTasbeehTargets: async () => {
-      await dispatch(getTasbeehTargets());
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Tasbeeh);
+export default Tasbeeh;
