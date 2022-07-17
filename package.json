@@ -42,7 +42,24 @@
     "@babel/core": "^7.12.9",
     "@types/react": "~17.0.21",
     "@types/react-native": "~0.67.6",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
     "typescript": "~4.3.5"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.+(js|jsx)": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.+(json|md)": [
+      "prettier --write",
+      "git add"
+    ]
+  }
   "private": true
 }

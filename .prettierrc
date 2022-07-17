@@ -1,0 +1,8 @@
+{
+    "bracketSpacing": false,
+    "jsxSingleQuote": true,
+    "singleQuote": false,
+    "endOfLine":"auto",
+    "trailingComma": "all",
+    "tabWidth": 2
+}  
