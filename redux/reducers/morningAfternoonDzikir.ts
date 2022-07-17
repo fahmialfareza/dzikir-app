@@ -1,9 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { RootState } from '..';
+import { createSlice } from "@reduxjs/toolkit";
+import { RootState } from "..";
 
-import {
-  MorningAfternoonDzikirState,
-} from '../types';
+import { MorningAfternoonDzikirState } from "../types";
 
 const initialState: MorningAfternoonDzikirState = {
   morningDzikir: [],
@@ -11,7 +9,7 @@ const initialState: MorningAfternoonDzikirState = {
 };
 
 const morningAfternoonDzikirSlicer = createSlice({
-  name: 'morningAfternoonDzikir',
+  name: "morningAfternoonDzikir",
   initialState,
   reducers: {
     setMorningAfternoonDzikir: (state, action) => {
@@ -19,12 +17,14 @@ const morningAfternoonDzikirSlicer = createSlice({
     },
     setEveningAfternoonDzikir: (state, action) => {
       state.eveningDzikir = action.payload;
-    }
-  }
+    },
+  },
 });
 
-export const { setMorningAfternoonDzikir, setEveningAfternoonDzikir } = morningAfternoonDzikirSlicer.actions;
+export const { setMorningAfternoonDzikir, setEveningAfternoonDzikir } =
+  morningAfternoonDzikirSlicer.actions;
 
-export const selectMorningAfternoonDzikir = (state: RootState) => state.morningAfternoonDzikir;
+export const selectMorningAfternoonDzikir = (state: RootState) =>
+  state.morningAfternoonDzikir;
 
 export default morningAfternoonDzikirSlicer.reducer;

@@ -22,6 +22,8 @@ interface TasbeehTextInputProps {
   autoFocus?: boolean;
   value: string;
   onChangeText: (text: string) => void;
+  maxLength?: number;
+  isHasLabel?: boolean;
 }
 
 function TasbeehTextInput({
@@ -35,6 +37,8 @@ function TasbeehTextInput({
   autoFocus,
   value,
   onChangeText,
+  maxLength,
+  isHasLabel = true,
 }: TasbeehTextInputProps) {
   const colorScheme = useColorScheme();
 
@@ -44,11 +48,13 @@ function TasbeehTextInput({
       : screenMode.darkThemeText;
 
   return (
-    <>
-      <View style={styles.labelInput}>
-        <Text style={[styles.modalText, themeTextStyle]}>{label}</Text>
-      </View>
-      <View>
+    <View style={styles.container}>
+      {isHasLabel && (
+        <View style={styles.labelInput}>
+          <Text style={[styles.modalText, themeTextStyle]}>{label}</Text>
+        </View>
+      )}
+      <View style={styles.inputView}>
         <TextInput
           style={styles.textInput}
           placeholder={placeholder}
@@ -56,8 +62,7 @@ function TasbeehTextInput({
           returnKeyType={returnKeyType}
           returnKeyLabel={returnKeyLabel}
           ref={reference}
-          maxLength={4}
-         
+          maxLength={maxLength || 32}
           onSubmitEditing={onSubmitEditing}
           keyboardType={keyboardType}
           autoFocus={autoFocus}
@@ -65,13 +70,16 @@ function TasbeehTextInput({
           onChangeText={onChangeText}
         />
       </View>
-    </>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  container: { flex: 1, flexDirection: "row" },
   labelInput: {
     justifyContent: "center",
+    alignItems: "flex-start",
+    flex: 1,
   },
   modalText: {
     textAlign: "center",
@@ -81,13 +89,13 @@ const styles = StyleSheet.create({
     borderColor: "#777",
     padding: 6,
     margin: 2,
-    width: 280,
     backgroundColor: "#FFFFFF",
     borderRadius: 10,
     textAlign: "center",
     fontSize: 14,
     fontFamily: "dubai-regular",
   },
+  inputView: { flex: 1 },
 });
 
 export default TasbeehTextInput;

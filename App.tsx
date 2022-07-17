@@ -1,42 +1,42 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { Provider } from 'react-redux';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import * as SplashScreen from 'expo-splash-screen';
-import * as Font from 'expo-font';
-import { StatusBar } from 'expo-status-bar';
+import React, { useState, useEffect, useCallback } from "react";
+import { Provider } from "react-redux";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import * as SplashScreen from "expo-splash-screen";
+import * as Font from "expo-font";
+import { StatusBar } from "expo-status-bar";
 
-import AppNavigator from './navigations/AppNavigator';
-import store from './redux';
+import AppNavigator from "./navigations/AppNavigator";
+import store from "./redux";
 
 import {
   init,
   fetchDetailsTasbeehTarget,
   insertTasbeehTarget,
-} from './helpers/db';
+} from "./helpers/db";
 
-import tasbeehData from './constants/data/tasbeehData';
+import tasbeehData from "./constants/data/tasbeehData";
 
 const fetchFonts = () => {
   return Font.loadAsync({
-    'dubai-regular': require('./assets/fonts/Dubai-Regular.ttf'),
-    'dubai-bold': require('./assets/fonts/Dubai-Bold.ttf'),
-    'dubai-light': require('./assets/fonts/Dubai-Light.ttf'),
-    'dubai-medium': require('./assets/fonts/Dubai-Medium.ttf'),
-    'ds-digi': require('./assets/fonts/ds-digi.ttf'),
-    'ds-digib': require('./assets/fonts/ds-digib.ttf'),
-    'ds-digii': require('./assets/fonts/ds-digii.ttf'),
-    'ds-digit': require('./assets/fonts/ds-digit.ttf'),
-    'roboto-regular': require('./assets/fonts/Roboto-Regular.ttf'),
-    'roboto-italic': require('./assets/fonts/Roboto-Italic.ttf'),
-    'al-qalam': require('./assets/fonts/Al-Qalam-Quran-Majeed.ttf'),
-    arial: require('./assets/fonts/arial.ttf'),
+    "dubai-regular": require("./assets/fonts/Dubai-Regular.ttf"),
+    "dubai-bold": require("./assets/fonts/Dubai-Bold.ttf"),
+    "dubai-light": require("./assets/fonts/Dubai-Light.ttf"),
+    "dubai-medium": require("./assets/fonts/Dubai-Medium.ttf"),
+    "ds-digi": require("./assets/fonts/ds-digi.ttf"),
+    "ds-digib": require("./assets/fonts/ds-digib.ttf"),
+    "ds-digii": require("./assets/fonts/ds-digii.ttf"),
+    "ds-digit": require("./assets/fonts/ds-digit.ttf"),
+    "roboto-regular": require("./assets/fonts/Roboto-Regular.ttf"),
+    "roboto-italic": require("./assets/fonts/Roboto-Italic.ttf"),
+    "al-qalam": require("./assets/fonts/Al-Qalam-Quran-Majeed.ttf"),
+    arial: require("./assets/fonts/arial.ttf"),
   });
 };
 
 (async () => {
   try {
     await init();
-    console.log('Initialized database');
+    console.log("Initialized database");
 
     // Find data where id = 1 to id = 5
     const dataIds = [1, 2, 3, 4, 5];
@@ -54,7 +54,7 @@ const fetchFonts = () => {
       }
     }
   } catch (error) {
-    console.log('Initializing db failed.');
+    console.log("Initializing db failed.");
     console.log(error);
   }
 })();

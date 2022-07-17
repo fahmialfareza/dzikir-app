@@ -1,14 +1,14 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
 
-import { DzikirDuaIcon } from '../../constants/assets';
+import { DzikirDuaIcon } from "../../constants/assets";
 
 interface HeaderDzikirDuaProps {
   title: string;
 }
 
 const HeaderDzikirDua = ({ title }: HeaderDzikirDuaProps) => (
-  <View style={[styles.item, { backgroundColor: '#3D3FB8' }]}>
+  <View style={[styles.item, { backgroundColor: "#3D3FB8" }]}>
     <View style={styles.iconStyle}>
       <DzikirDuaIcon width={24} height={24} />
     </View>
@@ -25,9 +25,9 @@ const styles = StyleSheet.create({
     marginTop: 30,
     marginBottom: 8,
     marginHorizontal: 20,
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
     borderRadius: 10,
   },
   iconStyle: {
@@ -35,8 +35,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    fontFamily: 'dubai-regular',
-    color: '#FFFFFF',
+    fontFamily: "dubai-regular",
+    color: "#FFFFFF",
   },
 });
 

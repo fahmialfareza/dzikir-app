@@ -1,7 +1,7 @@
-import React from 'react';
-import { TouchableOpacity, StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { TouchableOpacity, StyleSheet, Text, View } from "react-native";
 
-import TasbeehTarget from '../../models/tasbeehTarget';
+import TasbeehTarget from "../../models/tasbeehTarget";
 
 export interface TasbeehItemProps {
   item: TasbeehTarget;

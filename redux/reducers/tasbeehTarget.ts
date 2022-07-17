@@ -1,6 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { RootState } from '..';
-import { TasbeehTargetState } from '../types';
+import { createSlice } from "@reduxjs/toolkit";
+import { RootState } from "..";
+import { TasbeehTargetState } from "../types";
 
 const initialState: TasbeehTargetState = {
   tasbeehTargets: [],
@@ -8,7 +8,7 @@ const initialState: TasbeehTargetState = {
 };
 
 const tasbeehTargetSlicer = createSlice({
-  name: 'tasbeehTarget',
+  name: "tasbeehTarget",
   initialState,
   reducers: {
     addTasbeehTarget: (state, action) => {
@@ -29,11 +29,16 @@ const tasbeehTargetSlicer = createSlice({
       state.tasbeehTargets = state.tasbeehTargets.filter(
         (tasbeehTarget) => tasbeehTarget.id !== action.payload
       );
-    }
-  }
+    },
+  },
 });
 
-export const { addTasbeehTarget, setTasbehTargets, updateTasbeehTarget, deleteTasbeehTarget } = tasbeehTargetSlicer.actions;
+export const {
+  addTasbeehTarget,
+  setTasbehTargets,
+  updateTasbeehTarget,
+  deleteTasbeehTarget,
+} = tasbeehTargetSlicer.actions;
 
 export const selectTasbeehTargets = (state: RootState) => state.tasbeehTarget;
 

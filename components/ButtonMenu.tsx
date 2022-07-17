@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 import {
   TouchableOpacity,
   Text,
   StyleSheet,
   Dimensions,
   View,
-} from 'react-native';
+} from "react-native";
 
 interface ButtonMenuProps {
   onPress?: () => void;
@@ -43,13 +43,13 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   buttonMenuView: {
-    alignItems: 'flex-start',
-    justifyContent: 'space-around',
+    alignItems: "flex-start",
+    justifyContent: "space-around",
     padding: 4,
   },
   buttonMenuText: {
-    fontSize: Dimensions.get('window').width / 20,
-    fontFamily: 'dubai-regular',
+    fontSize: Dimensions.get("window").width / 20,
+    fontFamily: "dubai-regular",
   },
 });
 

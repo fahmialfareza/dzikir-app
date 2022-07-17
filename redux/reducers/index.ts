@@ -1,9 +1,9 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from "redux";
 
-import tasbeehTarget from './tasbeehTarget';
-import morningAfternoonDzikir from './morningAfternoonDzikir';
+import tasbeehTarget from "./tasbeehTarget";
+import morningAfternoonDzikir from "./morningAfternoonDzikir";
 
 export default combineReducers({
   tasbeehTarget,
-  morningAfternoonDzikir
-})
+  morningAfternoonDzikir,
+});

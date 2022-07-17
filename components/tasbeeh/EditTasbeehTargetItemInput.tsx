@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState } from "react";
 import {
   KeyboardAvoidingView,
   Platform,
@@ -10,13 +10,13 @@ import {
   Keyboard,
   Pressable,
   Text,
-} from 'react-native';
-import Ionicons from '@expo/vector-icons/Ionicons';
+} from "react-native";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
-import useKeyboard from '../useKeyboard';
-import TasbeehTextInput from './TasbeehTextInput';
+import useKeyboard from "../useKeyboard";
+import TasbeehTextInput from "./TasbeehTextInput";
 
-import screenMode from '../../constants/screenMode';
+import screenMode from "../../constants/screenMode";
 
 interface EditTasbeehTargetItemInputProps {
   modalVisible: boolean;
@@ -45,20 +45,20 @@ function EditTasbeehTargetItemInput({
   const targetInputRef = useRef<TextInput>(null);
 
   const themeContainerStyle =
-    colorScheme === 'light'
+    colorScheme === "light"
       ? screenMode.lightContainer
       : screenMode.darkContainer;
 
-  const justifyContent = isKeyboardOpen ? 'flex-start' : 'center';
+  const justifyContent = isKeyboardOpen ? "flex-start" : "center";
 
   const targetChangeTextHandler = (text: string) => {
-    if (text === '') {
-      setTargetInput('0');
+    if (text === "") {
+      setTargetInput("0");
       return;
     }
 
-    if (targetInput === '0') {
-      setTargetInput(text.split('0').join(''));
+    if (targetInput === "0") {
+      setTargetInput(text.split("0").join(""));
       return;
     }
 
@@ -68,7 +68,7 @@ function EditTasbeehTargetItemInput({
   return (
     <KeyboardAvoidingView
       style={styles.container}
-      behavior={Platform.OS === 'ios' ? 'position' : 'height'}
+      behavior={Platform.OS === "ios" ? "position" : "height"}
     >
       <Modal animationType="slide" transparent={true} visible={modalVisible}>
         {isKeyboardOpen && <View style={{ flex: 2 }}></View>}
@@ -89,6 +89,8 @@ function EditTasbeehTargetItemInput({
                 }}
                 value={targetInput}
                 onChangeText={targetChangeTextHandler}
+                maxLength={4}
+                isHasLabel={false}
               />
             </View>
 
@@ -113,10 +115,7 @@ function EditTasbeehTargetItemInput({
                   setModalVisible(!modalVisible);
                 }}
               >
-                <Text style={styles.textStyle}>
-    
-                  Batal
-                </Text>
+                <Text style={styles.textStyle}>Batal</Text>
               </Pressable>
             </View>
           </View>
@@ -134,14 +133,14 @@ const styles = StyleSheet.create({
   },
   centeredView: {
     flex: 8,
-    alignItems: 'center',
+    alignItems: "center",
     marginTop: 22,
   },
   modalView: {
     margin: 20,
     borderRadius: 10,
     padding: 36,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 2,
@@ -149,15 +148,15 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
-    width: '90%',
+    width: "90%",
   },
   row: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     marginBottom: 4,
   },
   buttonView: {
-    flexDirection: 'column',
+    flexDirection: "column",
     marginTop: 10,
   },
   button: {
@@ -166,21 +165,21 @@ const styles = StyleSheet.create({
     marginTop: 15,
     elevation: 2,
     marginVertical: 2,
-    fontFamily: 'dubai-regular',
+    fontFamily: "dubai-regular",
   },
   buttonAdd: {
-    backgroundColor: '#2196F3',
+    backgroundColor: "#2196F3",
   },
   textStyle: {
     paddingTop: 4,
     paddingBottom: 4,
-    color: 'white',
-    fontWeight: 'bold',
-    fontFamily: 'dubai-regular',
-    textAlign: 'center',
+    color: "white",
+    fontWeight: "bold",
+    fontFamily: "dubai-regular",
+    textAlign: "center",
   },
   buttonClose: {
-    backgroundColor: '#FF4444',
+    backgroundColor: "#FF4444",
   },
 });
 

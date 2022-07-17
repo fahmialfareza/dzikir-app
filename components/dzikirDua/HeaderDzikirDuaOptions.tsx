@@ -1,8 +1,8 @@
-import React from 'react';
-import { StyleSheet, Text, View, useColorScheme } from 'react-native';
-import Checkbox from 'expo-checkbox';
+import React from "react";
+import { StyleSheet, Text, View, useColorScheme } from "react-native";
+import Checkbox from "expo-checkbox";
 
-import screenMode from '../../constants/screenMode';
+import screenMode from "../../constants/screenMode";
 
 export interface HeaderDzikirDuaState {
   arabic: boolean;
@@ -22,19 +22,19 @@ const HeaderDzikirDuaOptions = ({
   const colorScheme = useColorScheme();
 
   const themeContainerStyle =
-    colorScheme === 'light'
+    colorScheme === "light"
       ? screenMode.lightContainer
       : screenMode.darkContainer;
 
   const themeTextStyle =
-    colorScheme === 'light'
+    colorScheme === "light"
       ? screenMode.lightThemeText
       : screenMode.darkThemeText;
 
   const borderColor =
-    colorScheme === 'light' ? '#3D3FB8' : themeTextStyle.color;
+    colorScheme === "light" ? "#3D3FB8" : themeTextStyle.color;
 
-  const itemBorderColor = colorScheme === 'light' ? '#F1F1F1' : '#1F1F1F';
+  const itemBorderColor = colorScheme === "light" ? "#F1F1F1" : "#1F1F1F";
 
   return (
     <View
@@ -50,7 +50,7 @@ const HeaderDzikirDuaOptions = ({
             style={{ ...styles.checkbox, borderColor }}
             value={state.arabic}
             onValueChange={() => setState({ ...state, arabic: !state.arabic })}
-            color={state.arabic ? '#3D3FB8' : undefined}
+            color={state.arabic ? "#3D3FB8" : undefined}
           />
           <Text style={[styles.paragraph, themeTextStyle]}>Arabic</Text>
         </View>
@@ -60,7 +60,7 @@ const HeaderDzikirDuaOptions = ({
             style={{ ...styles.checkbox, borderColor }}
             value={state.latin}
             onValueChange={() => setState({ ...state, latin: !state.latin })}
-            color={state.latin ? '#3D3FB8' : undefined}
+            color={state.latin ? "#3D3FB8" : undefined}
           />
           <Text style={[styles.paragraph, themeTextStyle]}>Latin</Text>
         </View>
@@ -72,7 +72,7 @@ const HeaderDzikirDuaOptions = ({
             onValueChange={() =>
               setState({ ...state, meaning: !state.meaning })
             }
-            color={state.meaning ? '#3D3FB8' : undefined}
+            color={state.meaning ? "#3D3FB8" : undefined}
           />
           <Text style={[styles.paragraph, themeTextStyle]}>Arti</Text>
         </View>
@@ -87,32 +87,32 @@ const styles = StyleSheet.create({
     marginTop: 16,
     marginBottom: 20,
     marginHorizontal: 60,
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
     borderRadius: 10,
     borderWidth: 1,
-    borderStyle: 'solid',
+    borderStyle: "solid",
   },
   title: {
     fontSize: 24,
-    fontFamily: 'dubai-regular',
+    fontFamily: "dubai-regular",
   },
   paragraph: {
     fontSize: 16,
-    fontFamily: 'dubai-regular',
+    fontFamily: "dubai-regular",
   },
   checkbox: {
     margin: 8,
-    borderColor: '#3D3FB8',
+    borderColor: "#3D3FB8",
   },
   row: {
     flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-around',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-around",
   },
-  checkboxView: { flexDirection: 'row', alignItems: 'center' },
+  checkboxView: { flexDirection: "row", alignItems: "center" },
 });
 
 export default HeaderDzikirDuaOptions;

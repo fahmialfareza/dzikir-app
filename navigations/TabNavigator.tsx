@@ -1,28 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import { View, useColorScheme, StyleProp, ViewStyle } from 'react-native';
+import React, { useEffect, useState } from "react";
+import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+import { View, useColorScheme, StyleProp, ViewStyle } from "react-native";
 
-import screenMode from '../constants/screenMode';
+import screenMode from "../constants/screenMode";
 import {
   DzikirDuaIcon,
   AlQuranIcon,
   TasbeehIcon,
   HomeIcon,
   ShalatTimeIcon,
-} from '../constants/assets';
+} from "../constants/assets";
 
 import HomeScreen, {
   screenOptions as homeScreenOptions,
-} from '../screens/Home';
+} from "../screens/Home";
 import AlQuranScreen, {
   screenOptions as alQuranScreenOptions,
-} from '../screens/AlQuran';
+} from "../screens/AlQuran";
 import ShalatTimeScreen, {
   screenOptions as shalatTimeScreenOptions,
-} from '../screens/ShalatTime';
+} from "../screens/ShalatTime";
 
-import DzikirDuaNavigator from './DzikirDuaNavigator';
-import TasbeehNavigator from './TasbeehNavigator';
+import DzikirDuaNavigator from "./DzikirDuaNavigator";
+import TasbeehNavigator from "./TasbeehNavigator";
 
 interface TabNavigatorProps {
   routeName?: string;
@@ -45,26 +45,26 @@ const TabNavigator = ({ routeName }: TabNavigatorProps) => {
 
   const [barStyle, setBarStyle] = useState<StyleProp<ViewStyle>>({
     ...defaultStyle,
-    display: 'flex',
+    display: "flex",
   });
 
   const themeContainerStyle =
-    colorScheme === 'light'
+    colorScheme === "light"
       ? screenMode.lightContainer
       : screenMode.darkContainer;
 
   useEffect(() => {
     if (
-      hiddenRouteName.hasOwnProperty(routeName || 'Screen Will Never Found')
+      hiddenRouteName.hasOwnProperty(routeName || "Screen Will Never Found")
     ) {
       setBarStyle({
         ...defaultStyle,
-        display: 'none',
+        display: "none",
       });
     } else {
       setBarStyle({
         ...defaultStyle,
-        display: 'flex',
+        display: "flex",
       });
     }
   }, [routeName]);
@@ -98,7 +98,7 @@ const TabNavigator = ({ routeName }: TabNavigatorProps) => {
               <ShalatTimeIcon width={24} height={24} color={color} />
             </View>
           ),
-          tabBarLabel: 'Jadwal',
+          tabBarLabel: "Jadwal",
           ...shalatTimeScreenOptions,
         }}
       ></Tab.Screen>
@@ -115,8 +115,8 @@ const TabNavigator = ({ routeName }: TabNavigatorProps) => {
                 borderBottomStartRadius: 20,
                 ...themeContainerStyle,
                 top: -25,
-                justifyContent: 'center',
-                alignItems: 'center',
+                justifyContent: "center",
+                alignItems: "center",
               }}
             >
               <HomeIcon
@@ -130,7 +130,7 @@ const TabNavigator = ({ routeName }: TabNavigatorProps) => {
               />
             </View>
           ),
-          tabBarLabel: '',
+          tabBarLabel: "",
           ...homeScreenOptions,
         }}
       ></Tab.Screen>
@@ -143,7 +143,7 @@ const TabNavigator = ({ routeName }: TabNavigatorProps) => {
               <DzikirDuaIcon width={24} height={24} />
             </View>
           ),
-          tabBarLabel: 'Dzikir & Doa',
+          tabBarLabel: "Dzikir & Doa",
         }}
       ></Tab.Screen>
       <Tab.Screen
@@ -155,7 +155,7 @@ const TabNavigator = ({ routeName }: TabNavigatorProps) => {
               <TasbeehIcon width={24} height={24} />
             </View>
           ),
-          tabBarLabel: 'Tasbih',
+          tabBarLabel: "Tasbih",
         }}
       ></Tab.Screen>
     </Tab.Navigator>
