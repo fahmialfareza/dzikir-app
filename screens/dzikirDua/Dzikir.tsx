@@ -49,9 +49,9 @@ const Dzikir = ({ navigation }: DzikirProps) => {
       <View style={styles.row}>
         <View style={styles.buttonMenu}>
           <ButtonMenu
-            backgroundColor='#FF4444'
-            color='#FFFFFF'
-            text='Dzikir Pagi'
+            backgroundColor="#FF4444"
+            color="#FFFFFF"
+            text="Dzikir Pagi"
             onPress={() =>
               selectMenuHandler('MorningAfternoonDzikir', {
                 title: 'Dzikir Pagi',
@@ -65,9 +65,9 @@ const Dzikir = ({ navigation }: DzikirProps) => {
             /> */}
           </ButtonMenu>
           <ButtonMenu
-            backgroundColor='#FFB648'
-            color='#FFFFFF'
-            text='Dzikir Petang'
+            backgroundColor="#FFB648"
+            color="#FFFFFF"
+            text="Dzikir Petang"
             onPress={() =>
               selectMenuHandler('MorningAfternoonDzikir', {
                 title: 'Dzikir Petang',

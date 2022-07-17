@@ -33,7 +33,7 @@ function EditTasbeehItemInput({
         <>
           <Ionicons
             name={Platform.OS === 'android' ? 'md-pencil' : 'ios-pencil'}
-            color='white'
+            color="white"
           />{' '}
           Ubah
         </>

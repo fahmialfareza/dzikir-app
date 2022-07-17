@@ -5,5 +5,5 @@ import morningAfternoonDzikir from './morningAfternoonDzikir';
 
 export default combineReducers({
   tasbeehTarget,
-  morningAfternoonDzikir
-})
+  morningAfternoonDzikir,
+});

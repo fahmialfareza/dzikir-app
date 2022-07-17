@@ -52,11 +52,11 @@ function TasbeehSelectDropdownColors({
       : screenMode.darkThemeText;
 
   return (
-    <>
+    <View style={styles.container}>
       <View style={styles.labelInput}>
         <Text style={[styles.modalText, themeTextStyle]}>{label}</Text>
       </View>
-      <View>
+      <View style={styles.selectDropdownInput}>
         <SelectDropdown
           buttonStyle={styles.dropdownButtonStyle}
           buttonTextStyle={styles.dropdownButtonTextStyle}
@@ -71,13 +71,16 @@ function TasbeehSelectDropdownColors({
           ref={reference}
         />
       </View>
-    </>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  container: { flex: 1, flexDirection: 'row' },
   labelInput: {
     justifyContent: 'center',
+    flex: 1,
+    alignItems: 'flex-start',
   },
   modalText: {
     textAlign: 'center',
@@ -85,9 +88,8 @@ const styles = StyleSheet.create({
   dropdownButtonStyle: {
     borderWidth: 1,
     borderColor: '#777',
-    padding: 6,
     margin: 2,
-    width: 160,
+    width: '97%',
     backgroundColor: '#FFFFFF',
     borderRadius: 10,
   },
@@ -95,6 +97,7 @@ const styles = StyleSheet.create({
     fontFamily: 'dubai-regular',
     textAlign: 'center',
   },
+  selectDropdownInput: { flex: 1 },
 });
 
 export default TasbeehSelectDropdownColors;

@@ -8,7 +8,7 @@ import {
   ScrollView,
   View,
 } from 'react-native';
-import { RouteProp } from '@react-navigation/native';
+import { NavigationProp, RouteProp } from '@react-navigation/native';
 import { NativeStackNavigationOptions } from '@react-navigation/native-stack';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -117,7 +117,7 @@ function MorningAfternoonDzikir({ route }: MorningAfternoonDzikirProps) {
 }
 
 export const screenOptions = (props: {
-  navigation: any;
+  navigation: NavigationProp<any, any>;
   route: RouteProp<{ params: { title: string; mode: ColorSchemeName } }, any>;
 }): NativeStackNavigationOptions => {
   return {

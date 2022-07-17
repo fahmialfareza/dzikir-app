@@ -1,17 +1,30 @@
-import { fetchDetailsTasbeehTarget, fetchTasbeehTargets, insertTasbeehTarget, updateTasbeehTarget as updateTasbeehTargetDB, deleteTasbeehTarget as deleteTasbeehTargetDB } from "../../helpers/db";
-import TasbeehTarget from "../../models/tasbeehTarget";
-import { addTasbeehTarget, deleteTasbeehTarget, setTasbehTargets, updateTasbeehTarget } from "../reducers/tasbeehTarget";
+import { Dispatch } from 'react';
+import { AnyAction } from 'redux';
+import {
+  fetchDetailsTasbeehTarget,
+  fetchTasbeehTargets,
+  insertTasbeehTarget,
+  updateTasbeehTarget as updateTasbeehTargetDB,
+  deleteTasbeehTarget as deleteTasbeehTargetDB,
+} from '../../helpers/db';
+import TasbeehTarget from '../../models/tasbeehTarget';
+import {
+  addTasbeehTarget,
+  deleteTasbeehTarget,
+  setTasbehTargets,
+  updateTasbeehTarget,
+} from '../reducers/tasbeehTarget';
 
 class TasbeehTargetActions {
   static addTasbeehTarget(items: TasbeehTarget) {
-    return async (dispatch: any) => {
+    return async (dispatch: Dispatch<AnyAction>) => {
       try {
         const insertedData = await insertTasbeehTarget(
           items.title,
           items.target,
           items.arabic || '',
           items.background || '',
-          items.color || '',
+          items.color || ''
         );
 
         const data = await fetchDetailsTasbeehTarget(insertedData.insertId!);
@@ -25,9 +38,9 @@ class TasbeehTargetActions {
   }
 
   static getTasbeehTargets() {
-    return async (dispatch: any) => {
+    return async (dispatch: Dispatch<AnyAction>) => {
       try {
-        const data: any = await fetchTasbeehTargets();
+        const data: TasbeehTarget[] = await fetchTasbeehTargets();
 
         dispatch(setTasbehTargets(data));
       } catch (error) {
@@ -38,7 +51,7 @@ class TasbeehTargetActions {
   }
 
   static updateTasbeehTarget(items: TasbeehTarget) {
-    return async (dispatch: any) => {
+    return async (dispatch: Dispatch<AnyAction>) => {
       try {
         await updateTasbeehTargetDB(
           items.id,
@@ -59,7 +72,7 @@ class TasbeehTargetActions {
   }
 
   static deleteTasbeehTarget(id: number) {
-    return async (dispatch: any) => {
+    return async (dispatch: Dispatch<AnyAction>) => {
       try {
         await deleteTasbeehTargetDB(id);
 

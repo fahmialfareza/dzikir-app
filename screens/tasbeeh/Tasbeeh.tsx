@@ -104,7 +104,7 @@ const Tasbeeh = ({ navigation }: TasbeehProps) => {
       <SafeAreaView
         style={[styles.container, themeContainerStyle, styles.loadingContainer]}
       >
-        <ActivityIndicator size='large' color={themeTextStyle.color} />
+        <ActivityIndicator size="large" color={themeTextStyle.color} />
       </SafeAreaView>
     );
   }
@@ -135,7 +135,7 @@ const Tasbeeh = ({ navigation }: TasbeehProps) => {
           <Ionicons
             name={Platform.OS === 'android' ? 'md-add' : 'ios-add'}
             size={32}
-            color='white'
+            color="white"
           />
         </TouchableOpacity>
 

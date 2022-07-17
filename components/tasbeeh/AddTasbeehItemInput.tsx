@@ -32,15 +32,7 @@ function AddTasbeehItemInput({
     <TasbeehItemInput
       modalVisible={addModalVisible}
       setModalVisible={setAddModalVisible}
-      actionText={
-        <>
-          <Ionicons
-            name={Platform.OS === 'android' ? 'md-add' : 'ios-add'}
-            color='white'
-          />{' '}
-          Tambahkan
-        </>
-      }
+      actionText={<>Tambahkan</>}
       enableRemoveButton={false}
       onSubmitHandler={async () => {
         dispatch(TasbeehTargetActions.addTasbeehTarget(state));

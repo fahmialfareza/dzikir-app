@@ -192,18 +192,14 @@ const TasbeehItemInput = ({
 
               {enableRemoveButton && (
                 <Pressable
-                  style={[styles.button, styles.buttonClose]}
+                  style={[
+                    styles.button,
+                    styles.buttonClose,
+                    { marginBottom: 8 },
+                  ]}
                   onPress={onDeleteHandler}
                 >
-                  <Text style={styles.textStyle}>
-                    <Ionicons
-                      name={
-                        Platform.OS === 'android' ? 'md-trash' : 'ios-trash'
-                      }
-                      color="white"
-                    />{' '}
-                    Hapus
-                  </Text>
+                  <Text style={styles.textStyle}>Hapus</Text>
                 </Pressable>
               )}
 
@@ -211,13 +207,7 @@ const TasbeehItemInput = ({
                 style={[styles.button, styles.buttonClose]}
                 onPress={() => setModalVisible(!modalVisible)}
               >
-                <Text style={styles.textStyle}>
-                  <Ionicons
-                    name={Platform.OS === 'android' ? 'md-close' : 'ios-close'}
-                    color="white"
-                  />{' '}
-                  Batal
-                </Text>
+                <Text style={styles.textStyle}>Batal</Text>
               </Pressable>
             </View>
           </View>
@@ -261,6 +251,7 @@ const styles = StyleSheet.create({
   },
   buttonAdd: {
     backgroundColor: '#2196F3',
+    marginBottom: 8,
   },
   buttonClose: {
     backgroundColor: '#FF4444',

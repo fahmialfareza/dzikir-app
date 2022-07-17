@@ -89,6 +89,8 @@ function EditTasbeehTargetItemInput({
                 }}
                 value={targetInput}
                 onChangeText={targetChangeTextHandler}
+                maxLength={4}
+                isHasLabel={false}
               />
             </View>
 
@@ -113,10 +115,7 @@ function EditTasbeehTargetItemInput({
                   setModalVisible(!modalVisible);
                 }}
               >
-                <Text style={styles.textStyle}>
-    
-                  Batal
-                </Text>
+                <Text style={styles.textStyle}>Batal</Text>
               </Pressable>
             </View>
           </View>

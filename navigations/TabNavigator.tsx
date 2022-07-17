@@ -36,9 +36,9 @@ const TabNavigator = ({ routeName }: TabNavigatorProps) => {
   const hiddenRouteName: object = {};
 
   const defaultStyle: StyleProp<ViewStyle> = {
-    position: "absolute",
-    overflow: "hidden",
-    backgroundColor: "#26A2B2",
+    position: 'absolute',
+    overflow: 'hidden',
+    backgroundColor: '#26A2B2',
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
   };

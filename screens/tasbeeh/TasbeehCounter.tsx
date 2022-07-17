@@ -1,7 +1,7 @@
-import { FontAwesome } from "@expo/vector-icons";
-import { RouteProp } from "@react-navigation/native";
-import { Audio } from "expo-av";
-import React, { useEffect, useState } from "react";
+import { FontAwesome } from '@expo/vector-icons';
+import { RouteProp } from '@react-navigation/native';
+import { Audio } from 'expo-av';
+import React, { useEffect, useState } from 'react';
 import {
   Alert,
   Dimensions,
@@ -10,35 +10,33 @@ import {
   useColorScheme,
   View,
   Platform,
-} from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { connect } from "react-redux";
-import { ThunkDispatch } from "redux-thunk";
-import Ionicons from "@expo/vector-icons/Ionicons";
+} from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { connect } from 'react-redux';
+import { ThunkDispatch } from 'redux-thunk';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
-import TasbeehTarget from "../../models/tasbeehTarget";
+import TasbeehTarget from '../../models/tasbeehTarget';
 
-import { TasbeehCounterBackgroundImage } from "../../constants/assets";
-import screenMode from "../../constants/screenMode";
+import { TasbeehCounterBackgroundImage } from '../../constants/assets';
+import screenMode from '../../constants/screenMode';
 
-import TasbihCounter from "../../components/tasbeeh/TasbeehCounter";
-import EditTasbeehTargetItemInput from "../../components/tasbeeh/EditTasbeehTargetItemInput";
-
+import TasbihCounter from '../../components/tasbeeh/TasbeehCounter';
+import EditTasbeehTargetItemInput from '../../components/tasbeeh/EditTasbeehTargetItemInput';
 
 import { RootState, useAppDispatch } from '../../redux';
 import TasbeehTargetActions from '../../redux/actions/TasbeehTargetActions';
 
 interface TasbeehCounterProps {
   route: RouteProp<{ params: { item: TasbeehTarget } }, 'params'>;
-
 }
 
 function TasbeehCounter({ route: { params, name } }: TasbeehCounterProps) {
   const dispatch = useAppDispatch();
   const colorScheme = useColorScheme();
-  const [count, setCount] = useState("0000");
-  const [addColor, setAddColor] = useState("#FCDDEC");
-  const [resetColor, setResetColor] = useState("#FCDDEC");
+  const [count, setCount] = useState('0000');
+  const [addColor, setAddColor] = useState('#FCDDEC');
+  const [resetColor, setResetColor] = useState('#FCDDEC');
   const [visible, setVisible] = useState(false);
 
   // Interval time
@@ -49,12 +47,11 @@ function TasbeehCounter({ route: { params, name } }: TasbeehCounterProps) {
   const [target, setTarget] = useState(String(params.item.target));
 
   const themeContainerStyle =
-    colorScheme === "light"
+    colorScheme === 'light'
       ? screenMode.lightContainer
       : screenMode.darkContainer;
 
   const updateTasbeeh = (targetInput?: string) => {
-
     dispatch(
       TasbeehTargetActions.updateTasbeehTarget({
         id: params.item.id,
@@ -65,7 +62,6 @@ function TasbeehCounter({ route: { params, name } }: TasbeehCounterProps) {
         color: params.item.color || '',
         counter: parseInt(count),
       })
-
     );
   };
 
@@ -95,39 +91,39 @@ function TasbeehCounter({ route: { params, name } }: TasbeehCounterProps) {
     let result = counterFormatter(countNumber);
 
     setTimeout(() => {
-      setAddColor("#FCDDEC");
+      setAddColor('#FCDDEC');
     }, 1);
 
     setCount(result);
   };
 
   const resetCounterHandler = async () => {
-    if (count === "0000") {
+    if (count === '0000') {
       return;
     }
 
     // Set color
     setResetColor(themeContainerStyle.backgroundColor);
 
-    Alert.alert("Reset hitungan", "Apakah kamu yakin mau reset hitungan?", [
+    Alert.alert('Reset hitungan', 'Apakah kamu yakin mau reset hitungan?', [
       {
-        text: "Ya",
+        text: 'Ya',
         onPress: async () => {
           setTimeout(() => {
-            setResetColor("#FCDDEC");
+            setResetColor('#FCDDEC');
           }, 1);
 
-          setCount("0000");
+          setCount('0000');
         },
-        style: "destructive",
+        style: 'destructive',
       },
-      { text: "Tidak", onPress: () => {} },
+      { text: 'Tidak', onPress: () => {} },
     ]);
   };
 
   const submitTargetHandler = async (targetInput: string) => {
     try {
-      if (targetInput !== "0") {
+      if (targetInput !== '0') {
         if (targetInput === oldTarget) {
           return;
         }
@@ -137,9 +133,9 @@ function TasbeehCounter({ route: { params, name } }: TasbeehCounterProps) {
         setOldTarget(Math.abs(parseInt(targetInput)).toString());
 
         Alert.alert(
-          "Berhasil Mengganti Target",
+          'Berhasil Mengganti Target',
           `Target menjadi ${Math.abs(parseInt(targetInput))}`,
-          [{ text: "OK", onPress: () => console.log("Target OK") }]
+          [{ text: 'OK', onPress: () => console.log('Target OK') }]
         );
       }
     } catch (error) {
@@ -152,10 +148,10 @@ function TasbeehCounter({ route: { params, name } }: TasbeehCounterProps) {
   }, [params.item.counter]);
 
   useEffect(() => {
-    if (target !== "0") {
+    if (target !== '0') {
       if (parseInt(count) === parseInt(target)) {
-        Alert.alert("Alhamdullah!", "Kamu telah mencapai target", [
-          { text: "OK", onPress: async () => console.log("Target OK") },
+        Alert.alert('Alhamdullah!', 'Kamu telah mencapai target', [
+          { text: 'OK', onPress: async () => console.log('Target OK') },
         ]);
         successAudio();
       }
@@ -187,7 +183,7 @@ function TasbeehCounter({ route: { params, name } }: TasbeehCounterProps) {
   const successAudio = async () => {
     const sound = new Audio.Sound();
     try {
-      await sound.loadAsync(require("../../assets/sounds/success.wav"));
+      await sound.loadAsync(require('../../assets/sounds/success.wav'));
       await sound.playAsync();
       // Your sound is playing!
 
@@ -201,11 +197,11 @@ function TasbeehCounter({ route: { params, name } }: TasbeehCounterProps) {
   };
 
   return (
-    <SafeAreaView style={[styles.container, themeContainerStyle]}>
+    <SafeAreaView style={[styles.container]}>
       <TasbeehCounterBackgroundImage
         style={styles.backgroundImage}
-        width={Dimensions.get("window").width}
-        height={Dimensions.get("window").height}
+        width={Dimensions.get('window').width}
+        height={Dimensions.get('window').height}
       />
       <View style={styles.textView}>
         <Text style={styles.arabicText}>{params.item.arabic}</Text>
@@ -219,15 +215,15 @@ function TasbeehCounter({ route: { params, name } }: TasbeehCounterProps) {
           </View>
           <View style={styles.editButton}>
             <FontAwesome
-              name='pencil-square'
+              name="pencil-square"
               size={32}
-              color='white'
+              color="white"
               onPress={showDialog}
             />
             <EditTasbeehTargetItemInput
               modalVisible={visible}
               setModalVisible={setVisible}
-              actionText={" Ubah Target"}
+              actionText={' Ubah Target'}
               updateTarget={submitTargetHandler}
               setTarget={setTarget}
               setOldTarget={setOldTarget}
@@ -241,7 +237,7 @@ function TasbeehCounter({ route: { params, name } }: TasbeehCounterProps) {
         <TasbihCounter
           count={count}
           addColor={addColor}
-          resetColor={parseInt(count) > 0 ? "#FABF39" : resetColor}
+          resetColor={parseInt(count) > 0 ? '#FABF39' : resetColor}
           addCounterHandler={addCounterHandler}
           resetCounterHandler={resetCounterHandler}
         />
@@ -251,14 +247,15 @@ function TasbeehCounter({ route: { params, name } }: TasbeehCounterProps) {
 }
 
 export const screenOptions = {
-  headerTitle: "Tasbeeh Counter",
+  headerTitle: 'Tasbeeh Counter',
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#7D2DFF',
   },
   editButton: {
     marginTop: 3,
@@ -266,95 +263,95 @@ const styles = StyleSheet.create({
   },
   textView: {
     flex: 2,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     padding: 10,
     marginTop: 40,
   },
   arabicText: {
-    fontFamily: "al-qalam",
-    justifyContent: "center",
-    alignContent: "center",
+    fontFamily: 'al-qalam',
+    justifyContent: 'center',
+    alignContent: 'center',
     fontSize: 64,
-    color: "#FFFFFF",
+    color: '#FFFFFF',
   },
   tasbeehText: {
-    fontFamily: "dubai-regular",
-    justifyContent: "center",
-    alignContent: "center",
+    fontFamily: 'dubai-regular',
+    justifyContent: 'center',
+    alignContent: 'center',
     fontSize: 32,
-    color: "#FFFFFF",
+    color: '#FFFFFF',
   },
   targetText: {
     marginTop: 2,
     fontSize: 24,
-    fontFamily: "dubai-regular",
-    fontWeight: "bold",
-    justifyContent: "center",
-    alignContent: "center",
+    fontFamily: 'dubai-regular',
+    fontWeight: 'bold',
+    justifyContent: 'center',
+    alignContent: 'center',
     marginRight: 10,
-    color: "#FFFFFF",
+    color: '#FFFFFF',
   },
   saveTarget: {
     fontSize: 20,
-    color: "#FFFFFF",
-    backgroundColor: "#00BFFF",
-    width: "100%",
+    color: '#FFFFFF',
+    backgroundColor: '#00BFFF',
+    width: '100%',
     borderRadius: 10,
   },
   resetCounter: {
     marginTop: 20,
     marginBottom: 10,
     fontSize: 16,
-    color: "#FFFFFF",
-    backgroundColor: "#FF4444",
-    width: "100%",
+    color: '#FFFFFF',
+    backgroundColor: '#FF4444',
+    width: '100%',
     borderRadius: 10,
   },
   dialogInput: {
     marginTop: 20,
     fontSize: 20,
-    fontFamily: "dubai-regular",
-    fontWeight: "bold",
-    justifyContent: "center",
-    alignContent: "center",
+    fontFamily: 'dubai-regular',
+    fontWeight: 'bold',
+    justifyContent: 'center',
+    alignContent: 'center',
     marginRight: 10,
   },
   inputText: {
     fontSize: 24,
-    fontFamily: "dubai-regular",
-    justifyContent: "center",
-    alignContent: "center",
+    fontFamily: 'dubai-regular',
+    justifyContent: 'center',
+    alignContent: 'center',
     marginRight: 10,
-    color: "#FFFFFF",
+    color: '#FFFFFF',
   },
   targetInput: {
     borderWidth: 1,
-    borderColor: "#777",
+    borderColor: '#777',
     padding: 6,
     margin: 2,
     width: 60,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: '#FFFFFF',
     borderRadius: 10,
-    textAlign: "center",
+    textAlign: 'center',
     fontSize: 24,
-    fontFamily: "ds-digit",
-    color: "#3D3FB8",
+    fontFamily: 'ds-digit',
+    color: '#3D3FB8',
   },
   targetView: {
-    flexDirection: "row",
+    flexDirection: 'row',
     flex: 1,
-    justifyContent: "center",
-    alignItems: "flex-start",
+    justifyContent: 'center',
+    alignItems: 'flex-start',
   },
   backgroundImage: {
-    position: "absolute",
-    resizeMode: "cover",
+    position: 'absolute',
+    resizeMode: 'cover',
   },
   tasbihView: {
     flex: 5,
-    justifyContent: "flex-start",
-    alignItems: "center",
+    justifyContent: 'flex-start',
+    alignItems: 'center',
   },
 });
 

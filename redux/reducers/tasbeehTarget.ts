@@ -29,11 +29,16 @@ const tasbeehTargetSlicer = createSlice({
       state.tasbeehTargets = state.tasbeehTargets.filter(
         (tasbeehTarget) => tasbeehTarget.id !== action.payload
       );
-    }
-  }
+    },
+  },
 });
 
-export const { addTasbeehTarget, setTasbehTargets, updateTasbeehTarget, deleteTasbeehTarget } = tasbeehTargetSlicer.actions;
+export const {
+  addTasbeehTarget,
+  setTasbehTargets,
+  updateTasbeehTarget,
+  deleteTasbeehTarget,
+} = tasbeehTargetSlicer.actions;
 
 export const selectTasbeehTargets = (state: RootState) => state.tasbeehTarget;
 
