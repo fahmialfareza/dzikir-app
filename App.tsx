@@ -26,6 +26,9 @@ const fetchFonts = () => {
     'ds-digib': require('./assets/fonts/ds-digib.ttf'),
     'ds-digii': require('./assets/fonts/ds-digii.ttf'),
     'ds-digit': require('./assets/fonts/ds-digit.ttf'),
+    'roboto-regular': require('./assets/fonts/Roboto-Regular.ttf'),
+    'roboto-italic': require('./assets/fonts/Roboto-Italic.ttf'),
+    arial: require('./assets/fonts/arial.ttf'),
   });
 };
 

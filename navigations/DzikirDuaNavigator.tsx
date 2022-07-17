@@ -3,24 +3,36 @@ import {
   createNativeStackNavigator,
   NativeStackNavigationOptions,
 } from '@react-navigation/native-stack';
+import { useColorScheme } from 'react-native';
 
-import AlMatsurat, {
-  screenOptions as alMatsuratScreenOptions,
-} from '../screens/dzikir/AlMatsurat';
+import Dzikir, {
+  screenOptions as dzikirScreenOptions,
+} from '../screens/dzikirDua/Dzikir';
+import MorningAfternoonDzikir, {
+  screenOptions as morningAfternoonDzikirScreenOptions,
+} from '../screens/dzikirDua/MorningAfternoonDzikir';
 
-const defaultAlMatsuratScreenOptions: NativeStackNavigationOptions = {
+const defaultDzikirScreenOptions: NativeStackNavigationOptions = {
   headerShown: false,
 };
 
 const Stack = createNativeStackNavigator();
 
 const DzikirDuaNavigator = () => {
+  const colorScheme = useColorScheme();
+
   return (
-    <Stack.Navigator screenOptions={defaultAlMatsuratScreenOptions}>
+    <Stack.Navigator screenOptions={defaultDzikirScreenOptions}>
       <Stack.Screen
-        name="AlMatsuratMenu"
-        component={AlMatsurat}
-        options={alMatsuratScreenOptions}
+        name="DzikirMenu"
+        component={Dzikir}
+        options={dzikirScreenOptions}
+      />
+      <Stack.Screen
+        name="MorningAfternoonDzikir"
+        component={MorningAfternoonDzikir}
+        initialParams={{ mode: colorScheme }}
+        options={morningAfternoonDzikirScreenOptions}
       />
     </Stack.Navigator>
   );

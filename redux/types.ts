@@ -1,5 +1,5 @@
 import TasbeehTarget from '../models/tasbeehTarget';
-import AlMatsurat from '../models/alMatsurat';
+import MorningAfternoonDzikir from '../models/morningAfternoonDzikir';
 
 // Tasbeeh Target
 export interface TasbeehTargetState {
@@ -13,9 +13,9 @@ export const UPDATE_TASBEEH_TARGET = 'UPDATE_TASBEEH_TARGET';
 export const DELETE_TASBEEH_TARGET = 'DELETE_TASBEEH_TARGET';
 
 // Dzikir & Dua
-export interface AlMatsuratState {
-  morningDzikir: AlMatsurat[];
-  eveningDzikir: AlMatsurat[];
+export interface MorningAfternoonDzikirState {
+  morningDzikir: MorningAfternoonDzikir[];
+  eveningDzikir: MorningAfternoonDzikir[];
 }
 
-export const GET_AL_MATSURAT = 'GET_AL_MATSURAT';
+export const GET_MORNING_AFTERNOON_DZIKIR = 'GET_MORNING_AFTERNOON_DZIKIR';
