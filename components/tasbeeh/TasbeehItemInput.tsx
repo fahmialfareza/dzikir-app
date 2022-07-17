@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef } from "react";
 import {
   Modal,
   StyleSheet,
@@ -10,18 +10,18 @@ import {
   Keyboard,
   Platform,
   KeyboardAvoidingView,
-} from 'react-native';
-import SelectDropdown from 'react-native-select-dropdown';
-import Ionicons from '@expo/vector-icons/Ionicons';
+} from "react-native";
+import SelectDropdown from "react-native-select-dropdown";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
-import screenMode from '../../constants/screenMode';
-import colorData from '../../constants/data/colorData';
+import screenMode from "../../constants/screenMode";
+import colorData from "../../constants/data/colorData";
 
-import TasbeehTarget from '../../models/tasbeehTarget';
+import TasbeehTarget from "../../models/tasbeehTarget";
 
-import TasbeehTextInput from './TasbeehTextInput';
-import TasbeehSelectDropdownColors from './TasbeehSelectDropdownColors';
-import useKeyboard from '../useKeyboard';
+import TasbeehTextInput from "./TasbeehTextInput";
+import TasbeehSelectDropdownColors from "./TasbeehSelectDropdownColors";
+import useKeyboard from "../useKeyboard";
 
 interface TasbeehItemInputProps {
   modalVisible: boolean;
@@ -58,16 +58,16 @@ const TasbeehItemInput = ({
   const targetInput = useRef<TextInput>(null);
 
   const themeContainerStyle =
-    colorScheme === 'light'
+    colorScheme === "light"
       ? screenMode.lightContainer
       : screenMode.darkContainer;
 
-  const justifyContent = isKeyboardOpen ? 'flex-start' : 'center';
+  const justifyContent = isKeyboardOpen ? "flex-start" : "center";
 
   return (
     <KeyboardAvoidingView
       style={styles.container}
-      behavior={Platform.OS === 'ios' ? 'position' : 'height'}
+      behavior={Platform.OS === "ios" ? "position" : "height"}
     >
       <Modal animationType="slide" transparent={true} visible={modalVisible}>
         {isKeyboardOpen && <View style={{ flex: 1 }}></View>}
@@ -102,7 +102,7 @@ const TasbeehItemInput = ({
                 onSubmitEditing={() => {
                   backgroundInput.current?.openDropdown();
                 }}
-                value={state?.arabic || ''}
+                value={state?.arabic || ""}
                 onChangeText={(text) => {
                   setState({ ...state, arabic: text });
                 }}
@@ -170,9 +170,9 @@ const TasbeehItemInput = ({
                 onSubmitEditing={() => {
                   Keyboard.dismiss();
                 }}
-                value={String(state?.target) || ''}
+                value={String(state?.target) || ""}
                 onChangeText={(text) => {
-                  if (text === '') {
+                  if (text === "") {
                     setState({ ...state, target: 0 });
                     return;
                   }
@@ -225,14 +225,14 @@ const styles = StyleSheet.create({
   },
   centeredView: {
     flex: 10,
-    alignItems: 'center',
+    alignItems: "center",
     marginTop: 22,
   },
   modalView: {
     margin: 20,
     borderRadius: 10,
     padding: 36,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 2,
@@ -240,46 +240,46 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
-    width: '90%',
+    width: "90%",
   },
   button: {
     borderRadius: 10,
     padding: 10,
     elevation: 2,
     marginVertical: 2,
-    fontFamily: 'dubai-regular',
+    fontFamily: "dubai-regular",
   },
   buttonAdd: {
-    backgroundColor: '#2196F3',
+    backgroundColor: "#2196F3",
     marginBottom: 8,
   },
   buttonClose: {
-    backgroundColor: '#FF4444',
+    backgroundColor: "#FF4444",
   },
   textStyle: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontFamily: 'dubai-regular',
-    textAlign: 'center',
+    color: "white",
+    fontWeight: "bold",
+    fontFamily: "dubai-regular",
+    textAlign: "center",
   },
   row: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     marginBottom: 4,
   },
   dropdownRowChild: {
-    fontFamily: 'dubai-regular',
-    textAlign: 'center',
+    fontFamily: "dubai-regular",
+    textAlign: "center",
     fontSize: 16,
   },
   dropdownButtonChildText: {
-    color: 'white',
-    fontFamily: 'dubai-regular',
-    textAlign: 'center',
+    color: "white",
+    fontFamily: "dubai-regular",
+    textAlign: "center",
     fontSize: 16,
   },
   buttonView: {
-    flexDirection: 'column',
+    flexDirection: "column",
     marginTop: 10,
   },
 });

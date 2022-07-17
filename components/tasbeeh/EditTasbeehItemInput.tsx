@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { Platform, Alert, Keyboard } from 'react-native';
-import Ionicons from '@expo/vector-icons/Ionicons';
-import TasbeehItemInput from './TasbeehItemInput';
-import TasbeehTarget from '../../models/tasbeehTarget';
-import colorData from '../../constants/data/colorData';
-import TasbeehTargetActions from '../../redux/actions/TasbeehTargetActions';
-import { useAppDispatch } from '../../redux';
+import React, { useState, useEffect } from "react";
+import { Platform, Alert, Keyboard } from "react-native";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import TasbeehItemInput from "./TasbeehItemInput";
+import TasbeehTarget from "../../models/tasbeehTarget";
+import colorData from "../../constants/data/colorData";
+import TasbeehTargetActions from "../../redux/actions/TasbeehTargetActions";
+import { useAppDispatch } from "../../redux";
 
 interface EditTasbeehItemInputProps {
   editModalVisible: boolean;
@@ -32,9 +32,9 @@ function EditTasbeehItemInput({
       actionText={
         <>
           <Ionicons
-            name={Platform.OS === 'android' ? 'md-pencil' : 'ios-pencil'}
+            name={Platform.OS === "android" ? "md-pencil" : "ios-pencil"}
             color="white"
-          />{' '}
+          />{" "}
           Ubah
         </>
       }
@@ -45,41 +45,41 @@ function EditTasbeehItemInput({
         setEditModalVisible(false);
         setState({
           id: 0,
-          title: '',
-          arabic: '',
+          title: "",
+          arabic: "",
           background: colorData[0].color,
-          color: '#FFFFFF',
+          color: "#FFFFFF",
           target: 100,
           counter: 0,
         });
 
-        Alert.alert('Sukses', 'Tasbih berhasil diubah');
+        Alert.alert("Sukses", "Tasbih berhasil diubah");
         Keyboard.dismiss();
       }}
       onDeleteHandler={async () => {
-        Alert.alert('Apakah kamu yakin?', 'Menghapus data ini', [
+        Alert.alert("Apakah kamu yakin?", "Menghapus data ini", [
           {
-            text: 'Tidak',
-            style: 'cancel',
+            text: "Tidak",
+            style: "cancel",
           },
           {
-            text: 'Ya',
-            style: 'destructive',
+            text: "Ya",
+            style: "destructive",
             onPress: async () => {
               dispatch(TasbeehTargetActions.deleteTasbeehTarget(state.id));
 
               setEditModalVisible(false);
               setState({
                 id: 0,
-                title: '',
-                arabic: '',
+                title: "",
+                arabic: "",
                 background: colorData[0].color,
-                color: '#FFFFFF',
+                color: "#FFFFFF",
                 target: 100,
                 counter: 0,
               });
 
-              Alert.alert('Sukses', 'Tasbih berhasil dihapus');
+              Alert.alert("Sukses", "Tasbih berhasil dihapus");
 
               Keyboard.dismiss();
             },

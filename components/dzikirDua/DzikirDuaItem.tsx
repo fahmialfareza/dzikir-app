@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   StyleSheet,
   Text,
@@ -6,10 +6,10 @@ import {
   useWindowDimensions,
   useColorScheme,
   Platform,
-} from 'react-native';
-import RenderHtml from 'react-native-render-html';
+} from "react-native";
+import RenderHtml from "react-native-render-html";
 
-import { HeaderDzikirDuaState } from './HeaderDzikirDuaOptions';
+import { HeaderDzikirDuaState } from "./HeaderDzikirDuaOptions";
 
 interface DzikirDuaItemProps {
   note: string;
@@ -29,10 +29,10 @@ const DzikirDuaItem = ({
   const colorScheme = useColorScheme();
   const { width } = useWindowDimensions();
 
-  const backgroundColor = colorScheme === 'light' ? '#FFFFFF' : '#121620';
-  const colorArabic = colorScheme === 'light' ? '#292727' : '#d6d8d8';
-  const colorArabicLatin = colorScheme === 'light' ? '#000000' : '#FFFFFF';
-  const colorMeaning = colorScheme === 'light' ? '#515151' : '#aeaeae';
+  const backgroundColor = colorScheme === "light" ? "#FFFFFF" : "#121620";
+  const colorArabic = colorScheme === "light" ? "#292727" : "#d6d8d8";
+  const colorArabicLatin = colorScheme === "light" ? "#000000" : "#FFFFFF";
+  const colorMeaning = colorScheme === "light" ? "#515151" : "#aeaeae";
 
   return (
     <View style={{ ...styles.item, backgroundColor }}>
@@ -79,39 +79,39 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     marginVertical: 10,
     marginHorizontal: 20,
-    flexDirection: 'column',
-    justifyContent: 'center',
+    flexDirection: "column",
+    justifyContent: "center",
     borderRadius: 10,
     flex: 1,
   },
   noteBackground: {
-    backgroundColor: '#3D3FB8',
+    backgroundColor: "#3D3FB8",
     borderRadius: 16,
     paddingHorizontal: 10,
-    justifyContent: 'center',
-    alignContent: 'center',
+    justifyContent: "center",
+    alignContent: "center",
   },
   note: {
-    color: '#FFFFFF',
+    color: "#FFFFFF",
     fontSize: 16,
-    textAlign: 'center',
-    fontFamily: 'dubai-regular',
+    textAlign: "center",
+    fontFamily: "dubai-regular",
   },
   arabic: {
-    fontFamily: 'arial',
+    fontFamily: "arial",
     fontSize: 22,
-    textAlign: Platform.OS === 'ios' ? 'justify' : 'center',
-    writingDirection: 'rtl',
+    textAlign: Platform.OS === "ios" ? "justify" : "center",
+    writingDirection: "rtl",
     lineHeight: 44,
   },
   arabicLatin: {
-    fontFamily: 'roboto-italic',
+    fontFamily: "roboto-italic",
     fontSize: 16,
-    textAlign: 'justify',
+    textAlign: "justify",
   },
   meaning: {
-    textAlign: 'justify',
-    fontFamily: 'dubai-regular',
+    textAlign: "justify",
+    fontFamily: "dubai-regular",
     fontSize: 16,
     lineHeight: 20,
   },

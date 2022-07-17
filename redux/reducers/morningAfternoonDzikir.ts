@@ -1,7 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { RootState } from '..';
+import { createSlice } from "@reduxjs/toolkit";
+import { RootState } from "..";
 
-import { MorningAfternoonDzikirState } from '../types';
+import { MorningAfternoonDzikirState } from "../types";
 
 const initialState: MorningAfternoonDzikirState = {
   morningDzikir: [],
@@ -9,7 +9,7 @@ const initialState: MorningAfternoonDzikirState = {
 };
 
 const morningAfternoonDzikirSlicer = createSlice({
-  name: 'morningAfternoonDzikir',
+  name: "morningAfternoonDzikir",
   initialState,
   reducers: {
     setMorningAfternoonDzikir: (state, action) => {

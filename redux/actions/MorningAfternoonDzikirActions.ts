@@ -1,11 +1,11 @@
-import MorningAfternoonDzikir from '../../models/morningAfternoonDzikir';
-import MorningAfternoonDzikirData from '../../constants/data/morningAfternoonDzikirData';
+import MorningAfternoonDzikir from "../../models/morningAfternoonDzikir";
+import MorningAfternoonDzikirData from "../../constants/data/morningAfternoonDzikirData";
 import {
   setEveningAfternoonDzikir,
   setMorningAfternoonDzikir,
-} from '../reducers/morningAfternoonDzikir';
-import { Dispatch } from 'react';
-import { AnyAction } from 'redux';
+} from "../reducers/morningAfternoonDzikir";
+import { Dispatch } from "react";
+import { AnyAction } from "redux";
 
 class MorningAfternoonDzikirActions {
   static getMorningAfternoonDzikir() {
@@ -15,14 +15,14 @@ class MorningAfternoonDzikirActions {
         dispatch(
           setMorningAfternoonDzikir(
             data.filter(
-              (dzikir) => dzikir.time === 'pagi' || dzikir.time === ''
+              (dzikir) => dzikir.time === "pagi" || dzikir.time === ""
             )
           )
         );
         dispatch(
           setEveningAfternoonDzikir(
             data.filter(
-              (dzikir) => dzikir.time === 'petang' || dzikir.time === ''
+              (dzikir) => dzikir.time === "petang" || dzikir.time === ""
             )
           )
         );

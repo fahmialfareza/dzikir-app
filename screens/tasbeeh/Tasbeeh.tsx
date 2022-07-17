@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
   View,
@@ -10,22 +10,22 @@ import {
   Platform,
   ActivityIndicator,
   Alert,
-} from 'react-native';
-import { NavigationProp } from '@react-navigation/native';
-import Ionicons from '@expo/vector-icons/Ionicons';
+} from "react-native";
+import { NavigationProp } from "@react-navigation/native";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
-import screenMode from '../../constants/screenMode';
-import { HomeAyahBottomImage } from '../../constants/assets';
+import screenMode from "../../constants/screenMode";
+import { HomeAyahBottomImage } from "../../constants/assets";
 import TasbeehItem, {
   TasbeehItemProps,
-} from '../../components/tasbeeh/TasbeehItem';
-import AddTasbeehItemInput from '../../components/tasbeeh/AddTasbeehItemInput';
-import EditTasbeehItemInput from '../../components/tasbeeh/EditTasbeehItemInput';
-import TasbeehTarget from '../../models/tasbeehTarget';
-import { useAppDispatch } from '../../redux';
-import TasbeehTargetActions from '../../redux/actions/TasbeehTargetActions';
-import { useSelector } from 'react-redux';
-import { selectTasbeehTargets } from '../../redux/reducers/tasbeehTarget';
+} from "../../components/tasbeeh/TasbeehItem";
+import AddTasbeehItemInput from "../../components/tasbeeh/AddTasbeehItemInput";
+import EditTasbeehItemInput from "../../components/tasbeeh/EditTasbeehItemInput";
+import TasbeehTarget from "../../models/tasbeehTarget";
+import { useAppDispatch } from "../../redux";
+import TasbeehTargetActions from "../../redux/actions/TasbeehTargetActions";
+import { useSelector } from "react-redux";
+import { selectTasbeehTargets } from "../../redux/reducers/tasbeehTarget";
 
 interface TasbeehProps {
   navigation: NavigationProp<any, any>;
@@ -41,10 +41,10 @@ const Tasbeeh = ({ navigation }: TasbeehProps) => {
 
   const [editItemData, setEditItemData] = useState<TasbeehTarget>({
     id: 0,
-    title: '',
-    arabic: '',
-    background: '',
-    color: '#FFFFFF',
+    title: "",
+    arabic: "",
+    background: "",
+    color: "#FFFFFF",
     target: 100,
     counter: 0,
   });
@@ -54,16 +54,16 @@ const Tasbeeh = ({ navigation }: TasbeehProps) => {
   }, []);
 
   const themeContainerStyle =
-    colorScheme === 'light'
+    colorScheme === "light"
       ? screenMode.lightContainer
       : screenMode.darkContainer;
   const themeTextStyle =
-    colorScheme === 'light'
+    colorScheme === "light"
       ? screenMode.lightThemeText
       : screenMode.darkThemeText;
 
   const selectTasbeehHandler = (item: TasbeehTarget) => {
-    navigation.navigate('TasbeehDetails', { item });
+    navigation.navigate("TasbeehDetails", { item });
   };
 
   const renderItem = ({ item }: TasbeehItemProps) => {
@@ -88,9 +88,9 @@ const Tasbeeh = ({ navigation }: TasbeehProps) => {
         onPress={() => selectTasbeehHandler(item)}
         onLongPress={() => {
           Alert.alert(
-            'Tidak bisa mengubah data ini',
-            'Tasbeeh bawaan aplikasi tidak bisa diubah atau dihapus',
-            [{ text: 'OK' }]
+            "Tidak bisa mengubah data ini",
+            "Tasbeeh bawaan aplikasi tidak bisa diubah atau dihapus",
+            [{ text: "OK" }]
           );
         }}
         backgroundColor={item.background || themeTextStyle.color}
@@ -109,7 +109,7 @@ const Tasbeeh = ({ navigation }: TasbeehProps) => {
     );
   }
 
-  const imageTopRowContentWidth = Dimensions.get('window').width - 40;
+  const imageTopRowContentWidth = Dimensions.get("window").width - 40;
 
   return (
     <SafeAreaView style={[styles.container, themeContainerStyle]}>
@@ -133,7 +133,7 @@ const Tasbeeh = ({ navigation }: TasbeehProps) => {
           onPress={() => setAddModalVisible(true)}
         >
           <Ionicons
-            name={Platform.OS === 'android' ? 'md-add' : 'ios-add'}
+            name={Platform.OS === "android" ? "md-add" : "ios-add"}
             size={32}
             color="white"
           />
@@ -155,7 +155,7 @@ const Tasbeeh = ({ navigation }: TasbeehProps) => {
 };
 
 export const screenOptions = {
-  headerTitle: 'Tasbeeh',
+  headerTitle: "Tasbeeh",
 };
 
 const styles = StyleSheet.create({
@@ -163,8 +163,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   loadingContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   topRow: {
     flex: 2,
@@ -174,18 +174,18 @@ const styles = StyleSheet.create({
   },
   bottomRow: {
     flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
+    justifyContent: "flex-start",
+    alignItems: "center",
     padding: 10,
   },
   topRowContent: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     padding: 10,
   },
   imageTopRowContent: {
-    width: Dimensions.get('window').width - 40,
+    width: Dimensions.get("window").width - 40,
     borderRadius: 10,
   },
   roundButton: {
@@ -193,7 +193,7 @@ const styles = StyleSheet.create({
     height: 50,
     padding: 10,
     borderRadius: 100,
-    backgroundColor: 'orange',
+    backgroundColor: "orange",
   },
 });
 

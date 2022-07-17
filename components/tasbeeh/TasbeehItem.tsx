@@ -1,7 +1,7 @@
-import React from 'react';
-import { TouchableOpacity, StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { TouchableOpacity, StyleSheet, Text, View } from "react-native";
 
-import TasbeehTarget from '../../models/tasbeehTarget';
+import TasbeehTarget from "../../models/tasbeehTarget";
 
 export interface TasbeehItemProps {
   item: TasbeehTarget;
@@ -39,17 +39,17 @@ const styles = StyleSheet.create({
     padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     borderRadius: 10,
   },
   title: {
     fontSize: 24,
-    fontFamily: 'dubai-regular',
+    fontFamily: "dubai-regular",
   },
   arabicTitle: {
     fontSize: 24,
-    fontFamily: 'al-qalam',
+    fontFamily: "al-qalam",
   },
 });
 

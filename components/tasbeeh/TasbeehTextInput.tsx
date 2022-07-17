@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   View,
   StyleSheet,
@@ -7,9 +7,9 @@ import {
   TextInput,
   ReturnKeyTypeOptions,
   KeyboardTypeOptions,
-} from 'react-native';
+} from "react-native";
 
-import screenMode from '../../constants/screenMode';
+import screenMode from "../../constants/screenMode";
 
 interface TasbeehTextInputProps {
   label: string;
@@ -43,7 +43,7 @@ function TasbeehTextInput({
   const colorScheme = useColorScheme();
 
   const themeTextStyle =
-    colorScheme === 'light'
+    colorScheme === "light"
       ? screenMode.lightThemeText
       : screenMode.darkThemeText;
 
@@ -58,7 +58,7 @@ function TasbeehTextInput({
         <TextInput
           style={styles.textInput}
           placeholder={placeholder}
-          placeholderTextColor={'#777'}
+          placeholderTextColor={"#777"}
           returnKeyType={returnKeyType}
           returnKeyLabel={returnKeyLabel}
           ref={reference}
@@ -75,25 +75,25 @@ function TasbeehTextInput({
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, flexDirection: 'row' },
+  container: { flex: 1, flexDirection: "row" },
   labelInput: {
-    justifyContent: 'center',
-    alignItems: 'flex-start',
+    justifyContent: "center",
+    alignItems: "flex-start",
     flex: 1,
   },
   modalText: {
-    textAlign: 'center',
+    textAlign: "center",
   },
   textInput: {
     borderWidth: 1,
-    borderColor: '#777',
+    borderColor: "#777",
     padding: 6,
     margin: 2,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: "#FFFFFF",
     borderRadius: 10,
-    textAlign: 'center',
+    textAlign: "center",
     fontSize: 14,
-    fontFamily: 'dubai-regular',
+    fontFamily: "dubai-regular",
   },
   inputView: { flex: 1 },
 });

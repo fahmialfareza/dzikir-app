@@ -1,9 +1,9 @@
-import React from 'react';
-import { NavigationProp } from '@react-navigation/native';
-import { StyleSheet, View, useColorScheme, Dimensions } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import React from "react";
+import { NavigationProp } from "@react-navigation/native";
+import { StyleSheet, View, useColorScheme, Dimensions } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-import screenMode from '../constants/screenMode';
+import screenMode from "../constants/screenMode";
 import {
   DzikirDuaIcon,
   AlQuranIcon,
@@ -11,9 +11,9 @@ import {
   HomeAyahTopImage,
   HomeAyahBottomImage,
   ShalatTimeIcon,
-} from '../constants/assets';
+} from "../constants/assets";
 
-import ButtonMenu from '../components/ButtonMenu';
+import ButtonMenu from "../components/ButtonMenu";
 
 interface HomeProps {
   navigation: NavigationProp<any, any>;
@@ -23,12 +23,12 @@ const Home = ({ navigation }: HomeProps) => {
   const colorScheme = useColorScheme();
 
   const themeContainerStyle =
-    colorScheme === 'light'
+    colorScheme === "light"
       ? screenMode.lightContainer
       : screenMode.darkContainer;
 
-  const imageTopRowContentWidth = Dimensions.get('window').width - 40;
-  const buttonMenuIconWidth = Dimensions.get('window').width / 6;
+  const imageTopRowContentWidth = Dimensions.get("window").width - 40;
+  const buttonMenuIconWidth = Dimensions.get("window").width / 6;
 
   const selectMenuHandler = (routeName: string) => {
     navigation.navigate(routeName, {});
@@ -68,7 +68,7 @@ const Home = ({ navigation }: HomeProps) => {
             backgroundColor="#FFB648"
             color="#FFFFFF"
             text="Jadwal Sholat"
-            onPress={() => selectMenuHandler('Schedule')}
+            onPress={() => selectMenuHandler("Schedule")}
           >
             <ShalatTimeIcon
               width={buttonMenuIconWidth}
@@ -81,7 +81,7 @@ const Home = ({ navigation }: HomeProps) => {
             backgroundColor="#3D3FB8"
             color="#FFFFFF"
             text="Dzikir & Doa"
-            onPress={() => selectMenuHandler('DzikirDua')}
+            onPress={() => selectMenuHandler("DzikirDua")}
           >
             <DzikirDuaIcon
               width={buttonMenuIconWidth}
@@ -92,7 +92,7 @@ const Home = ({ navigation }: HomeProps) => {
             backgroundColor="#7D2DFF"
             color="#FFFFFF"
             text="Tasbih"
-            onPress={() => selectMenuHandler('Tasbeeh')}
+            onPress={() => selectMenuHandler("Tasbeeh")}
           >
             <TasbeehIcon
               width={buttonMenuIconWidth}
@@ -106,7 +106,7 @@ const Home = ({ navigation }: HomeProps) => {
 };
 
 export const screenOptions = {
-  headerTitle: 'Home',
+  headerTitle: "Home",
 };
 
 const styles = StyleSheet.create({
@@ -118,17 +118,17 @@ const styles = StyleSheet.create({
   },
   topRowContent: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     padding: 10,
   },
   imageTopRowContent: {
     borderRadius: 10,
   },
   buttonMenu: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "flex-start",
+    justifyContent: "space-between",
     padding: 10,
     marginBottom: -20,
   },

@@ -1,19 +1,19 @@
-import { Dispatch } from 'react';
-import { AnyAction } from 'redux';
+import { Dispatch } from "react";
+import { AnyAction } from "redux";
 import {
   fetchDetailsTasbeehTarget,
   fetchTasbeehTargets,
   insertTasbeehTarget,
   updateTasbeehTarget as updateTasbeehTargetDB,
   deleteTasbeehTarget as deleteTasbeehTargetDB,
-} from '../../helpers/db';
-import TasbeehTarget from '../../models/tasbeehTarget';
+} from "../../helpers/db";
+import TasbeehTarget from "../../models/tasbeehTarget";
 import {
   addTasbeehTarget,
   deleteTasbeehTarget,
   setTasbehTargets,
   updateTasbeehTarget,
-} from '../reducers/tasbeehTarget';
+} from "../reducers/tasbeehTarget";
 
 class TasbeehTargetActions {
   static addTasbeehTarget(items: TasbeehTarget) {
@@ -22,9 +22,9 @@ class TasbeehTargetActions {
         const insertedData = await insertTasbeehTarget(
           items.title,
           items.target,
-          items.arabic || '',
-          items.background || '',
-          items.color || ''
+          items.arabic || "",
+          items.background || "",
+          items.color || ""
         );
 
         const data = await fetchDetailsTasbeehTarget(insertedData.insertId!);
@@ -57,9 +57,9 @@ class TasbeehTargetActions {
           items.id,
           items.title,
           items.target,
-          items.arabic || '',
-          items.background || '',
-          items.color || '',
+          items.arabic || "",
+          items.background || "",
+          items.color || "",
           items.counter
         );
 

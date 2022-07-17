@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import {
   ColorSchemeName,
   SafeAreaView,
@@ -7,27 +7,27 @@ import {
   Platform,
   ScrollView,
   View,
-} from 'react-native';
-import { NavigationProp, RouteProp } from '@react-navigation/native';
-import { NativeStackNavigationOptions } from '@react-navigation/native-stack';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+} from "react-native";
+import { NavigationProp, RouteProp } from "@react-navigation/native";
+import { NativeStackNavigationOptions } from "@react-navigation/native-stack";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import screenMode from '../../constants/screenMode';
+import screenMode from "../../constants/screenMode";
 
-import MorningAfternoonDzikirModel from '../../models/morningAfternoonDzikir';
+import MorningAfternoonDzikirModel from "../../models/morningAfternoonDzikir";
 
-import HeaderDzikirDua from '../../components/dzikirDua/HeaderDzikirDua';
+import HeaderDzikirDua from "../../components/dzikirDua/HeaderDzikirDua";
 import HeaderDzikirDuaOptions, {
   HeaderDzikirDuaState,
-} from '../../components/dzikirDua/HeaderDzikirDuaOptions';
-import DzikirDuaItem from '../../components/dzikirDua/DzikirDuaItem';
+} from "../../components/dzikirDua/HeaderDzikirDuaOptions";
+import DzikirDuaItem from "../../components/dzikirDua/DzikirDuaItem";
 
-import { getData, storeData } from '../../helpers/asyncStorage';
+import { getData, storeData } from "../../helpers/asyncStorage";
 
 interface MorningAfternoonDzikirProps {
   route: RouteProp<
     { params: { title: string; data: MorningAfternoonDzikirModel[] } },
-    'params'
+    "params"
   >;
 }
 
@@ -41,7 +41,7 @@ function MorningAfternoonDzikir({ route }: MorningAfternoonDzikirProps) {
   });
 
   const themeContainerStyle =
-    colorScheme === 'light'
+    colorScheme === "light"
       ? screenMode.lightContainer
       : screenMode.darkContainer;
 
@@ -50,9 +50,9 @@ function MorningAfternoonDzikir({ route }: MorningAfternoonDzikirProps) {
   useEffect(() => {
     (async () => {
       const [arabic, latin, meaning] = await Promise.all([
-        getData('arabic'),
-        getData('latin'),
-        getData('meaning'),
+        getData("arabic"),
+        getData("latin"),
+        getData("meaning"),
       ]);
 
       if (
@@ -61,9 +61,9 @@ function MorningAfternoonDzikir({ route }: MorningAfternoonDzikirProps) {
         meaning === undefined
       ) {
         await Promise.all([
-          storeData('arabic', 'true'),
-          storeData('latin', 'true'),
-          storeData('meaning', 'true'),
+          storeData("arabic", "true"),
+          storeData("latin", "true"),
+          storeData("meaning", "true"),
         ]);
 
         setOptionsState({
@@ -76,17 +76,17 @@ function MorningAfternoonDzikir({ route }: MorningAfternoonDzikirProps) {
       }
 
       setOptionsState({
-        arabic: arabic === 'true',
-        latin: latin === 'true',
-        meaning: meaning === 'true',
+        arabic: arabic === "true",
+        latin: latin === "true",
+        meaning: meaning === "true",
       });
     })();
   }, []);
 
   useEffect(() => {
-    storeData('arabic', String(optionsState.arabic));
-    storeData('latin', String(optionsState.latin));
-    storeData('meaning', String(optionsState.meaning));
+    storeData("arabic", String(optionsState.arabic));
+    storeData("latin", String(optionsState.latin));
+    storeData("meaning", String(optionsState.meaning));
   }, [optionsState]);
 
   return (
@@ -121,20 +121,20 @@ export const screenOptions = (props: {
   route: RouteProp<{ params: { title: string; mode: ColorSchemeName } }, any>;
 }): NativeStackNavigationOptions => {
   return {
-    headerTitle: props?.route?.params?.title || 'Dzikir Pagi Petang',
+    headerTitle: props?.route?.params?.title || "Dzikir Pagi Petang",
     headerShown: true,
     headerStyle: {
-      backgroundColor: '##3D3FB8',
+      backgroundColor: "##3D3FB8",
     },
     headerTintColor:
-      Platform.OS === 'android'
-        ? '#FFFFFF'
-        : props.route.params?.mode === 'light'
-        ? '#000000'
-        : '#FFFFFF',
+      Platform.OS === "android"
+        ? "#FFFFFF"
+        : props.route.params?.mode === "light"
+        ? "#000000"
+        : "#FFFFFF",
     headerTitleStyle: {
-      fontWeight: 'bold',
-      fontFamily: 'dubai-regular',
+      fontWeight: "bold",
+      fontFamily: "dubai-regular",
     },
   };
 };
@@ -147,9 +147,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   buttonMenu: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "flex-start",
+    justifyContent: "space-between",
     padding: 10,
     marginBottom: -20,
   },

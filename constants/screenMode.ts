@@ -1,16 +1,16 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
   lightContainer: {
-    backgroundColor: '#ECFDFE',
+    backgroundColor: "#ECFDFE",
   },
   darkContainer: {
-    backgroundColor: '#242c40',
+    backgroundColor: "#242c40",
   },
   lightThemeText: {
-    color: '#242c40',
+    color: "#242c40",
   },
   darkThemeText: {
-    color: '#FFFFFF',
+    color: "#FFFFFF",
   },
 });

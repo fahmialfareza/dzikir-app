@@ -1,8 +1,8 @@
-import React from 'react';
-import { View, StyleSheet, Text, useColorScheme } from 'react-native';
-import SelectDropdown from 'react-native-select-dropdown';
+import React from "react";
+import { View, StyleSheet, Text, useColorScheme } from "react-native";
+import SelectDropdown from "react-native-select-dropdown";
 
-import screenMode from '../../constants/screenMode';
+import screenMode from "../../constants/screenMode";
 
 interface TasbeehSelectDropdownData {
   name: string;
@@ -47,7 +47,7 @@ function TasbeehSelectDropdownColors({
   const colorScheme = useColorScheme();
 
   const themeTextStyle =
-    colorScheme === 'light'
+    colorScheme === "light"
       ? screenMode.lightThemeText
       : screenMode.darkThemeText;
 
@@ -76,26 +76,26 @@ function TasbeehSelectDropdownColors({
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, flexDirection: 'row' },
+  container: { flex: 1, flexDirection: "row" },
   labelInput: {
-    justifyContent: 'center',
+    justifyContent: "center",
     flex: 1,
-    alignItems: 'flex-start',
+    alignItems: "flex-start",
   },
   modalText: {
-    textAlign: 'center',
+    textAlign: "center",
   },
   dropdownButtonStyle: {
     borderWidth: 1,
-    borderColor: '#777',
+    borderColor: "#777",
     margin: 2,
-    width: '97%',
-    backgroundColor: '#FFFFFF',
+    width: "97%",
+    backgroundColor: "#FFFFFF",
     borderRadius: 10,
   },
   dropdownButtonTextStyle: {
-    fontFamily: 'dubai-regular',
-    textAlign: 'center',
+    fontFamily: "dubai-regular",
+    textAlign: "center",
   },
   selectDropdownInput: { flex: 1 },
 });

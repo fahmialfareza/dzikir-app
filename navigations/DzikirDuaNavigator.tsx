@@ -1,16 +1,16 @@
-import React from 'react';
+import React from "react";
 import {
   createNativeStackNavigator,
   NativeStackNavigationOptions,
-} from '@react-navigation/native-stack';
-import { useColorScheme } from 'react-native';
+} from "@react-navigation/native-stack";
+import { useColorScheme } from "react-native";
 
 import Dzikir, {
   screenOptions as dzikirScreenOptions,
-} from '../screens/dzikirDua/Dzikir';
+} from "../screens/dzikirDua/Dzikir";
 import MorningAfternoonDzikir, {
   screenOptions as morningAfternoonDzikirScreenOptions,
-} from '../screens/dzikirDua/MorningAfternoonDzikir';
+} from "../screens/dzikirDua/MorningAfternoonDzikir";
 
 const defaultDzikirScreenOptions: NativeStackNavigationOptions = {
   headerShown: false,
