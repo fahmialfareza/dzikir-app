@@ -28,6 +28,7 @@ const fetchFonts = () => {
     'ds-digit': require('./assets/fonts/ds-digit.ttf'),
     'roboto-regular': require('./assets/fonts/Roboto-Regular.ttf'),
     'roboto-italic': require('./assets/fonts/Roboto-Italic.ttf'),
+    'al-qalam': require('./assets/fonts/Al-Qalam-Quran-Majeed.ttf'),
     arial: require('./assets/fonts/arial.ttf'),
   });
 };

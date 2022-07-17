@@ -151,6 +151,7 @@ const styles = StyleSheet.create({
   counterNumberText: {
     top: Dimensions.get('window').height / 10,
     fontSize: 72,
+    marginTop: 3,
     zIndex: 99999,
     position: 'absolute',
     fontFamily: 'ds-digit',
