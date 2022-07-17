@@ -1,15 +1,15 @@
-import React from 'react';
+import React from "react";
 import {
   createNativeStackNavigator,
   NativeStackNavigationOptions,
-} from '@react-navigation/native-stack';
+} from "@react-navigation/native-stack";
 
 import Tasbeeh, {
   screenOptions as tasbeehScreenOptions,
-} from '../screens/tasbeeh/Tasbeeh';
+} from "../screens/tasbeeh/Tasbeeh";
 import TasbeehCounter, {
   screenOptions as tasbeehCounterScreenOptions,
-} from '../screens/tasbeeh/TasbeehCounter';
+} from "../screens/tasbeeh/TasbeehCounter";
 
 const defaultTasbeehScreenOptions: NativeStackNavigationOptions = {
   headerShown: false,

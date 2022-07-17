@@ -1,5 +1,5 @@
-import React from 'react';
-import { Text, StyleSheet, Dimensions } from 'react-native';
+import React from "react";
+import { Text, StyleSheet, Dimensions, Platform } from "react-native";
 import Svg, {
   G,
   Path,
@@ -7,7 +7,15 @@ import Svg, {
   LinearGradient,
   Stop,
   ClipPath,
-} from 'react-native-svg';
+} from "react-native-svg";
+
+interface TasbihCounterProps {
+  count: string;
+  addColor: string;
+  resetColor: string;
+  addCounterHandler: () => Promise<void>;
+  resetCounterHandler: () => Promise<void>;
+}
 
 function TasbihCounter({
   count,
@@ -15,7 +23,7 @@ function TasbihCounter({
   addCounterHandler,
   resetColor,
   resetCounterHandler,
-}: any) {
+}: TasbihCounterProps) {
   return (
     <>
       <Text style={styles.counterNumberText}>{count}</Text>
@@ -149,13 +157,15 @@ function TasbihCounter({
 
 const styles = StyleSheet.create({
   counterNumberText: {
-    top: Dimensions.get('window').height / 10,
+    top:
+      Platform.OS == "android"
+        ? Dimensions.get("window").height / 10
+        : Dimensions.get("window").height / 11,
     fontSize: 72,
-    marginTop: 3,
     zIndex: 99999,
-    position: 'absolute',
-    fontFamily: 'ds-digit',
-    color: '#3D3FB8',
+    position: "absolute",
+    fontFamily: "ds-digit",
+    color: "#3D3FB8",
   },
 });
 

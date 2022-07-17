@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   NavigationContainer,
   createNavigationContainerRef,
-} from '@react-navigation/native';
+} from "@react-navigation/native";
 
-import TabNavigator from './TabNavigator';
+import TabNavigator from "./TabNavigator";
 
 const ref = createNavigationContainerRef();
 

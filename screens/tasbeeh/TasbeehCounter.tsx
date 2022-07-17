@@ -24,13 +24,11 @@ import screenMode from "../../constants/screenMode";
 import TasbihCounter from "../../components/tasbeeh/TasbeehCounter";
 import EditTasbeehTargetItemInput from "../../components/tasbeeh/EditTasbeehTargetItemInput";
 
-
-import { RootState, useAppDispatch } from '../../redux';
-import TasbeehTargetActions from '../../redux/actions/TasbeehTargetActions';
+import { RootState, useAppDispatch } from "../../redux";
+import TasbeehTargetActions from "../../redux/actions/TasbeehTargetActions";
 
 interface TasbeehCounterProps {
-  route: RouteProp<{ params: { item: TasbeehTarget } }, 'params'>;
-
+  route: RouteProp<{ params: { item: TasbeehTarget } }, "params">;
 }
 
 function TasbeehCounter({ route: { params, name } }: TasbeehCounterProps) {
@@ -54,18 +52,16 @@ function TasbeehCounter({ route: { params, name } }: TasbeehCounterProps) {
       : screenMode.darkContainer;
 
   const updateTasbeeh = (targetInput?: string) => {
-
     dispatch(
       TasbeehTargetActions.updateTasbeehTarget({
         id: params.item.id,
         title: params.item.title,
         target: targetInput ? parseInt(targetInput) : parseInt(target),
-        arabic: params.item.arabic || '',
-        background: params.item.background || '',
-        color: params.item.color || '',
+        arabic: params.item.arabic || "",
+        background: params.item.background || "",
+        color: params.item.color || "",
         counter: parseInt(count),
       })
-
     );
   };
 
@@ -201,7 +197,7 @@ function TasbeehCounter({ route: { params, name } }: TasbeehCounterProps) {
   };
 
   return (
-    <SafeAreaView style={[styles.container, themeContainerStyle]}>
+    <SafeAreaView style={[styles.container]}>
       <TasbeehCounterBackgroundImage
         style={styles.backgroundImage}
         width={Dimensions.get("window").width}
@@ -219,9 +215,9 @@ function TasbeehCounter({ route: { params, name } }: TasbeehCounterProps) {
           </View>
           <View style={styles.editButton}>
             <FontAwesome
-              name='pencil-square'
+              name="pencil-square"
               size={32}
-              color='white'
+              color="white"
               onPress={showDialog}
             />
             <EditTasbeehTargetItemInput
@@ -259,6 +255,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "#7D2DFF",
   },
   editButton: {
     marginTop: 3,
