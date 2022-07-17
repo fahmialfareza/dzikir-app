@@ -27,7 +27,9 @@ const TasbeehItem = ({
       <Text style={[styles.title, { color: textColor }]}>{item.title}</Text>
     </View>
     <View>
-      <Text style={[styles.title, { color: textColor }]}>{item.arabic}</Text>
+      <Text style={[styles.arabicTitle, { color: textColor }]}>
+        {item.arabic}
+      </Text>
     </View>
   </TouchableOpacity>
 );
@@ -37,13 +39,17 @@ const styles = StyleSheet.create({
     padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     borderRadius: 10,
   },
   title: {
     fontSize: 24,
-    fontFamily: 'dubai-regular',
+    fontFamily: "dubai-regular",
+  },
+  arabicTitle: {
+    fontSize: 24,
+    fontFamily: "al-qalam",
   },
 });
 

@@ -62,7 +62,7 @@ function EditTasbeehTargetItemInput({
       return;
     }
 
-    setTargetInput(text);
+    setTargetInput(Math.abs(Number(text)).toString());
   };
 
   return (
@@ -77,7 +77,7 @@ function EditTasbeehTargetItemInput({
           <View style={[styles.modalView, themeContainerStyle]}>
             <View style={styles.row}>
               <TasbeehTextInput
-                label="Target"
+                // label="Target"
                 keyboardType="number-pad"
                 placeholder="Edit Target"
                 returnKeyType="done"
@@ -114,10 +114,7 @@ function EditTasbeehTargetItemInput({
                 }}
               >
                 <Text style={styles.textStyle}>
-                  <Ionicons
-                    name={Platform.OS === 'android' ? 'md-close' : 'ios-close'}
-                    color="white"
-                  />{' '}
+    
                   Batal
                 </Text>
               </Pressable>
@@ -166,6 +163,7 @@ const styles = StyleSheet.create({
   button: {
     borderRadius: 10,
     padding: 10,
+    marginTop: 15,
     elevation: 2,
     marginVertical: 2,
     fontFamily: 'dubai-regular',
@@ -174,6 +172,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#2196F3',
   },
   textStyle: {
+    paddingTop: 4,
+    paddingBottom: 4,
     color: 'white',
     fontWeight: 'bold',
     fontFamily: 'dubai-regular',
