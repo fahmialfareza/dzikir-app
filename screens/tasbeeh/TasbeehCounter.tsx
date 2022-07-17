@@ -24,38 +24,17 @@ import screenMode from "../../constants/screenMode";
 import TasbihCounter from "../../components/tasbeeh/TasbeehCounter";
 import EditTasbeehTargetItemInput from "../../components/tasbeeh/EditTasbeehTargetItemInput";
 
-import { RootState } from "../../redux";
-import { updateTasbeehTarget } from "../../redux/actions/tasbeehTarget";
+
+import { RootState, useAppDispatch } from '../../redux';
+import TasbeehTargetActions from '../../redux/actions/TasbeehTargetActions';
 
 interface TasbeehCounterProps {
-  route: RouteProp<{ params: { item: TasbeehTarget } }, "params">;
-  updateTasbeehTarget: (
-    id: number,
-    title: string,
-    target: number,
-    arabic: string,
-    background: string,
-    color: string,
-    counter: number
-  ) => void;
+  route: RouteProp<{ params: { item: TasbeehTarget } }, 'params'>;
+
 }
 
-interface DispatchProps {
-  updateTasbeehTarget: (
-    id: number,
-    title: string,
-    target: number,
-    arabic: string,
-    background: string,
-    color: string,
-    counter: number
-  ) => void;
-}
-
-function TasbeehCounter({
-  route: { params, name },
-  updateTasbeehTarget,
-}: TasbeehCounterProps) {
+function TasbeehCounter({ route: { params, name } }: TasbeehCounterProps) {
+  const dispatch = useAppDispatch();
   const colorScheme = useColorScheme();
   const [count, setCount] = useState("0000");
   const [addColor, setAddColor] = useState("#FCDDEC");
@@ -75,18 +54,18 @@ function TasbeehCounter({
       : screenMode.darkContainer;
 
   const updateTasbeeh = (targetInput?: string) => {
-    updateTasbeehTarget(
-      params.item.id,
-      params.item.title,
-      targetInput
-        ? parseInt(
-            parseInt(Math.abs(parseInt(targetInput)).toString()).toString()
-          )
-        : parseInt(target),
-      params.item.arabic || "",
-      params.item.background || "",
-      params.item.color || "",
-      parseInt(count)
+
+    dispatch(
+      TasbeehTargetActions.updateTasbeehTarget({
+        id: params.item.id,
+        title: params.item.title,
+        target: targetInput ? parseInt(targetInput) : parseInt(target),
+        arabic: params.item.arabic || '',
+        background: params.item.background || '',
+        color: params.item.color || '',
+        counter: parseInt(count),
+      })
+
     );
   };
 
@@ -153,7 +132,7 @@ function TasbeehCounter({
           return;
         }
 
-        await updateTasbeeh(Math.abs(parseInt(targetInput)).toString());
+        updateTasbeeh(Math.abs(parseInt(targetInput)).toString());
 
         setOldTarget(Math.abs(parseInt(targetInput)).toString());
 
@@ -240,9 +219,9 @@ function TasbeehCounter({
           </View>
           <View style={styles.editButton}>
             <FontAwesome
-              name="pencil-square"
+              name='pencil-square'
               size={32}
-              color="white"
+              color='white'
               onPress={showDialog}
             />
             <EditTasbeehTargetItemInput
@@ -379,36 +358,4 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = (state: RootState) => ({
-  tasbeehTarget: state.tasbeehTarget,
-});
-
-const mapDispatchToProps = (
-  dispatch: ThunkDispatch<{}, {}, any>
-): DispatchProps => {
-  return {
-    updateTasbeehTarget: async (
-      id: number,
-      title: string,
-      target: number,
-      arabic: string,
-      background: string,
-      color: string,
-      counter: number
-    ) => {
-      await dispatch(
-        updateTasbeehTarget(
-          id,
-          title,
-          target,
-          arabic,
-          background,
-          color,
-          counter
-        )
-      );
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(TasbeehCounter);
+export default TasbeehCounter;

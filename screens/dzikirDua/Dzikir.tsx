@@ -1,37 +1,28 @@
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { ThunkDispatch } from 'redux-thunk';
 import { NavigationProp } from '@react-navigation/native';
 import { StyleSheet, View, useColorScheme } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
 import screenMode from '../../constants/screenMode';
-
 import ButtonMenu from '../../components/ButtonMenu';
-
-import { getMorningAfternoonDzikir } from '../../redux/actions/morningAfternoonDzikir';
-import { RootState } from '../../redux';
-import { MorningAfternoonDzikirState } from '../../redux/types';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from '../../redux';
+import MorningAfternoonDzikirActions from '../../redux/actions/MorningAfternoonDzikirActions';
+import { selectMorningAfternoonDzikir } from '../../redux/reducers/morningAfternoonDzikir';
 
 interface DzikirProps {
   navigation: NavigationProp<any, any>;
-  getMorningAfternoonDzikir: () => void;
-  morningAfternoonDzikir: MorningAfternoonDzikirState;
 }
 
-interface DispatchProps {
-  getMorningAfternoonDzikir: () => void;
-}
-
-const Dzikir = ({
-  navigation,
-  getMorningAfternoonDzikir,
-  morningAfternoonDzikir,
-}: DzikirProps) => {
+const Dzikir = ({ navigation }: DzikirProps) => {
+  const dispatch = useAppDispatch();
   const colorScheme = useColorScheme();
 
+  const { morningDzikir, eveningDzikir } = useSelector(
+    selectMorningAfternoonDzikir
+  );
+
   useEffect(() => {
-    getMorningAfternoonDzikir();
+    dispatch(MorningAfternoonDzikirActions.getMorningAfternoonDzikir());
   }, []);
 
   const themeContainerStyle =
@@ -58,13 +49,13 @@ const Dzikir = ({
       <View style={styles.row}>
         <View style={styles.buttonMenu}>
           <ButtonMenu
-            backgroundColor="#FF4444"
-            color="#FFFFFF"
-            text="Dzikir Pagi"
+            backgroundColor='#FF4444'
+            color='#FFFFFF'
+            text='Dzikir Pagi'
             onPress={() =>
               selectMenuHandler('MorningAfternoonDzikir', {
                 title: 'Dzikir Pagi',
-                data: morningAfternoonDzikir.morningDzikir,
+                data: morningDzikir,
               })
             }
           >
@@ -74,13 +65,13 @@ const Dzikir = ({
             /> */}
           </ButtonMenu>
           <ButtonMenu
-            backgroundColor="#FFB648"
-            color="#FFFFFF"
-            text="Dzikir Petang"
+            backgroundColor='#FFB648'
+            color='#FFFFFF'
+            text='Dzikir Petang'
             onPress={() =>
               selectMenuHandler('MorningAfternoonDzikir', {
                 title: 'Dzikir Petang',
-                data: morningAfternoonDzikir.eveningDzikir,
+                data: eveningDzikir,
               })
             }
           >
@@ -118,16 +109,4 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = (state: RootState) => ({
-  morningAfternoonDzikir: state.morningAfternoonDzikir,
-});
-
-const mapDispatchToProps = (
-  dispatch: ThunkDispatch<{}, {}, any>
-): DispatchProps => {
-  return {
-    getMorningAfternoonDzikir: () => dispatch(getMorningAfternoonDzikir()),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Dzikir);
+export default Dzikir;
