@@ -130,7 +130,7 @@ export const screenOptions = (props: {
       Platform.OS === "android"
         ? "#FFFFFF"
         : props.route.params?.mode === "light"
-        ? "#000000"
+        ? "#FFFFFF"
         : "#FFFFFF",
     headerTitleStyle: {
       fontWeight: "bold",
