@@ -23,7 +23,7 @@ const data: TasbeehTarget[] = [
     id: 3,
     title: "La ilaha illalllah",
     arabic: "لا إله إلاّ الله",
-    background: "#3D3FB8",
+    background: "#26A2B3",
     color: "#fff",
     target: 100,
     counter: 0,

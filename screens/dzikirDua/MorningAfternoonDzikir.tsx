@@ -124,13 +124,13 @@ export const screenOptions = (props: {
     headerTitle: props?.route?.params?.title || "Dzikir Pagi Petang",
     headerShown: true,
     headerStyle: {
-      backgroundColor: "##3D3FB8",
+      backgroundColor: "#26A2B3",
     },
     headerTintColor:
       Platform.OS === "android"
         ? "#FFFFFF"
         : props.route.params?.mode === "light"
-        ? "#000000"
+        ? "#FFFFFF"
         : "#FFFFFF",
     headerTitleStyle: {
       fontWeight: "bold",

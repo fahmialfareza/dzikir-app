@@ -8,7 +8,7 @@ interface HeaderDzikirDuaProps {
 }
 
 const HeaderDzikirDua = ({ title }: HeaderDzikirDuaProps) => (
-  <View style={[styles.item, { backgroundColor: "#3D3FB8" }]}>
+  <View style={[styles.item, { backgroundColor: "#26A2B3" }]}>
     <View style={styles.iconStyle}>
       <DzikirDuaIcon width={24} height={24} />
     </View>
