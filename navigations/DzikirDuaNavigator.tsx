@@ -11,6 +11,9 @@ import Dzikir, {
 import MorningAfternoonDzikir, {
   screenOptions as morningAfternoonDzikirScreenOptions,
 } from "../screens/dzikirDua/MorningAfternoonDzikir";
+import EveryDaysDua, {
+  screenOptions as everyDaysDuaScreenOptions,
+} from "../screens/dzikirDua/EveryDaysDua";
 
 const defaultDzikirScreenOptions: NativeStackNavigationOptions = {
   headerShown: false,
@@ -33,6 +36,11 @@ const DzikirDuaNavigator = () => {
         component={MorningAfternoonDzikir}
         initialParams={{ mode: colorScheme }}
         options={morningAfternoonDzikirScreenOptions}
+      />
+      <Stack.Screen
+        name="EveryDaysDuaHome"
+        component={EveryDaysDua}
+        options={everyDaysDuaScreenOptions}
       />
     </Stack.Navigator>
   );
