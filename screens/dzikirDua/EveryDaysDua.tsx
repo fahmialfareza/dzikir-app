@@ -259,6 +259,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: "dubai-regular",
     color: "#26C6DA",
+    width: "100%",
   },
   filterIcon: {
     flex: 1,
