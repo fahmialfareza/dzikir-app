@@ -78,7 +78,7 @@ const Home = ({ navigation }: HomeProps) => {
         </View>
         <View style={styles.buttonMenu}>
           <ButtonMenu
-            backgroundColor="#3D3FB8"
+            backgroundColor="#26A2B3"
             color="#FFFFFF"
             text="Dzikir & Doa"
             onPress={() => selectMenuHandler("DzikirDua")}

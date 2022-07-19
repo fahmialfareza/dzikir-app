@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   noteBackground: {
-    backgroundColor: "#3D3FB8",
+    backgroundColor: "#26A2B3",
     borderRadius: 16,
     paddingHorizontal: 10,
     justifyContent: "center",
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     fontFamily: "dubai-regular",
   },
   arabic: {
-    fontFamily: "arial",
+    fontFamily: "al-qalam",
     fontSize: 22,
     textAlign: Platform.OS === "ios" ? "justify" : "center",
     writingDirection: "rtl",

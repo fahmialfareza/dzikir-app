@@ -336,7 +336,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 24,
     fontFamily: "ds-digit",
-    color: "#3D3FB8",
+    color: "#26A2B3",
   },
   targetView: {
     flexDirection: "row",

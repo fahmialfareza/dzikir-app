@@ -32,7 +32,7 @@ const HeaderDzikirDuaOptions = ({
       : screenMode.darkThemeText;
 
   const borderColor =
-    colorScheme === "light" ? "#3D3FB8" : themeTextStyle.color;
+    colorScheme === "light" ? "#26A2B3" : themeTextStyle.color;
 
   const itemBorderColor = colorScheme === "light" ? "#F1F1F1" : "#1F1F1F";
 
@@ -50,7 +50,7 @@ const HeaderDzikirDuaOptions = ({
             style={{ ...styles.checkbox, borderColor }}
             value={state.arabic}
             onValueChange={() => setState({ ...state, arabic: !state.arabic })}
-            color={state.arabic ? "#3D3FB8" : undefined}
+            color={state.arabic ? "#26A2B3" : undefined}
           />
           <Text style={[styles.paragraph, themeTextStyle]}>Arabic</Text>
         </View>
@@ -60,7 +60,7 @@ const HeaderDzikirDuaOptions = ({
             style={{ ...styles.checkbox, borderColor }}
             value={state.latin}
             onValueChange={() => setState({ ...state, latin: !state.latin })}
-            color={state.latin ? "#3D3FB8" : undefined}
+            color={state.latin ? "#26A2B3" : undefined}
           />
           <Text style={[styles.paragraph, themeTextStyle]}>Latin</Text>
         </View>
@@ -72,7 +72,7 @@ const HeaderDzikirDuaOptions = ({
             onValueChange={() =>
               setState({ ...state, meaning: !state.meaning })
             }
-            color={state.meaning ? "#3D3FB8" : undefined}
+            color={state.meaning ? "#26A2B3" : undefined}
           />
           <Text style={[styles.paragraph, themeTextStyle]}>Arti</Text>
         </View>
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
   },
   checkbox: {
     margin: 8,
-    borderColor: "#3D3FB8",
+    borderColor: "#26A2B3",
   },
   row: {
     flex: 1,
