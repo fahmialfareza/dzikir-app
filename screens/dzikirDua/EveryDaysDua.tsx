@@ -255,11 +255,15 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   searchInput: {
-    padding: 6,
+    paddingHorizontal: 6,
+    paddingVertical: 2,
     fontSize: 14,
     fontFamily: "dubai-regular",
     color: "#26C6DA",
     width: "100%",
+    alignContent: "center",
+    justifyContent: "center",
+    textAlignVertical: "center",
   },
   filterIcon: {
     flex: 1,
