@@ -1,6 +1,12 @@
 import React, { useEffect } from "react";
 import { NavigationProp } from "@react-navigation/native";
-import { StyleSheet, View, useColorScheme, Dimensions } from "react-native";
+import {
+  StyleSheet,
+  View,
+  useColorScheme,
+  Dimensions,
+  Platform,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useSelector } from "react-redux";
 import screenMode from "../../constants/screenMode";
@@ -42,6 +48,7 @@ const Dzikir = ({ navigation }: DzikirProps) => {
   };
 
   const width = Dimensions.get("screen").width / 1.1;
+  const gap = Platform.OS === "android" ? [] : [styles.gapHorizontal];
 
   return (
     <SafeAreaView style={[styles.container, themeContainerStyle]}>
@@ -49,39 +56,53 @@ const Dzikir = ({ navigation }: DzikirProps) => {
         <DzikirDuaImage style={styles.gapVertical} />
         <DzikirDuaTitle style={styles.gapVertical} />
       </View>
-      <View style={[styles.row, styles.debug]}>
-        <View style={[styles.buttonMenu, styles.debug, styles.gap]}>
-          <TouchableRipple
-            onPress={() => {
-              selectMenuHandler("MorningAfternoonDzikir", {
-                title: "Dzikir Pagi",
-                data: morningDzikir,
-              });
-            }}
-          >
-            <MorningDzikirButton width={width / 2.2} />
-          </TouchableRipple>
-          <TouchableRipple
-            onPress={() => {
-              selectMenuHandler("MorningAfternoonDzikir", {
-                title: "Dzikir Petang",
-                data: eveningDzikir,
-              });
-            }}
-          >
-            <EveningDzikirButton width={width / 2.2} />
-          </TouchableRipple>
-        </View>
-        <View style={[styles.buttonMenu, styles.debug, styles.gap]}>
-          <TouchableRipple
-            onPress={() => {
-              selectMenuHandler("EveryDaysDuaHome", {
-                title: "Doa Harian",
-              });
-            }}
-          >
-            <DailyPrayerActivityButton width={"100%"} />
-          </TouchableRipple>
+      <View style={[styles.row]}>
+        <View style={gap}>
+          <View style={[styles.buttonMenu, styles.gap]}>
+            <TouchableRipple
+              onPress={() => {
+                selectMenuHandler("MorningAfternoonDzikir", {
+                  title: "Dzikir Pagi",
+                  data: morningDzikir,
+                });
+              }}
+            >
+              {Platform.OS === "android" ? (
+                <MorningDzikirButton width={width / 2.2} />
+              ) : (
+                <MorningDzikirButton />
+              )}
+            </TouchableRipple>
+            <TouchableRipple
+              onPress={() => {
+                selectMenuHandler("MorningAfternoonDzikir", {
+                  title: "Dzikir Petang",
+                  data: eveningDzikir,
+                });
+              }}
+            >
+              {Platform.OS === "android" ? (
+                <EveningDzikirButton width={width / 2.2} />
+              ) : (
+                <EveningDzikirButton />
+              )}
+            </TouchableRipple>
+          </View>
+          <View style={[styles.buttonMenu, styles.gap]}>
+            <TouchableRipple
+              onPress={() => {
+                selectMenuHandler("EveryDaysDuaHome", {
+                  title: "Doa Harian",
+                });
+              }}
+            >
+              {Platform.OS === "android" ? (
+                <DailyPrayerActivityButton width={"100%"} />
+              ) : (
+                <DailyPrayerActivityButton />
+              )}
+            </TouchableRipple>
+          </View>
         </View>
       </View>
     </SafeAreaView>
@@ -94,8 +115,8 @@ export const screenOptions = {
 
 const styles = StyleSheet.create({
   debug: {
-    // borderWidth: 1,
-    // borderColor: "red",
+    borderWidth: 1,
+    borderColor: "red",
   },
   container: {
     flex: 1,
@@ -105,6 +126,9 @@ const styles = StyleSheet.create({
   },
   gapVertical: {
     marginVertical: Dimensions.get("screen").width / 30,
+  },
+  gapHorizontal: {
+    marginHorizontal: Dimensions.get("screen").width / 4.84,
   },
   gap: {
     marginHorizontal: Dimensions.get("screen").width / 15,

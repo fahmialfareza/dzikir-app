@@ -16,7 +16,7 @@ const TouchableRipple = ({ onPress, style, children }: Props) => {
       background={TouchableNativeFeedback.Ripple("#fff", false)}
       useForeground={true}
       onPress={onPress}
-      {...style}
+      style={style}
     >
       {children}
     </TouchableNativeFeedback>
@@ -25,7 +25,7 @@ const TouchableRipple = ({ onPress, style, children }: Props) => {
       activeOpacity={0.6}
       underlayColor="#fff"
       onPress={onPress}
-      {...style}
+      style={style}
     >
       {children}
     </TouchableHighlight>
