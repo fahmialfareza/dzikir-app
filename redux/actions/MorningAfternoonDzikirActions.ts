@@ -1,11 +1,14 @@
+import { Dispatch } from "react";
+import { AnyAction } from "redux";
+
 import MorningAfternoonDzikir from "../../models/morningAfternoonDzikir";
+
 import MorningAfternoonDzikirData from "../../constants/data/morningAfternoonDzikirData";
+
 import {
   setEveningAfternoonDzikir,
   setMorningAfternoonDzikir,
 } from "../reducers/morningAfternoonDzikir";
-import { Dispatch } from "react";
-import { AnyAction } from "redux";
 
 class MorningAfternoonDzikirActions {
   static getMorningAfternoonDzikir() {

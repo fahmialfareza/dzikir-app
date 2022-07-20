@@ -2,9 +2,12 @@ import React, { useEffect } from "react";
 import { NavigationProp } from "@react-navigation/native";
 import { StyleSheet, View, useColorScheme } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import screenMode from "../../constants/screenMode";
-import ButtonMenu from "../../components/ButtonMenu";
 import { useSelector } from "react-redux";
+
+import screenMode from "../../constants/screenMode";
+
+import ButtonMenu from "../../components/ButtonMenu";
+
 import { useAppDispatch } from "../../redux";
 import MorningAfternoonDzikirActions from "../../redux/actions/MorningAfternoonDzikirActions";
 import { selectMorningAfternoonDzikir } from "../../redux/reducers/morningAfternoonDzikir";
@@ -81,6 +84,23 @@ const Dzikir = ({ navigation }: DzikirProps) => {
             /> */}
           </ButtonMenu>
         </View>
+        <View style={styles.buttonMenu}>
+          <ButtonMenu
+            backgroundColor="#FF4444"
+            color="#FFFFFF"
+            text="Doa Harian"
+            onPress={() =>
+              selectMenuHandler("EveryDaysDuaHome", {
+                title: "Doa Harian",
+              })
+            }
+          >
+            {/* <AlQuranIcon
+              width={buttonMenuIconWidth}
+              style={styles.buttonMenuImage}
+            /> */}
+          </ButtonMenu>
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -98,6 +118,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   buttonMenu: {
+    flex: 1,
     flexDirection: "row",
     alignItems: "flex-start",
     justifyContent: "space-between",

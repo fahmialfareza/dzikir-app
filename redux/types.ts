@@ -1,5 +1,6 @@
 import TasbeehTarget from "../models/tasbeehTarget";
 import MorningAfternoonDzikir from "../models/morningAfternoonDzikir";
+import EveryDaysDua from "../models/everyDaysDua";
 
 // Tasbeeh Target
 export interface TasbeehTargetState {
@@ -19,3 +20,14 @@ export interface MorningAfternoonDzikirState {
 }
 
 export const GET_MORNING_AFTERNOON_DZIKIR = "GET_MORNING_AFTERNOON_DZIKIR";
+
+export interface EveryDaysDuaState {
+  everyDaysDua: EveryDaysDua[];
+}
+
+export interface EveryDaysDuaFilters {
+  before: boolean;
+  after: boolean;
+}
+
+export const GET_EVERY_DAYS_DUA = "GET_EVERY_DAYS_DUA";
