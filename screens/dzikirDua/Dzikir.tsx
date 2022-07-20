@@ -1,12 +1,6 @@
 import React, { useEffect } from "react";
 import { NavigationProp } from "@react-navigation/native";
-import {
-  StyleSheet,
-  View,
-  useColorScheme,
-  Dimensions,
-  Platform,
-} from "react-native";
+import { StyleSheet, View, useColorScheme, Dimensions } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useSelector } from "react-redux";
 import screenMode from "../../constants/screenMode";
@@ -48,7 +42,6 @@ const Dzikir = ({ navigation }: DzikirProps) => {
   };
 
   const width = Dimensions.get("screen").width / 1.1;
-  const gap = Platform.OS === "android" ? [] : [styles.gapHorizontal];
 
   return (
     <SafeAreaView style={[styles.container, themeContainerStyle]}>
@@ -57,52 +50,42 @@ const Dzikir = ({ navigation }: DzikirProps) => {
         <DzikirDuaTitle style={styles.gapVertical} />
       </View>
       <View style={[styles.row]}>
-        <View style={gap}>
-          <View style={[styles.buttonMenu, styles.gap]}>
-            <TouchableRipple
-              onPress={() => {
-                selectMenuHandler("MorningAfternoonDzikir", {
-                  title: "Dzikir Pagi",
-                  data: morningDzikir,
-                });
-              }}
-            >
-              {Platform.OS === "android" ? (
-                <MorningDzikirButton width={width / 2.2} />
-              ) : (
-                <MorningDzikirButton />
-              )}
-            </TouchableRipple>
-            <TouchableRipple
-              onPress={() => {
-                selectMenuHandler("MorningAfternoonDzikir", {
-                  title: "Dzikir Petang",
-                  data: eveningDzikir,
-                });
-              }}
-            >
-              {Platform.OS === "android" ? (
-                <EveningDzikirButton width={width / 2.2} />
-              ) : (
-                <EveningDzikirButton />
-              )}
-            </TouchableRipple>
-          </View>
-          <View style={[styles.buttonMenu, styles.gap]}>
-            <TouchableRipple
-              onPress={() => {
-                selectMenuHandler("EveryDaysDuaHome", {
-                  title: "Doa Harian",
-                });
-              }}
-            >
-              {Platform.OS === "android" ? (
-                <DailyPrayerActivityButton width={"100%"} />
-              ) : (
-                <DailyPrayerActivityButton />
-              )}
-            </TouchableRipple>
-          </View>
+        <View style={[styles.buttonMenu, styles.gap]}>
+          <TouchableRipple
+            onPress={() => {
+              selectMenuHandler("MorningAfternoonDzikir", {
+                title: "Dzikir Pagi",
+                data: morningDzikir,
+              });
+            }}
+          >
+            <MorningDzikirButton width={width / 2.22} height={width / 3.5} />
+          </TouchableRipple>
+          <TouchableRipple
+            onPress={() => {
+              selectMenuHandler("MorningAfternoonDzikir", {
+                title: "Dzikir Petang",
+                data: eveningDzikir,
+              });
+            }}
+          >
+            <EveningDzikirButton width={width / 2.22} height={width / 3.5} />
+          </TouchableRipple>
+        </View>
+        <View style={[styles.buttonMenu, styles.buttonSingle, styles.gap]}>
+          <TouchableRipple
+            onPress={() => {
+              selectMenuHandler("EveryDaysDuaHome", {
+                title: "Doa Harian",
+              });
+            }}
+          >
+            <DailyPrayerActivityButton
+              width={width / 1.053}
+              height={width / 3.5}
+              preserveAspectRatio="none"
+            />
+          </TouchableRipple>
         </View>
       </View>
     </SafeAreaView>
@@ -142,6 +125,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
+  },
+  buttonSingle: {
+    justifyContent: "center",
   },
 });
 
