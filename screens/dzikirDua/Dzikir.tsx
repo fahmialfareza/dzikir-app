@@ -1,16 +1,24 @@
 import React, { useEffect } from "react";
 import { NavigationProp } from "@react-navigation/native";
-import { StyleSheet, View, useColorScheme } from "react-native";
+import {
+  StyleSheet,
+  View,
+  useColorScheme,
+  TouchableNativeFeedback,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useSelector } from "react-redux";
-
 import screenMode from "../../constants/screenMode";
-
-import ButtonMenu from "../../components/ButtonMenu";
-
 import { useAppDispatch } from "../../redux";
 import MorningAfternoonDzikirActions from "../../redux/actions/MorningAfternoonDzikirActions";
 import { selectMorningAfternoonDzikir } from "../../redux/reducers/morningAfternoonDzikir";
+import {
+  DailyPrayerActivityButton,
+  DzikirDuaImage,
+  DzikirDuaTitle,
+  EveningDzikirButton,
+  MorningDzikirButton,
+} from "../../constants/assets";
 
 interface DzikirProps {
   navigation: NavigationProp<any, any>;
@@ -39,67 +47,49 @@ const Dzikir = ({ navigation }: DzikirProps) => {
 
   return (
     <SafeAreaView style={[styles.container, themeContainerStyle]}>
-      <View style={styles.row}>
-        {/* <View style={styles.topRowContent}></View>
-        <View style={styles.topRowContent}>
-          <HomeAyahImage
-            style={styles.imageTopRowContent}
-            width={imageTopRowContentWidth}
-          />
-        </View> */}
+      <View style={[styles.row, styles.imageBanner]}>
+        <DzikirDuaImage style={styles.gap} />
+        <DzikirDuaTitle style={styles.gap} />
       </View>
-
-      <View style={styles.row}>
-        <View style={styles.buttonMenu}>
-          <ButtonMenu
-            backgroundColor="#FF4444"
-            color="#FFFFFF"
-            text="Dzikir Pagi"
-            onPress={() =>
+      <View style={[styles.row]}>
+        <View style={[styles.buttonMenu, styles.gap]}>
+          <TouchableNativeFeedback
+            background={TouchableNativeFeedback.Ripple("#fff", false)}
+            useForeground={true}
+            onPress={() => {
               selectMenuHandler("MorningAfternoonDzikir", {
                 title: "Dzikir Pagi",
                 data: morningDzikir,
-              })
-            }
+              });
+            }}
           >
-            {/* <AlQuranIcon
-              width={buttonMenuIconWidth}
-              style={styles.buttonMenuImage}
-            /> */}
-          </ButtonMenu>
-          <ButtonMenu
-            backgroundColor="#FFB648"
-            color="#FFFFFF"
-            text="Dzikir Petang"
-            onPress={() =>
+            <MorningDzikirButton />
+          </TouchableNativeFeedback>
+          <TouchableNativeFeedback
+            background={TouchableNativeFeedback.Ripple("#fff", false)}
+            useForeground={true}
+            onPress={() => {
               selectMenuHandler("MorningAfternoonDzikir", {
                 title: "Dzikir Petang",
                 data: eveningDzikir,
-              })
-            }
+              });
+            }}
           >
-            {/* <ShalatTimeIcon
-              width={buttonMenuIconWidth}
-              style={styles.buttonMenuImage}
-            /> */}
-          </ButtonMenu>
+            <EveningDzikirButton />
+          </TouchableNativeFeedback>
         </View>
-        <View style={styles.buttonMenu}>
-          <ButtonMenu
-            backgroundColor="#FF4444"
-            color="#FFFFFF"
-            text="Doa Harian"
-            onPress={() =>
+        <View style={[styles.buttonMenu, styles.gap]}>
+          <TouchableNativeFeedback
+            background={TouchableNativeFeedback.Ripple("#fff", false)}
+            useForeground={true}
+            onPress={() => {
               selectMenuHandler("EveryDaysDuaHome", {
                 title: "Doa Harian",
-              })
-            }
+              });
+            }}
           >
-            {/* <AlQuranIcon
-              width={buttonMenuIconWidth}
-              style={styles.buttonMenuImage}
-            /> */}
-          </ButtonMenu>
+            <DailyPrayerActivityButton />
+          </TouchableNativeFeedback>
         </View>
       </View>
     </SafeAreaView>
@@ -117,13 +107,17 @@ const styles = StyleSheet.create({
   row: {
     flex: 1,
   },
+  gap: {
+    margin: 15,
+  },
+  imageBanner: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
   buttonMenu: {
-    flex: 1,
     flexDirection: "row",
-    alignItems: "flex-start",
-    justifyContent: "space-between",
-    padding: 10,
-    marginBottom: -20,
+    alignItems: "center",
+    justifyContent: "space-around",
   },
   buttonMenuImage: {
     marginBottom: 4,
