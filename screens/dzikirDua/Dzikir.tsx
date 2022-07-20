@@ -1,11 +1,6 @@
 import React, { useEffect } from "react";
 import { NavigationProp } from "@react-navigation/native";
-import {
-  StyleSheet,
-  View,
-  useColorScheme,
-  TouchableNativeFeedback,
-} from "react-native";
+import { StyleSheet, View, useColorScheme, Dimensions } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useSelector } from "react-redux";
 import screenMode from "../../constants/screenMode";
@@ -19,6 +14,7 @@ import {
   EveningDzikirButton,
   MorningDzikirButton,
 } from "../../constants/assets";
+import TouchableRipple from "../../components/TouchableRipple";
 
 interface DzikirProps {
   navigation: NavigationProp<any, any>;
@@ -45,17 +41,17 @@ const Dzikir = ({ navigation }: DzikirProps) => {
     navigation.navigate(routeName, params);
   };
 
+  const width = Dimensions.get("screen").width / 1.1;
+
   return (
     <SafeAreaView style={[styles.container, themeContainerStyle]}>
       <View style={[styles.row, styles.imageBanner]}>
-        <DzikirDuaImage style={styles.gap} />
-        <DzikirDuaTitle style={styles.gap} />
+        <DzikirDuaImage style={styles.gapVertical} />
+        <DzikirDuaTitle style={styles.gapVertical} />
       </View>
-      <View style={[styles.row]}>
-        <View style={[styles.buttonMenu, styles.gap]}>
-          <TouchableNativeFeedback
-            background={TouchableNativeFeedback.Ripple("#fff", false)}
-            useForeground={true}
+      <View style={[styles.row, styles.debug]}>
+        <View style={[styles.buttonMenu, styles.debug, styles.gap]}>
+          <TouchableRipple
             onPress={() => {
               selectMenuHandler("MorningAfternoonDzikir", {
                 title: "Dzikir Pagi",
@@ -63,11 +59,9 @@ const Dzikir = ({ navigation }: DzikirProps) => {
               });
             }}
           >
-            <MorningDzikirButton />
-          </TouchableNativeFeedback>
-          <TouchableNativeFeedback
-            background={TouchableNativeFeedback.Ripple("#fff", false)}
-            useForeground={true}
+            <MorningDzikirButton width={width / 2.2} />
+          </TouchableRipple>
+          <TouchableRipple
             onPress={() => {
               selectMenuHandler("MorningAfternoonDzikir", {
                 title: "Dzikir Petang",
@@ -75,21 +69,19 @@ const Dzikir = ({ navigation }: DzikirProps) => {
               });
             }}
           >
-            <EveningDzikirButton />
-          </TouchableNativeFeedback>
+            <EveningDzikirButton width={width / 2.2} />
+          </TouchableRipple>
         </View>
-        <View style={[styles.buttonMenu, styles.gap]}>
-          <TouchableNativeFeedback
-            background={TouchableNativeFeedback.Ripple("#fff", false)}
-            useForeground={true}
+        <View style={[styles.buttonMenu, styles.debug, styles.gap]}>
+          <TouchableRipple
             onPress={() => {
               selectMenuHandler("EveryDaysDuaHome", {
                 title: "Doa Harian",
               });
             }}
           >
-            <DailyPrayerActivityButton />
-          </TouchableNativeFeedback>
+            <DailyPrayerActivityButton width={"100%"} />
+          </TouchableRipple>
         </View>
       </View>
     </SafeAreaView>
@@ -101,14 +93,22 @@ export const screenOptions = {
 };
 
 const styles = StyleSheet.create({
+  debug: {
+    // borderWidth: 1,
+    // borderColor: "red",
+  },
   container: {
     flex: 1,
   },
   row: {
     flex: 1,
   },
+  gapVertical: {
+    marginVertical: Dimensions.get("screen").width / 30,
+  },
   gap: {
-    margin: 15,
+    marginHorizontal: Dimensions.get("screen").width / 15,
+    marginVertical: Dimensions.get("screen").width / 50,
   },
   imageBanner: {
     justifyContent: "center",
@@ -117,10 +117,7 @@ const styles = StyleSheet.create({
   buttonMenu: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-around",
-  },
-  buttonMenuImage: {
-    marginBottom: 4,
+    justifyContent: "space-between",
   },
 });
 
