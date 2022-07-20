@@ -82,7 +82,7 @@ const Dzikir = ({ navigation }: DzikirProps) => {
           >
             <DailyPrayerActivityButton
               width={width / 1.053}
-              height={width / 3.5}
+              height={width / 3.7}
               preserveAspectRatio="none"
             />
           </TouchableRipple>
