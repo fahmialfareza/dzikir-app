@@ -1,5 +1,5 @@
 import AlQuranIconAsset from "../assets/icons/alquran.svg";
-import ShalatTimeIconAsset from "../assets/icons/shalat-time.svg";
+import SalatTimeIconAsset from "../assets/icons/salat-time.svg";
 import DzikirDuaIconAsset from "../assets/icons/dzikir-dua.svg";
 import TasbeehIconAsset from "../assets/icons/tasbeeh.svg";
 import HomeIconAsset from "../assets/icons/home.svg";
@@ -18,7 +18,7 @@ export const DzikirDuaIcon = DzikirDuaIconAsset;
 export const AlQuranIcon = AlQuranIconAsset;
 export const TasbeehIcon = TasbeehIconAsset;
 export const HomeIcon = HomeIconAsset;
-export const ShalatTimeIcon = ShalatTimeIconAsset;
+export const SalatTimeIcon = SalatTimeIconAsset;
 
 // Images
 export const HomeAyahTopImage = HomeAyahTopImageAsset;

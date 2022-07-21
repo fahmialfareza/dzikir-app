@@ -8,21 +8,20 @@ import {
   AlQuranIcon,
   TasbeehIcon,
   HomeIcon,
-  ShalatTimeIcon,
+  SalatTimeIcon,
 } from "../constants/assets";
 
 import HomeScreen, {
   screenOptions as homeScreenOptions,
 } from "../screens/Home";
-import AlQuranScreen, {
-  screenOptions as alQuranScreenOptions,
-} from "../screens/AlQuran";
 import ShalatTimeScreen, {
   screenOptions as shalatTimeScreenOptions,
-} from "../screens/ShalatTime";
+} from "../screens/salatTime/SalatTime";
 
 import DzikirDuaNavigator from "./DzikirDuaNavigator";
 import TasbeehNavigator from "./TasbeehNavigator";
+import AlQuranNavigator from "./AlQuranNavigator";
+import SalatTimeNavigator from "./SalatTimeNavigator";
 
 interface TabNavigatorProps {
   routeName?: string;
@@ -79,27 +78,26 @@ const TabNavigator = ({ routeName }: TabNavigatorProps) => {
     >
       <Tab.Screen
         name="Al-Qur'an"
-        component={AlQuranScreen}
+        component={AlQuranNavigator}
         options={{
           tabBarIcon: ({ color }) => (
             <View>
               <AlQuranIcon width={24} height={24} color={color} />
             </View>
           ),
-          ...alQuranScreenOptions,
+          tabBarLabel: "Al-Qur'an",
         }}
       ></Tab.Screen>
       <Tab.Screen
         name="Schedule"
-        component={ShalatTimeScreen}
+        component={SalatTimeNavigator}
         options={{
           tabBarIcon: ({ color }) => (
             <View>
-              <ShalatTimeIcon width={24} height={24} color={color} />
+              <SalatTimeIcon width={24} height={24} color={color} />
             </View>
           ),
           tabBarLabel: "Jadwal",
-          ...shalatTimeScreenOptions,
         }}
       ></Tab.Screen>
       <Tab.Screen
