@@ -18,7 +18,7 @@ class EveryDaysDuaActions {
   ) {
     return async (dispatch: Dispatch<AnyAction>) => {
       try {
-        const regexSearch = new RegExp(`\\b${search}`, "i");
+        const regexSearch = new RegExp(search, "gi");
         const data: EveryDaysDua[] = EveryDaysDuaData;
         dispatch(
           setEveryDaysDua(
@@ -34,17 +34,22 @@ class EveryDaysDuaActions {
               } else {
                 if (filter.before && !filter.after) {
                   return (
-                    regexSearch.test(everyDaysDua.dua) &&
+                    (regexSearch.test(everyDaysDua.dua) ||
+                      regexSearch.test(everyDaysDua.meaningId)) &&
                     everyDaysDua.tag === Tag.before
                   );
                 } else if (filter.after && !filter.before) {
                   return (
-                    regexSearch.test(everyDaysDua.dua) &&
+                    (regexSearch.test(everyDaysDua.dua) ||
+                      regexSearch.test(everyDaysDua.meaningId)) &&
                     everyDaysDua.tag === Tag.after
                   );
                 }
 
-                return regexSearch.test(everyDaysDua.dua);
+                return (
+                  regexSearch.test(everyDaysDua.dua) ||
+                  regexSearch.test(everyDaysDua.meaningId)
+                );
               }
             })
           )
