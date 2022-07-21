@@ -10,7 +10,7 @@ import {
   TasbeehIcon,
   HomeAyahTopImage,
   HomeAyahBottomImage,
-  ShalatTimeIcon,
+  SalatTimeIcon,
 } from "../constants/assets";
 
 import ButtonMenu from "../components/ButtonMenu";
@@ -70,7 +70,7 @@ const Home = ({ navigation }: HomeProps) => {
             text="Jadwal Sholat"
             onPress={() => selectMenuHandler("Schedule")}
           >
-            <ShalatTimeIcon
+            <SalatTimeIcon
               width={buttonMenuIconWidth}
               style={styles.buttonMenuImage}
             />
