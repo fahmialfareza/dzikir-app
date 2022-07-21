@@ -77,7 +77,7 @@ function EditTasbeehTargetItemInput({
           <View style={[styles.modalView, themeContainerStyle]}>
             <View style={styles.row}>
               <TasbeehTextInput
-                // label="Target"
+                label="Target"
                 keyboardType="number-pad"
                 placeholder="Edit Target"
                 returnKeyType="done"

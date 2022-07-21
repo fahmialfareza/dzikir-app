@@ -111,25 +111,25 @@ const TasbeehItemInput = ({
 
             <View style={styles.row}>
               <TasbeehSelectDropdownColors
-                buttonTextAfterSelection={(selectedItem, index) => {
+                buttonTextAfterSelection={(selectedItem) => {
                   // text represented after item is selected
                   // if data array is an array of objects then return selectedItem.property to render after item is selected
                   return selectedItem.name;
                 }}
-                rowTextForSelection={(item, index) => {
+                rowTextForSelection={(item) => {
                   // text represented for each item in dropdown
                   // if data array is an array of objects then return item.property to represent item in dropdown
                   return item.name;
                 }}
                 data={colorData}
-                onSelect={(selectedItem, index) => {
+                onSelect={(selectedItem) => {
                   targetInput.current?.focus();
                   setState({ ...state, background: selectedItem.color });
                 }}
                 defaultValue={colorDefaultValue || colorData[0]}
                 label="Background"
                 reference={backgroundInput}
-                renderCustomizedButtonChild={(item, index) => {
+                renderCustomizedButtonChild={(item) => {
                   if (item != null) {
                     return (
                       <View
@@ -144,7 +144,7 @@ const TasbeehItemInput = ({
                     );
                   }
                 }}
-                renderCustomizedRowChild={(item, index) => {
+                renderCustomizedRowChild={(item) => {
                   return (
                     <Text
                       style={{
@@ -152,6 +152,7 @@ const TasbeehItemInput = ({
                         ...styles.dropdownRowChild,
                       }}
                     >
+                      {"    "}
                       {item.name}
                     </Text>
                   );
@@ -269,7 +270,7 @@ const styles = StyleSheet.create({
   },
   dropdownRowChild: {
     fontFamily: "dubai-regular",
-    textAlign: "center",
+    textAlign: "left",
     fontSize: 16,
   },
   dropdownButtonChildText: {

@@ -72,30 +72,30 @@ const Tasbeeh = ({ navigation }: TasbeehProps) => {
         <TasbeehItem
           item={item}
           onPress={() => selectTasbeehHandler(item)}
-          onLongPress={() => {
+          onEditPress={() => {
             setEditItemData(item);
             setEditModalVisible(true);
           }}
           backgroundColor={item.background || themeTextStyle.color}
           textColor={item.color || themeContainerStyle.backgroundColor}
+          showKebabMenu={true}
         />
       );
     }
 
     return (
-      <TasbeehItem
-        item={item}
-        onPress={() => selectTasbeehHandler(item)}
-        onLongPress={() => {
-          Alert.alert(
-            "Tidak bisa mengubah data ini",
-            "Tasbeeh bawaan aplikasi tidak bisa diubah atau dihapus",
-            [{ text: "OK" }]
-          );
-        }}
-        backgroundColor={item.background || themeTextStyle.color}
-        textColor={item.color || themeContainerStyle.backgroundColor}
-      />
+      <>
+        <TasbeehItem
+          item={item}
+          onPress={() => selectTasbeehHandler(item)}
+          backgroundColor={item.background || themeTextStyle.color}
+          textColor={item.color || themeContainerStyle.backgroundColor}
+        />
+
+        {tasbeehTargets.length > 5 && item.id === 5 && (
+          <View style={styles.dataSeparator} />
+        )}
+      </>
     );
   };
 
@@ -194,6 +194,13 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 100,
     backgroundColor: "orange",
+  },
+  dataSeparator: {
+    marginVertical: 10,
+    borderBottomColor: "#CED4DA",
+    borderBottomWidth: 2,
+    width: "60%",
+    alignSelf: "center",
   },
 });
 
